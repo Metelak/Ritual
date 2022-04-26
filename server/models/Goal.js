@@ -12,6 +12,7 @@ const goalSchema = new Schema(
       maxlength: 280
     },
     description: {
+      type: String,
       required: 'Please describe your goal!',
       minlength: 1,
       maxlength: 280

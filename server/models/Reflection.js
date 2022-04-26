@@ -3,6 +3,7 @@ const { Schema, model } = require('mongoose');
 const reflectionSchema = new Schema(
   {
     reflectionText: {
+      type: String,
       required:
         'Please share your experience. What have you found rewarding? Enjoyable?',
       minlength: 1,
