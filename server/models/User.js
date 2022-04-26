@@ -20,13 +20,13 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    myGoals: [
+    goals: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Goal'
       }
     ],
-    myActivities: [
+    activities: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Activity'
