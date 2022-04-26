@@ -13,9 +13,9 @@ const goalSchema = new Schema(
       maxlength: 280
     },
     description: {
-        required: 'Please describe your goal!',
-        minlength: 1,
-        maxlength: 280
+      required: 'Please describe your goal!',
+      minlength: 1,
+      maxlength: 280
     },
     createdAt: {
         type: Date,
