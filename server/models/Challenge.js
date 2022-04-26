@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const challengeSchema = new Schema(
   {
-    description: {
+    challengeText: {
         required: 'What have you found challenging today?',
         minlength: 1,
         maxlength: 280
