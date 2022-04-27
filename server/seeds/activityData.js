@@ -1,4 +1,4 @@
-const activities = [
+const activityData = [
   {
     title: 'lectus',
     text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
@@ -31,4 +31,4 @@ const activities = [
   }
 ];
 
-module.exports = activities;
+module.exports = activityData;
