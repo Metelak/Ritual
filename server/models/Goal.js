@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
-const challengeSchema = require('./Challenge').schema;
-const reflectionSchema = require('./Reflection').schema;
+const challengeSchema = require('./Challenge');
+const reflectionSchema = require('./Reflection');
 const dateFormat = require('../utils/dateFormat');
 
 const goalSchema = new Schema(
