@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
-const challengeSchema = require('./Challenge');
-const reflectionSchema = require('./Reflection');
+const challengeSchema = require('./Challenge').schema;
+const reflectionSchema = require('./Reflection').schema;
 const dateFormat = require('../utils/dateFormat');
 
 const goalSchema = new Schema(
@@ -18,10 +18,10 @@ const goalSchema = new Schema(
       maxlength: 280
     },
     createdAt: {
-        type: Date,
-        default: Date.now,
-        get: timestamp => dateFormat(timestamp)
-      },
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp)
+    },
     challenges: [challengeSchema],
     reflection: [reflectionSchema]
   },
