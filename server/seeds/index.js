@@ -1,6 +1,6 @@
 // import data
 const users = require('./userData');
-const activities = require('./activityDate');
+const activities = require('./activityData');
 
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
