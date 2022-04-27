@@ -6,8 +6,8 @@ const { reflectionData, challengeData } = require('./reflectionsAndChallenges');
 
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
-const Challenge = require('../models/Challenge');
-const Reflection = require('../models/Reflection');
+// const Challenge = require('../models/Challenge');
+// const Reflection = require('../models/Reflection');
 
 const getIds = (array) => {
   const idArray = [];
@@ -24,8 +24,8 @@ db.once('open', async () => {
   await User.deleteMany({});
   await Activity.deleteMany({});
   await Goal.deleteMany({});
-  await Challenge.deleteMany({});
-  await Reflection.deleteMany({});
+  // await Challenge.deleteMany({});
+  // await Reflection.deleteMany({});
 
   console.log('Deleted existing db data');
 
@@ -114,6 +114,12 @@ db.once('open', async () => {
       }
     );
   });
+
+  const goals = await Goal.findOne({ _id: newGoalIds[1] })
+    .select('-__v')
+    .populate('challenges');
+
+  console.log(goals);
 
   console.log('Database seeded');
   process.exit(0);
