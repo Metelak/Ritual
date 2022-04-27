@@ -30,14 +30,12 @@ const typeDefs = gql`
     _id: ID
     challengeText: String
     createdAt: String
-    username: String
   }
 
   type Reflection {
-    activityId: String
+    _id: ID
     reflectionText: String
     createdAt: String
-    username: String
   }
 
   type Auth {
@@ -47,6 +45,8 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    goal(_id: ID!): Goal
+    activity(_id: ID!): Activity
   }
 
   type Mutation {
