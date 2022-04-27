@@ -45,6 +45,8 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    goal(_id: ID!): Goal
+    activity(_id: ID!): Activity
   }
 
   type Mutation {

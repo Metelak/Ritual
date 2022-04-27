@@ -60,54 +60,55 @@ export const ADD_ACTIVITY = gql`
 export const ADD_CHALLENGE = gql`
   mutation addChallenge($id: ID!) {
     addChallenge(addChallenge: $id) {
-        _id
-        challengeText
-        createdAt
+      _id
+      challengeText
+      createdAt
     }
   }
 `;
 
-// export const ADD_REFLECTION = gql`
-//   mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-//     addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
-//       _id
-//       reactionCount
-//       reactions {
-//         _id
-//         reactionBody
-//         createdAt
-//         username
-//       }
-//     }
-//   }
-// `;
+export const ADD_REFLECTION = gql`
+  mutation addReflection($id: ID!) {
+    addReflection(addReflection: $id) {
+    _id
+    reflectionText
+    createdAt
+      }
+    }
+  }
+`;
 
-// export const REMOVE_GOAL = gql`
-//   mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-//     addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
-//       _id
-//       reactionCount
-//       reactions {
-//         _id
-//         reactionBody
-//         createdAt
-//         username
-//       }
-//     }
-//   }
-// `;
+export const REMOVE_GOAL = gql`
+  mutation removeGoal($id: ID!) {
+    removeGoal(removeGoal: $id) {
+        _id
+        name
+        description
+        createdAt
+        challenges {
+          _id
+          challengeText
+          createdAt
+        }
+        reflection {
+          _id
+          reflectionText
+          createdAt
+        }
+      }
+    }
+  }
+`;
 
-// export const REMOVE_ACTIVITY = gql`
-//   mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-//     addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
-//       _id
-//       reactionCount
-//       reactions {
-//         _id
-//         reactionBody
-//         createdAt
-//         username
-//       }
-//     }
-//   }
-// `;
+export const REMOVE_ACTIVITY = gql`
+mutation removeActivity($id: ID!) {
+    removeActivity(removeActivity: $id) {
+        _id
+        name
+        description
+        image
+        link
+      }
+    }
+  }
+`;
