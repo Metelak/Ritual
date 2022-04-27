@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Goal } = require('../models');
+const { User, Goal, Activity, Reflection, Challenge } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -22,12 +22,14 @@ const resolvers = {
         .populate('goals')
         .populate('activities');
     },
-    goals: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Goal.find(params).sort({ createdAt: -1 });
+    goals: async () => {
+      return Goal.find();
     },
     goal: async (parent, { _id }) => {
       return goal.findOne({ _id });
+    },
+    activity: async () => {
+      return Activity.find();
     }
   },
 
@@ -54,39 +56,74 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveActivity: async(parent, args, context) => {
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $addToSet: { savedActivities: activityData } },
-            { new: true, runValidators: true }
-          );
-  
-          return updatedUser;
-        }
-  
-        throw new AuthenticationError('You need to be logged in');
+    saveActivity: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { activities: _id } },
+          { new: true, runValidators: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in');
+    },
+    // added removeActivity
+    removeActivity: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          {
+            _id: context.user._id
+          },
+          { $pull: { activities: _id } },
+          {
+            new: true
+          }
+        );
+
+        return updateUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in');
     },
     addGoal: async (parent, args, context) => {
       if (context.user) {
-        const goal = await Goal.create({ ...args, username: context.user.username });
+        const goal = await Goal.create({
+          ...args
+        });
 
-        await User.findByIdAndUpdate(
+        const updateUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { goals: goal._id } },
           { new: true }
         );
 
-        return thought;
+        return updateUser;
       }
 
       throw new AuthenticationError('You need to be logged in!');
+    },
+    removeGoal: async (parent, { _id }, context) => {
+      if (context.user) {
+        const removedGoal = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { goals: _id }
+          },
+          { new: true }
+        );
+      }
     },
     addChallenge: async (parent, { goalId, challengeText }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
-          { $push: { challenges: { challengeBody, username: context.user.username } } },
+          {
+            $push: {
+              challenges: { challengeBody, username: context.user.username }
+            }
+          },
           { new: true, runValidators: true }
         );
 
@@ -96,18 +133,22 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     addReflection: async (parent, { goalId, reflectionText }, context) => {
-        if (context.user) {
-          const updatedGoal = await Goal.findOneAndUpdate(
-            { _id: goalId },
-            { $push: { reflections: { reflectionBody, username: context.user.username } } },
-            { new: true, runValidators: true }
-          );
-  
-          return updatedGoal;
-        }
-  
-        throw new AuthenticationError('You need to be logged in!');
-      },
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          {
+            $push: {
+              reflections: { reflectionBody, username: context.user.username }
+            }
+          },
+          { new: true, runValidators: true }
+        );
+
+        return updatedGoal;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    }
   }
 };
 
