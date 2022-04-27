@@ -30,14 +30,12 @@ const typeDefs = gql`
     _id: ID
     challengeText: String
     createdAt: String
-    username: String
   }
 
   type Reflection {
-    activityId: String
+    _id: ID
     reflectionText: String
     createdAt: String
-    username: String
   }
 
   type Auth {
