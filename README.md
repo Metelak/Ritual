@@ -9,6 +9,7 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Packages](#packages)
+  * [Other Tools](#other-tools)
   * [Future Developments](#future-developments)
   * [Contributions](#contributions)
   * [Tests](#tests)
@@ -47,6 +48,10 @@ Once users are signed up / logged in, users can view wellness dashboard with per
 * [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com/)
 * [Bootstrap](https://getbootstrap.com/)
+
+## **Other Tools**
+* [Canva](https://www.canva.com/) provides templates and icons for styling flyers and websites; we used for our Ritual logo.
+* [Pixlr](https://pixlr.com/x/) an Open Source software, which we used to edit and resize our logo.
 
 ## **Future Developments**
 
