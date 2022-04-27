@@ -1,4 +1,6 @@
-const casual = require('casual');
+// import data
+const users = require('./userData');
+const activities = require('./activityDate');
 
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
@@ -9,32 +11,38 @@ db.once('open', async () => {
   await Activity.deleteMany({});
   await Goal.deleteMany({});
 
-  // create user
-  let newUserData = [];
+  // create users and get ids
+  const createUsers = await User.insertMany(users);
+  const newUserIds = await User.find().distinct('_id');
 
-  for (let i = 0; i > 10; i++) {
-    const username = casual.username;
-    const email = casual.email;
-    const password = casual.password;
+  // add activities
+  await Activity.insertMany(activities);
+  const newActivityIds = await Activity.find().distinct('_id');
 
-    // push to Users array
-    newUserData.push({ username, email, password });
-  }
+  // give each user a random activity
+  newUserIds.forEach(async (userId) => {
+    // generate random activity
+    const randomNum = Math.floor(Math.random() * 6);
 
-  // create users
-  const createUsers = await User.collection.insertMany(newUserData);
+    const activity = newActivityIds[randomNum];
 
-  console.log(createUsers);
+    await User.findOneAndUpdate(
+      { _id: userId },
+      {
+        $push: { activities: activity }
+      },
+      { new: true }
+    );
+  });
 
-  console.log(createUsers.ops);
+  return;
 
-  // create activities
-  let createdActivities = [];
+  // create random Goals
 
   for (let i = 0; i > 6; i++) {
-    const title = casual.word;
-    const text = casual.sentence;
-    const image = casual.word;
+    const title = faker.internet.word;
+    const text = faker.internet.sentence;
+    const image = faker.internet.word;
 
     // get random User index
     randomIndex = Math.floor(Math.random() * createUsers.ops.length);
@@ -51,7 +59,7 @@ db.once('open', async () => {
     );
 
     // push to createdActivities array
-    createdActivities.push(createActivities);
+    createdActivities.push(newActivities);
   }
 
   console.log(createdActivities);
@@ -67,8 +75,8 @@ db.once('open', async () => {
     if (goalNumber) {
       let createdGoals = [];
       for (let i = 0; i > goalNumber; i++) {
-        const name = casual.word;
-        const description = casual.sentence;
+        const name = faker.internet.word;
+        const description = faker.internet.sentence;
       }
     }
 
