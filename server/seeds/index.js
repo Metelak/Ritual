@@ -1,28 +1,50 @@
 // import data
-const users = require('./userData');
-const activities = require('./activityData');
+const userData = require('./userData');
+const activityData = require('./activityData');
+const goalData = require('./goalsData');
+const { reflectionData, challengeData } = require('./reflectionsAndChallenges');
 
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
+const Challenge = require('../models/Challenge');
+const Reflection = require('../models/Reflection');
+
+const getIds = (array) => {
+  const idArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let id = array[i]._id;
+    idArray.push(id);
+  }
+
+  return idArray;
+};
 
 db.once('open', async () => {
   // delete data
   await User.deleteMany({});
   await Activity.deleteMany({});
   await Goal.deleteMany({});
+  await Challenge.deleteMany({});
+  await Reflection.deleteMany({});
+
+  console.log('Deleted existing db data');
 
   // create users and get ids
-  const createUsers = await User.insertMany(users);
-  const newUserIds = await User.find().distinct('_id');
+  const createUsers = await User.insertMany(userData);
+  const newUserIds = getIds(createUsers);
+
+  console.log('Created Users');
 
   // add activities
-  await Activity.insertMany(activities);
-  const newActivityIds = await Activity.find().distinct('_id');
+  const createActivities = await Activity.insertMany(activityData);
+  const newActivityIds = getIds(createActivities);
+
+  console.log('Created Activities');
 
   // give each user a random activity
   newUserIds.forEach(async (userId) => {
     // generate random activity
-    const randomNum = Math.floor(Math.random() * 6);
+    const randomNum = Math.floor(Math.random() * (newActivityIds.length - 1));
 
     const activity = newActivityIds[randomNum];
 
@@ -30,56 +52,69 @@ db.once('open', async () => {
       { _id: userId },
       {
         $push: { activities: activity }
-      },
-      { new: true }
+      }
     );
   });
 
-  return;
+  console.log('Added Activities to Users');
 
-  // create random Goals
+  // add goals to db
+  const newGoals = await Goal.insertMany(goalData);
+  const newGoalIds = getIds(newGoals);
 
-  for (let i = 0; i > 6; i++) {
-    const title = faker.internet.word;
-    const text = faker.internet.sentence;
-    const image = faker.internet.word;
+  console.log('Created Goals');
 
-    // get random User index
-    randomIndex = Math.floor(Math.random() * createUsers.ops.length);
-    // get random user's id
-    const { _id: userId } = createUsers.ops[randomIndex];
+  // add challenges to db
+  const newChallenges = await Challenge.insertMany(challengeData);
+  const newChallengeIds = getIds(newChallenges);
 
-    // create new activity
-    const newActivities = await Activity.create({ title, text, image });
+  console.log('Created Challenges');
 
-    // push activity to a user
-    await User.updateOne(
-      { _id: userId },
-      { $push: { activities: newActivities._id } }
+  // add reflections to db
+  const newReflections = await Reflection.insertMany(reflectionData);
+  const newReflectionIds = getIds(newReflections);
+
+  console.log('Created Reflections');
+
+  // add challenges to goals
+  newChallengeIds.forEach(async (challengeId) => {
+    let index = Math.floor(Math.random() * (newGoalIds.length - 1));
+
+    await Goal.findOneAndUpdate(
+      {
+        _id: newGoalIds[index]
+      },
+      { $push: { challenges: challengeId } }
     );
+  });
 
-    // push to createdActivities array
-    createdActivities.push(newActivities);
-  }
+  // add reflections to goals
+  newReflectionIds.forEach(async (reflectionId) => {
+    let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
-  console.log(createdActivities);
+    await Goal.findOneAndUpdate(
+      {
+        _id: newGoalIds[index]
+      },
+      { $push: { reflection: reflectionId } }
+    );
+  });
 
-  return;
+  // add goals to random users;
+  newGoalIds.forEach(async (goal) => {
+    // get random user id
+    let index = Math.floor(Math.random() * 9);
 
-  // create Goals for each user
-  for (let i = 0; i > createUsers.ops.length; i++) {
-    // generate random number 0-3
-    let goalNumber = Math.floor(Math.random() * 3);
-
-    // create goals
-    if (goalNumber) {
-      let createdGoals = [];
-      for (let i = 0; i > goalNumber; i++) {
-        const name = faker.internet.word;
-        const description = faker.internet.sentence;
+    await User.findOneAndUpdate(
+      {
+        _id: newUserIds[index]
+      },
+      {
+        $push: { goals: goal }
       }
-    }
+    );
+  });
 
-    // get
-  }
+  console.log('Database seeded');
+  process.exit(0);
 });
