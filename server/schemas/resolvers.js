@@ -9,6 +9,7 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('goals')
+          .populate('completedGoals')
           .populate('activities');
 
         return userData;
@@ -20,6 +21,7 @@ const resolvers = {
       return await User.findOne({ username })
         .select('-__v -password')
         .populate('goals')
+        .populate('completedGoals')
         .populate('activities');
     },
     goals: async () => {
@@ -67,7 +69,10 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { activities: _id } },
           { new: true, runValidators: true }
-        ).populate('activities').populate('goals');
+        )
+          .populate('activities')
+          .populate('goals')
+          .populate('completedGoals');
 
         return updatedUser;
       }
@@ -110,17 +115,34 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeGoal: async (parent, { _id }, context) => {
+    completeGoal: async (parent, { _id }, context) => {
       if (context.user) {
-        const removedGoal = await User.findOneAndUpdate(
+        // remove goal from User's goal array
+        await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $pull: { goals: _id }
           },
           { new: true }
         );
-        return removedGoal;
+
+        // add goal to User's completedGoals array
+        const archiveGoal = await User.findOneAndUpdate(
+          {
+            _id: context.user._id
+          },
+          {
+            $push: { completedGoals: _id }
+          },
+          { new: true }
+        )
+          .populate('goals')
+          .populate('completedGoals');
+
+        return archiveGoal;
       }
+
+      throw new AuthenticationError('You need to be logged in!');
     },
     addChallenge: async (parent, { goalId, challengeText }, context) => {
       if (context.user) {
