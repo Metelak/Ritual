@@ -20,6 +20,7 @@ export const QUERY_USER = gql`
         name
         description
         createdAt
+        isComplete
         challenges {
             _id
             challengeText
@@ -53,6 +54,8 @@ export const QUERY_ME = gql`
         _id
         name
         description
+        createdAt
+        isComplete
         challenges {
           _id
           challengeText
@@ -92,6 +95,7 @@ query userGoals($username: username, $goals: goals){
             name
             description
             createdAt
+            isComplete
             challenges {
                 _id
                 challengeText
@@ -133,6 +137,7 @@ query userChallenges($username: username, $goals: goals, $challenges: challenges
             name
             description
             createdAt
+            isComplete
             challenges {
                 _id
                 challengeText
@@ -153,6 +158,7 @@ query userReflections($username: username, $goals: goals, $reflections: reflecti
             name
             description
             createdAt
+            isComplete
             reflection {
                 _id
                 reflectionText

@@ -22,6 +22,11 @@ const goalSchema = new Schema(
       default: Date.now,
       get: (timestamp) => dateFormat(timestamp)
     },
+    isComplete: {
+      type: Boolean,
+      // currently set to false because when we load the goal we want it to be unchecked
+      default: false
+    },
     challenges: [challengeSchema],
     reflection: [reflectionSchema]
   },
