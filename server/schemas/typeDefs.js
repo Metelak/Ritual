@@ -11,10 +11,9 @@ const typeDefs = gql`
 
   type Activity {
     _id: ID
-    name: String
-    description: String
+    title: String
+    text: String
     image: String
-    link: String
   }
 
   type Goal {
@@ -48,6 +47,7 @@ const typeDefs = gql`
     user(username: String!): User
     goals: [Goal]
     goal(_id: ID!): Goal
+    activities: [Activity]
     activity(_id: ID!): Activity
   }
 

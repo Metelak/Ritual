@@ -30,9 +30,11 @@ const resolvers = {
         .populate('challenges')
         .populate('reflection');
     },
-
-    activity: async () => {
-      return await Activity.find();
+    activities: async () => {
+      return await Activity.find({});
+    },
+    activity: async (parent, { _id }) => {
+      return await Activity.findOne({ _id: _id });
     }
   },
 
@@ -92,7 +94,10 @@ const resolvers = {
     },
     addGoal: async (parent, args, context) => {
       if (context.user) {
-        const goal = await Goal.create({ ...args, username: context.user.username });
+        const goal = await Goal.create({
+          ...args,
+          username: context.user.username
+        });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -114,7 +119,6 @@ const resolvers = {
           },
           { new: true }
         );
-
         return removedGoal;
       }
     },
