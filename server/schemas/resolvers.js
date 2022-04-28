@@ -67,7 +67,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { activities: _id } },
           { new: true, runValidators: true }
-        );
+        ).populate('activities').populate('goals');
 
         return updatedUser;
       }
