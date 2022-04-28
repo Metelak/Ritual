@@ -31,6 +31,7 @@ export const ADD_GOAL = gql`
       name
       description
       createdAt
+      isComplete
       challenges {
         _id
         challengeText
@@ -85,6 +86,7 @@ export const REMOVE_GOAL = gql`
         name
         description
         createdAt
+        isComplete
         challenges {
           _id
           challengeText

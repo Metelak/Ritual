@@ -95,8 +95,7 @@ const resolvers = {
     addGoal: async (parent, args, context) => {
       if (context.user) {
         const goal = await Goal.create({
-          ...args,
-          username: context.user.username
+          ...args
         });
 
         await User.findByIdAndUpdate(
