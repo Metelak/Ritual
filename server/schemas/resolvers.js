@@ -92,17 +92,15 @@ const resolvers = {
     },
     addGoal: async (parent, args, context) => {
       if (context.user) {
-        const goal = await Goal.create({
-          ...args
-        });
+        const goal = await Goal.create({ ...args, username: context.user.username });
 
-        const updateUser = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { goals: goal._id } },
           { new: true }
         );
 
-        return updateUser;
+        return goal;
       }
 
       throw new AuthenticationError('You need to be logged in!');
