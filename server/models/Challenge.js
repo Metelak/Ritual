@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const challengeSchema = new Schema(
   {
@@ -7,11 +8,17 @@ const challengeSchema = new Schema(
       required: 'What have you found challenging today?',
       minlength: 1,
       maxlength: 280
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp)
     }
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
+      getters: true
     }
   }
 );
