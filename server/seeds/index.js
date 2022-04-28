@@ -6,8 +6,6 @@ const { reflectionData, challengeData } = require('./reflectionsAndChallenges');
 
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
-const Challenge = require('../models/Challenge');
-const Reflection = require('../models/Reflection');
 
 const getIds = (array) => {
   const idArray = [];
@@ -24,8 +22,6 @@ db.once('open', async () => {
   await User.deleteMany({});
   await Activity.deleteMany({});
   await Goal.deleteMany({});
-  await Challenge.deleteMany({});
-  await Reflection.deleteMany({});
 
   console.log('Deleted existing db data');
 
@@ -64,39 +60,27 @@ db.once('open', async () => {
 
   console.log('Created Goals');
 
-  // add challenges to db
-  const newChallenges = await Challenge.insertMany(challengeData);
-  const newChallengeIds = getIds(newChallenges);
-
-  console.log('Created Challenges');
-
-  // add reflections to db
-  const newReflections = await Reflection.insertMany(reflectionData);
-  const newReflectionIds = getIds(newReflections);
-
-  console.log('Created Reflections');
-
   // add challenges to goals
-  newChallengeIds.forEach(async (challengeId) => {
+  challengeData.forEach(async (challengeText) => {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
       {
         _id: newGoalIds[index]
       },
-      { $push: { challenges: challengeId } }
+      { $push: { challenges: challengeText } }
     );
   });
 
   // add reflections to goals
-  newReflectionIds.forEach(async (reflectionId) => {
+  reflectionData.forEach(async (reflectionText) => {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
       {
         _id: newGoalIds[index]
       },
-      { $push: { reflection: reflectionId } }
+      { $push: { reflection: reflectionText } }
     );
   });
 

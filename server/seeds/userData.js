@@ -45,9 +45,9 @@ const userData = [
     password: 'v7Ss9mY'
   },
   {
-    username: 'leixenberger9',
-    email: 'vculy9@geocities.jp',
-    password: 'e8uZhnhrSA'
+    username: 'test',
+    email: 'test@email.com',
+    password: 'password'
   }
 ];
 
