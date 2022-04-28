@@ -22,13 +22,13 @@ const resolvers = {
         .populate('goals')
         .populate('activities');
     },
-    // TODO Fix this
     goals: async () => {
-      return await Goal.find();
+      return await Goal.find({}).populate('challenges').populate('reflection');
     },
-
     goal: async (parent, { _id }) => {
-      return await Goal.findOne({ _id }).populate('').populate('reflection');
+      return await Goal.findOne({ _id })
+        .populate('challenges')
+        .populate('reflection');
     },
 
     activity: async () => {
