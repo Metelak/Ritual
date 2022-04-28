@@ -141,7 +141,7 @@ const resolvers = {
           { _id: goalId },
           {
             $push: {
-              reflections: { reflectionBody, username: context.user.username }
+              reflections: { reflectionText, username: context.user.username }
             }
           },
           { new: true, runValidators: true }
