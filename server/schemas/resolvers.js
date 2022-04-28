@@ -128,7 +128,7 @@ const resolvers = {
           { _id: goalId },
           {
             $push: {
-              challenges: { challengeText, username: context.user.username }
+              challenges: { challengeText }
             }
           },
           { new: true, runValidators: true }
@@ -145,7 +145,7 @@ const resolvers = {
           { _id: goalId },
           {
             $push: {
-              reflections: { reflectionBody, username: context.user.username }
+              reflection: { reflectionText }
             }
           },
           { new: true, runValidators: true }
