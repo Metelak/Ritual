@@ -114,6 +114,8 @@ const resolvers = {
           },
           { new: true }
         );
+
+        return removedGoal;
       }
     },
     addChallenge: async (parent, { goalId, challengeText }, context) => {
