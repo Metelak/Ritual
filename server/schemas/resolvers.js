@@ -128,7 +128,7 @@ const resolvers = {
           { _id: goalId },
           {
             $push: {
-              challenges: { challengeBody, username: context.user.username }
+              challenges: { challengeText, username: context.user.username }
             }
           },
           { new: true, runValidators: true }
