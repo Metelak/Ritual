@@ -49,10 +49,10 @@ export const ADD_ACTIVITY = gql`
   mutation addActivity($id: ID!) {
     addActivity(addActivity: $id) {
       _id
-      name
-      description
+      title
+      text
+      createdAt
       image
-      link
     }
   }
 `;
@@ -78,9 +78,9 @@ export const ADD_REFLECTION = gql`
   }
 `;
 
-export const REMOVE_GOAL = gql`
-  mutation removeGoal($id: ID!) {
-    removeGoal(removeGoal: $id) {
+export const COMPLETE_GOAL = gql`
+  mutation completeGoal($id: ID!) {
+    completedGoals(removeGoal: $id) {
         _id
         name
         description
