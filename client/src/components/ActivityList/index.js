@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const ActivityList = ({ activities, title }) => {
-
+const ActivityHome = (props) => {
+  return <></>;
 };
 
-export default ActivityList;
+const ActivityCircle = (props) => {
+  return <></>;
+};
+
+export { ActivityHome, ActivityCircle };
