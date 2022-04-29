@@ -38,7 +38,10 @@ db.once('open', async () => {
   console.log('Created Activities');
 
   // give each user a random activity
-  newUserIds.forEach(async (userId) => {
+
+  newUserIds.forEach((userId) => {});
+
+  for await (const userId of newUserIds) {
     // generate random activity
     const randomNum = Math.floor(Math.random() * (newActivityIds.length - 1));
 
@@ -50,7 +53,7 @@ db.once('open', async () => {
         $push: { activities: activity }
       }
     );
-  });
+  }
 
   console.log('Added Activities to Users');
 
@@ -61,31 +64,33 @@ db.once('open', async () => {
   console.log('Created Goals');
 
   // add challenges to goals
-  challengeData.forEach(async (challengeText) => {
+  for await (const data of challengeData) {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
       {
         _id: newGoalIds[index]
       },
-      { $push: { challenges: challengeText } }
+      { $push: { challenges: data } }
     );
-  });
+  }
+
+  console.log('challenges added');
 
   // add reflections to goals
-  reflectionData.forEach(async (reflectionText) => {
+  for await (const data of reflectionData) {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
       {
         _id: newGoalIds[index]
       },
-      { $push: { reflection: reflectionText } }
+      { $push: { reflection: data } }
     );
-  });
+  }
 
   // add goals to random users;
-  newGoalIds.forEach(async (goal) => {
+  for await (const goal of newGoalIds) {
     // get random user id
     let index = Math.floor(Math.random() * 9);
 
@@ -97,7 +102,7 @@ db.once('open', async () => {
         $push: { goals: goal }
       }
     );
-  });
+  }
 
   console.log('Database seeded');
   process.exit(0);
