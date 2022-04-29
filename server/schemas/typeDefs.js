@@ -22,6 +22,7 @@ const typeDefs = gql`
     name: String
     description: String
     createdAt: String
+    isComplete: Boolean
     challenges: [Challenge]
     reflection: [Reflection]
   }
