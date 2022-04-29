@@ -23,5 +23,8 @@
   "homepage": "https://github.com/Metelak/Ritual#readme",
   "devDependencies": {
     "concurrently": "^7.1.0"
+  },
+  "dependencies": {
+    "heroku": "^7.60.2"
   }
 }
