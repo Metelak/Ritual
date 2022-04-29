@@ -1,24 +1,22 @@
 import React from 'react';
 import { ActivityHome } from '../components/ActivityList';
-
-const sampleActivities = [
-  {
-    title: 'Walk Outside',
-    text: 'Go for a walk outside.',
-    image: 'lotus-logo-white.png'
-  },
-  {
-    title: 'Title2',
-    text: 'Text2',
-    image: 'lotus-logo-white.png'
-  }
-];
+import { useQuery } from '@apollo/client';
+import { QUERY_ACTIVITIES } from '../utils/queries';
 
 const Home = () => {
+  // import all activities from the db
+  const { loading, data: activityData } = useQuery(QUERY_ACTIVITIES);
+
+  if (loading) {
+    return <div>loading Activities...</div>;
+  }
+
   return (
     <div>
-      {sampleActivities.map((activity) => {
-        return <ActivityHome activity={activity}></ActivityHome>;
+      {activityData.activities.map((activity) => {
+        return (
+          <ActivityHome key={activity.title} activity={activity}></ActivityHome>
+        );
       })}
     </div>
   );
