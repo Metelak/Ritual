@@ -41,7 +41,7 @@ db.once('open', async () => {
 
   newUserIds.forEach((userId) => {});
 
-  for (const userId of newUserIds) {
+  for await (const userId of newUserIds) {
     // generate random activity
     const randomNum = Math.floor(Math.random() * (newActivityIds.length - 1));
 
@@ -64,37 +64,33 @@ db.once('open', async () => {
   console.log('Created Goals');
 
   // add challenges to goals
-  for (const challengeText of challengeData) {
-    let index = Math.floor(Math.random() * (newGoalIds.length - 1));
-
-    let text = challengeText.challengeText;
-
-    console.log(text);
-
-    return await Goal.findOneAndUpdate(
-      {
-        _id: newGoalIds[index]
-      },
-      { $push: { challenges: { text } } }
-    );
-  }
-
-  console.log('challenges added');
-
-  // add reflections to goals
-  for (const reflectionText of reflectionData) {
+  for await (const data of challengeData) {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
       {
         _id: newGoalIds[index]
       },
-      { $push: { reflection: { reflectionText } } }
+      { $push: { challenges: data } }
+    );
+  }
+
+  console.log('challenges added');
+
+  // add reflections to goals
+  for await (const data of reflectionData) {
+    let index = Math.floor(Math.random() * (newGoalIds.length - 1));
+
+    await Goal.findOneAndUpdate(
+      {
+        _id: newGoalIds[index]
+      },
+      { $push: { reflection: data } }
     );
   }
 
   // add goals to random users;
-  for (const goal of newGoalIds) {
+  for await (const goal of newGoalIds) {
     // get random user id
     let index = Math.floor(Math.random() * 9);
 
