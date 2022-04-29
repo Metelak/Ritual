@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import logoImage from '../src/assets/Ritual_logos/Ritual_logo_grey_500x500.png';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,6 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
+import { ChallengeReflectionForm } from './components/ChallengeReflectionForm';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,11 +40,7 @@ function App() {
         <Router>
         <div>
           <Header />
-          <div className="App">
-            <h1>Ritual App under construction</h1>
-            <img src={logoImage}></img>
-            <h3>From the CRMMMM developers</h3>
-          </div>
+          <ChallengeReflectionForm></ChallengeReflectionForm>
           <Footer />
         </div>
       </Router>
