@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer>
             <div>
-                Created with love by CRMMMM &copy;{new Date().getFullYear()}
+            From the CRMMMM developers &copy;{new Date().getFullYear()}
             </div>
         </footer>
     );
