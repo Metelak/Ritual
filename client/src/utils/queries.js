@@ -20,6 +20,7 @@ export const QUERY_USER = gql`
         name
         description
         createdAt
+        isComplete
         challenges {
             _id
             challengeText
@@ -69,6 +70,8 @@ export const QUERY_ME = gql`
         _id
         name
         description
+        createdAt
+        isComplete
         challenges {
           _id
           challengeText
@@ -121,18 +124,19 @@ export const QUERY_USER_GOALS = gql`
       username
       goals {
         _id
-        name
-        description
-        createdAt
-        challenges {
-          _id
-          challengeText
-          createdAt
-        }
-        reflection {
-          _id
-          reflectionText
-          createdAt
+            name
+            description
+            createdAt
+            isComplete
+            challenges {
+                _id
+                challengeText
+                createdAt
+            }
+            reflection {
+                _id
+                reflectionText
+                createdAt
         }
       }
     }
@@ -175,10 +179,12 @@ export const QUERY_USER_CHALLENGES = gql`
         name
         description
         createdAt
+        isComplete
         challenges {
-          _id
-          challengeText
-          createdAt
+           _id
+           challengeText
+           createdAt
+            }
         }
       }
     }
@@ -201,14 +207,15 @@ export const QUERY_USER_REFLECTIONS = gql`
       username
       goals {
         _id
-        name
-        description
-        createdAt
-        reflection {
-          _id
-          reflectionText
-          createdAt
-        }
+            name
+            description
+            createdAt
+            isComplete
+            reflection {
+                _id
+                reflectionText
+                createdAt
+            }
       }
     }
   }
