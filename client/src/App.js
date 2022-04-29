@@ -6,16 +6,17 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  createHttpLink
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
+import Home from './pages/Home';
 import { ChallengeReflectionForm } from './components/ChallengeReflectionForm';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: '/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -23,24 +24,23 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
+      authorization: token ? `Bearer ${token}` : ''
+    }
   };
 });
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 function App() {
   return (
-    
-      <ApolloProvider client={client}>
-        <Router>
+    <ApolloProvider client={client}>
+      <Router>
         <div>
           <Header />
-          <ChallengeReflectionForm></ChallengeReflectionForm>
+          <Home></Home>
           <Footer />
         </div>
       </Router>
