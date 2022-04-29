@@ -12,7 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
-import { ChallengeReflectionForm } from './components/ChallengeReflectionForm';
+import Dashboard from './pages/Dashboard';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,7 +40,7 @@ function App() {
         <Router>
         <div>
           <Header />
-          <ChallengeReflectionForm></ChallengeReflectionForm>
+          <Dashboard></Dashboard>
           <Footer />
         </div>
       </Router>
