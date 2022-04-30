@@ -5,39 +5,70 @@ import React from 'react';
 // import { ADD_GOAL } from '../../utils/mutations';
 // import { QUERY_ME, QUERY_USER_GOALS } from '../../utils/queries';
 
-import { Modal, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  useDisclosure
+} from '@chakra-ui/react';
 
 const GoalForm = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const initialRef = React.useRef()
+  const finalRef = React.useRef()
+
   return (
     // <Box p='3' m='10' borderWidth="2px" w="50%" borderRadius="lg">
     <>
-    <Button onClick={onOpen}>Add Goal</Button>
-    <Modal
+      <Button onClick={onOpen}>Add Goal</Button>
+      <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
-        onClose={onClose}
-      ></Modal>
-    <FormControl isRequired>
-        <FormLabel>Goal Name:</FormLabel>
-        <Input />
-        <FormLabel>Goal Description:</FormLabel>
-        <Input
-          id="description"
-          type="description"
-          // value={input}
-          // onChange={handleInputChange}
-        />
-        <Button
-          mt={4}
-          colorScheme="teal"
-          // isLoading={props.isSubmitting}
-          type="submit">
-          Create Goal
-        </Button>
-      </FormControl>
+        onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Create a Goal</ModalHeader>
+        {/* <ModalCloseButton /> */}
+        <ModalBody pb={6}>
+          <FormControl>
+            <FormLabel>Name:</FormLabel>
+            <Input placeholder="What is the goal name?" />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Description:</FormLabel>
+            <Input
+              id="description"
+              type="description"
+              placeholder="Write your goal here."
+              // value={input}
+              // onChange={handleInputChange}
+            />
+          </FormControl>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            mr={3}
+            colorScheme="teal"
+            // isLoading={props.isSubmitting}
+            type="submit">
+            Save
+          </Button>
+          <Button onClick={onClose}>Cancel</Button>
+        </ModalFooter>
+      </ModalContent>
+      </Modal>
     </>
-      
+
     // </Box>
   );
 };
