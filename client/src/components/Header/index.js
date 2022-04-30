@@ -12,7 +12,7 @@ import {
 // import Auth from '../../utils/auth';
 
 // import login from Login.js
-import Login from '../../pages/Login';
+import LoginForm from './Login';
 
 const Header = () => {
   // const logout = (event) => {
@@ -40,7 +40,7 @@ const Header = () => {
           <Spacer />
           <ButtonGroup gap="2" pr="3">
             <Button colorScheme='whiteAlpha' variant='outline'>Sign Up</Button>
-            <Button colorScheme='whiteAlpha' variant='outline'><Login>Login</Login></Button>
+            <LoginForm colorScheme='whiteAlpha' variant='outline'>Login</LoginForm>
           </ButtonGroup>
         </Flex>
       </div>
