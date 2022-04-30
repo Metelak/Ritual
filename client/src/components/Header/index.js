@@ -39,8 +39,8 @@ const Header = () => {
           </Box>
           <Spacer />
           <ButtonGroup gap="2" pr="3">
-            <Button colorScheme='whiteAlpha' variant='outline'><Login></Login>Sign Up</Button>
-            <Button colorScheme='whiteAlpha' variant='outline'>Log in</Button>
+            <Button colorScheme='whiteAlpha' variant='outline'>Sign Up</Button>
+            <Button colorScheme='whiteAlpha' variant='outline'><Login>Login</Login></Button>
           </ButtonGroup>
         </Flex>
       </div>
