@@ -13,6 +13,7 @@ import { setContext } from '@apollo/client/link/context';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 import Home from './pages/Home';
+import { ChallengeReflectionForm } from './components/ChallengeReflectionForm';
 
 
 const httpLink = createHttpLink({
@@ -41,6 +42,7 @@ function App() {
           <div>
             <Header />
             <Home></Home>
+            <ChallengeReflectionForm></ChallengeReflectionForm>
             <Footer />
           </div>
       </Router>
