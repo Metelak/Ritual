@@ -11,6 +11,9 @@ import {
 } from '@chakra-ui/react';
 // import Auth from '../../utils/auth';
 
+// import login from Login.js
+import Login from '../../pages/Login';
+
 const Header = () => {
   // const logout = (event) => {
   //   event.preventDefault();
