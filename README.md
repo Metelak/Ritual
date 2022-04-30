@@ -9,6 +9,7 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Packages](#packages)
+  * [Other Tools](#other-tools)
   * [Future Developments](#future-developments)
   * [Contributions](#contributions)
   * [Tests](#tests)
@@ -18,11 +19,15 @@
   ---
 
   ## **User-Story**
-   
-
+   AS A user I want an application that provides wellness activities and tracks my wellness goals
+  SO THAT I can draw inspiration of new ideas, and evaluate whether or not I am reaching my goals
+  WHEN goals are missed, I have the opportunity to start again!
   ## **Description**
- 
+ We want to create a goal setting application centered on wellness, where we can add new goals, track daily goals, and monitor progress.
 
+Display homepage. If you are not a “USER” you can see all the suggested activities. When you click on one, it will ask you to log in to save the activity to your daily goals. Tip from API / this is our way to get people to create an account / interact with the app!
+
+Once users are signed up / logged in, users can view wellness dashboard with personalized wellness goals. They can set types of activities to support personal goals, whether it is movement-based, creativity / play, food / water intake, sleep…
   ## **Preview**
 
   ## **Installation**
@@ -35,15 +40,18 @@
      ```
   * Or visit our webpage [Ritual]()
 ## **Packages**
+* [Apollo](https://www.apollographql.com/docs/apollo-server/)
+* [Heroku](https://id.heroku.com/login)
+* [Graph QL](https://graphql.org/)
+* [React](https://reactjs.org/)
+* [MongoDB](https://www.mongodb.com/)
+* [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com/)
-* [MySQL2](https://www.npmjs.com/package/mysql2)
-* [Sequelize](https://www.npmjs.com/package/sequelize)
-* [dotenv](https://www.npmjs.com/package/dotenv)
-* [Node JS](https://nodejs.org/en/)
-* [eslint](https://eslint.org/)
-* [Handlebars](https://handlebarsjs.com/)
 * [Bootstrap](https://getbootstrap.com/)
-* [Heroku](https://id.heroku.com/)
+
+## **Other Tools**
+* [Canva](https://www.canva.com/) provides templates and icons for styling flyers and websites; we used for our Ritual logo.
+* [Pixlr](https://pixlr.com/x/) an Open Source software, which we used to edit and resize our logo.
 
 ## **Future Developments**
 
