@@ -71,10 +71,9 @@ export const ADD_CHALLENGE = gql`
 export const ADD_REFLECTION = gql`
   mutation addReflection($id: ID!) {
     addReflection(addReflection: $id) {
-    _id
-    reflectionText
-    createdAt
-      }
+      _id
+      reflectionText
+      createdAt
     }
   }
 `;
@@ -82,35 +81,33 @@ export const ADD_REFLECTION = gql`
 export const COMPLETE_GOAL = gql`
   mutation completeGoal($id: ID!) {
     completedGoals(removeGoal: $id) {
+      _id
+      name
+      description
+      createdAt
+      isComplete
+      challenges {
         _id
-        name
-        description
+        challengeText
         createdAt
-        isComplete
-        challenges {
-          _id
-          challengeText
-          createdAt
-        }
-        reflection {
-          _id
-          reflectionText
-          createdAt
-        }
+      }
+      reflection {
+        _id
+        reflectionText
+        createdAt
       }
     }
   }
 `;
 
 export const REMOVE_ACTIVITY = gql`
-mutation removeActivity($id: ID!) {
+  mutation removeActivity($id: ID!) {
     removeActivity(removeActivity: $id) {
-        _id
-        name
-        description
-        image
-        link
-      }
+      _id
+      name
+      description
+      image
+      link
     }
   }
 `;
