@@ -1,21 +1,24 @@
 {
-  "name": "client",
+  "name": "ritual",
   "version": "0.1.0",
-  "private": true,
   "proxy": "http://localhost:3001",
+  "private": true,
   "dependencies": {
-    "@apollo/client": "^3.3.16",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "graphql": "^15.5.0",
-    "bootstrap": "^4.4.1",
-    "jwt-decode": "^2.2.0",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
-    "react-dom": "^16.13.1",
+    "@apollo/client": "^3.6.0",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^13.5.0",
+    "casual": "^1.6.2",
+    "graphql": "^16.4.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,7 +27,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
