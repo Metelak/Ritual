@@ -34,7 +34,7 @@ const Header = () => {
           />
           <Box p="3">
             <Heading as="h1" size="4xl" isTruncated color='#FFFFFF'>
-              Ritual
+              RITUAL
             </Heading>
           </Box>
           <Spacer />

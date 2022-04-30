@@ -1,17 +1,17 @@
 import React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Center, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   return (
     <footer>
       <div>
-        <Flex minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
-          <Box p="3">
+        <Center minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
+          <Box p="5">
               <Text fontSize='xl' color='#FFFFFF'>
               From the CRMMMM developers &copy;{new Date().getFullYear()}
               </Text>
           </Box>
-        </Flex>
+        </Center>
       </div>
     </footer>
   );
