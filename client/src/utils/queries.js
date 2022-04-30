@@ -66,22 +66,6 @@ export const QUERY_ME = gql`
         }
         isComplete
       }
-      completedGoals {
-        _id
-        name
-        description
-        createdAt
-        challenges {
-          _id
-          challengeText
-          createdAt
-        }
-        reflection {
-          _id
-          reflectionText
-          createdAt
-        }
-      }
     }
   }
 `;
