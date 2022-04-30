@@ -5,7 +5,6 @@ import {
   Flex,
   Heading,
   Spacer,
-  Button,
   ButtonGroup,
   Image
 } from '@chakra-ui/react';
@@ -13,6 +12,9 @@ import {
 
 // import login from Login.js
 import LoginForm from './Login';
+
+// import SignupForm from SignupForm.js
+import SignupForm from './Signup';
 
 const Header = () => {
   // const logout = (event) => {
@@ -39,7 +41,7 @@ const Header = () => {
           </Box>
           <Spacer />
           <ButtonGroup gap="2" pr="3">
-            <Button colorScheme='whiteAlpha' variant='outline'>Sign Up</Button>
+            <SignupForm colorScheme='whiteAlpha' variant='outline'>Sign Up</SignupForm>
             <LoginForm colorScheme='whiteAlpha' variant='outline'>Login</LoginForm>
           </ButtonGroup>
         </Flex>
