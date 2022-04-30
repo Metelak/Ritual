@@ -25,6 +25,10 @@
     "concurrently": "^7.1.0"
   },
   "dependencies": {
-    "heroku": "^7.60.2"
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@fontsource/cabin-sketch": "^4.5.7",
+    "framer-motion": "^6.3.3"
   }
 }
