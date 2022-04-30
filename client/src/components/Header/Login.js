@@ -1,8 +1,8 @@
 import React from 'react';
 // import { useMutation } from '@apollo/client';
 // import { Link } from 'react-router-dom';
-import { LOGIN_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+// import { LOGIN_USER } from '../../utils/mutations';
+// import Auth from '../../utils/auth';
 
 import {
   Button,
@@ -36,23 +36,23 @@ function LoginForm() {
         onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Welcome Back!</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} placeholder="First name" />
+              <FormLabel>Username</FormLabel>
+              <Input ref={initialRef} placeholder="username" />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
-              <Input placeholder="Last name" />
+              <FormLabel>Password</FormLabel>
+              <Input placeholder="password" />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
-              Save
+              Enter
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
