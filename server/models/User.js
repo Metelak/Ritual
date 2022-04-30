@@ -26,12 +26,6 @@ const userSchema = new Schema(
         ref: 'Goal'
       }
     ],
-    completedGoals: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Goal'
-      }
-    ],
     activities: [
       {
         type: Schema.Types.ObjectId,
