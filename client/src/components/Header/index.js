@@ -39,7 +39,7 @@ const Header = () => {
           <Spacer />
           <ButtonGroup gap="2">
             <Button colorScheme="teal">Sign Up</Button>
-            <Button colorScheme="teal"><Login>Log in</Login></Button>
+            <Button colorScheme="teal">Log in</Button>
           </ButtonGroup>
         </Flex>
       </div>
