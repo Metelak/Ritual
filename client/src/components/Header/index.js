@@ -9,7 +9,7 @@ import {
   ButtonGroup,
   Image
 } from '@chakra-ui/react';
-import Auth from '../../utils/auth';
+// import Auth from '../../utils/auth';
 
 const Header = () => {
   // const logout = (event) => {
