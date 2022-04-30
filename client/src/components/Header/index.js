@@ -11,6 +11,9 @@ import {
 } from '@chakra-ui/react';
 // import Auth from '../../utils/auth';
 
+// import login from Login.js
+import Login from '../../pages/Login';
+
 const Header = () => {
   // const logout = (event) => {
   //   event.preventDefault();
@@ -36,7 +39,7 @@ const Header = () => {
           <Spacer />
           <ButtonGroup gap="2">
             <Button colorScheme="teal">Sign Up</Button>
-            <Button colorScheme="teal">Log in</Button>
+            <Button colorScheme="teal"><Login>Log in</Login></Button>
           </ButtonGroup>
         </Flex>
       </div>
