@@ -1,87 +1,151 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import Auth from '../../utils/auth';
-import { ADD_USER } from '../../utils/mutations';
+import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { useMutation } from '@apollo/client';
+// import Auth from '../../utils/auth';
+// import { ADD_USER } from '../../utils/mutations';
 
-function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        email: formState.email,
-        password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-  };
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  useDisclosure,
+  FormLabel,
+  Input
+} from '@chakra-ui/react';
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+function SignupForm() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef();
+  const finalRef = React.useRef();
 
   return (
-    <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
+    <>
+      <Button onClick={onOpen}>Sign Up</Button>
 
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email:</label>
-          <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create your account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>Username</FormLabel>
+              <Input ref={initialRef} placeholder="username" />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Email Address</FormLabel>
+              <Input ref={initialRef} placeholder="email" />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Password</FormLabel>
+              <Input placeholder="password" />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
 
-export default Signup;
+// function Signup(props) {
+//   const [formState, setFormState] = useState({ email: '', password: '' });
+//   const [addUser] = useMutation(ADD_USER);
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+//     const mutationResponse = await addUser({
+//       variables: {
+//         email: formState.email,
+//         password: formState.password,
+//         firstName: formState.firstName,
+//         lastName: formState.lastName,
+//       },
+//     });
+//     const token = mutationResponse.data.addUser.token;
+//     Auth.login(token);
+//   };
+
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     setFormState({
+//       ...formState,
+//       [name]: value,
+//     });
+//   };
+
+//   return (
+//     <div className="container my-1">
+//       <Link to="/login">← Go to Login</Link>
+
+//       <h2>Signup</h2>
+//       <form onSubmit={handleFormSubmit}>
+//         <div className="flex-row space-between my-2">
+//           <label htmlFor="firstName">First Name:</label>
+//           <input
+//             placeholder="First"
+//             name="firstName"
+//             type="firstName"
+//             id="firstName"
+//             onChange={handleChange}
+//           />
+//         </div>
+//         <div className="flex-row space-between my-2">
+//           <label htmlFor="lastName">Last Name:</label>
+//           <input
+//             placeholder="Last"
+//             name="lastName"
+//             type="lastName"
+//             id="lastName"
+//             onChange={handleChange}
+//           />
+//         </div>
+//         <div className="flex-row space-between my-2">
+//           <label htmlFor="email">Email:</label>
+//           <input
+//             placeholder="youremail@test.com"
+//             name="email"
+//             type="email"
+//             id="email"
+//             onChange={handleChange}
+//           />
+//         </div>
+//         <div className="flex-row space-between my-2">
+//           <label htmlFor="pwd">Password:</label>
+//           <input
+//             placeholder="******"
+//             name="password"
+//             type="password"
+//             id="pwd"
+//             onChange={handleChange}
+//           />
+//         </div>
+//         <div className="flex-row flex-end">
+//           <button type="submit">Submit</button>
+//         </div>
+//       </form>
+//     </div>
+//   );
+// }
+
+export default SignupForm;
