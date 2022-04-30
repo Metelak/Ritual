@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <header>
       <div>
-        <Flex minWidth="max-content" alignItems="center" gap="2">
+        <Flex minWidth="max-content" alignItems="center" gap="2" bg='#2C7A7B'>
           <Image
             width= '100px'
             height= '75px'
@@ -29,14 +29,14 @@ const Header = () => {
             alt="lotus logo"
           />
           <Box p="2">
-            <Heading as="h1" size="4xl" isTruncated>
+            <Heading as="h1" size="4xl" isTruncated color='#FFFFFF'>
               Ritual
             </Heading>
           </Box>
           <Spacer />
           <ButtonGroup gap="2">
-            <Button colorScheme="teal">Sign Up</Button>
-            <Button colorScheme="teal">Log in</Button>
+            <Button colorScheme='whiteAlpha' variant='outline'>Sign Up</Button>
+            <Button colorScheme='whiteAlpha' variant='outline'>Log in</Button>
           </ButtonGroup>
         </Flex>
       </div>

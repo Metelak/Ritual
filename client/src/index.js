@@ -5,13 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import '@fontsource/cabin-sketch';
 // import Chakra-ui
 import { ChakraProvider } from '@chakra-ui/react';
+// import Fonts from './utils/fonts'
+import theme from './utils/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <App />
     </ChakraProvider>
   </React.StrictMode>
