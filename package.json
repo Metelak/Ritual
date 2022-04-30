@@ -11,6 +11,9 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Metelak/Ritual.git"
@@ -25,10 +28,6 @@
     "concurrently": "^7.1.0"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.8.8",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@fontsource/cabin-sketch": "^4.5.7",
-    "framer-motion": "^6.3.3"
+    "prettier": "^2.6.2"
   }
 }
