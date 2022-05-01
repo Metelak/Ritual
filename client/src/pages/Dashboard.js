@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Box, Center, Flex, Heading } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
@@ -14,13 +14,13 @@ const fakeUserData = {
     {
       _id: '626dd27dcbfc48efe3a4edb9',
       title: 'Deep Breathing',
-      // text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
+      text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
       image: 'deep-breathing.png'
     },
     {
       _id: '626dd27dcbfc48efe3a4edbd',
       title: 'Yoga',
-      // text: 'nam congue risus semper porta volutpat quam pede lobortis',
+      text: 'nam congue risus semper porta volutpat quam pede lobortis',
       image: 'yoga.png'
     }
   ],
@@ -68,8 +68,8 @@ const Dashboard = () => {
   return (
     <div>
       <Flex>
-        <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg">
-          <Center>My Activities</Center>
+        <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg" bg='#FFFFFF'>
+          <Heading className='center-text' fontSize='3xl' color='#2C7A7B'>My Activities</Heading>
           <Box templateColumns="repeat(5, 1fr)" gap={6}>
             {fakeUserData.activities.map((activity) => {
               return (

@@ -13,7 +13,8 @@ import {
   Circle,
   Square,
   Text,
-  WrapItem
+  WrapItem,
+  SimpleGrid
 } from '@chakra-ui/react';
 
 const ActivityHome = ({ activity }) => {
@@ -58,59 +59,21 @@ const ActivityHome = ({ activity }) => {
   );
 };
 
-// const ActivityDescription = ({ activity }) => {
-//   const { title, text } = activity;
-
-//   const { isOpen, onOpen, onClose } = useDisclosure();
-
-//   const initialRef = React.useRef();
-//   const finalRef = React.useRef();
-
-//   return (
-//     <>
-//       <Button onClick={onOpen}>{title}</Button>
-
-//       <Modal
-//         initialFocusRef={initialRef}
-//         finalFocusRef={finalRef}
-//         isOpen={isOpen}
-//         onClose={onClose}>
-//         <ModalOverlay />
-//         <ModalContent>
-//           <ModalHeader>{title}</ModalHeader>
-//           <ModalCloseButton />
-//           <ModalBody>{text}</ModalBody>
-//           <ModalFooter>
-//             <Button colorScheme="teal" variant="outline">
-//               Save Activity
-//             </Button>
-//           </ModalFooter>
-//         </ModalContent>
-//       </Modal>
-//     </>
-//   );
-// };
-//Make this a modal attached to activityHome, make the {title a button for modal}
-/* <Box>{text}</Box>
-    <Box>
-      <Button>add to my activities</Button>
-    </Box> */
-
 const ActivityDash = ({ activity }) => {
   const { title, image, text } = activity;
   return (
-    <Box margin={10}>
-      <Box className="activities" border="2px" p={3} m={2} borderRadius="md">
+    <Box margin={5}>
+      <SimpleGrid className="activities" columns={2} border="2px" borderColor='#FFFFFF' borderRadius="md" bg="teal">
         <Square
           width="200px"
-          bgImg={require(`../../assets/activity-images/${image}`)}
-          height="200px">
+          height="200px"
+          bgImg={require(`../../assets/activity-images/${image}`)}>
           <Text className="activity-text" fontSize="2xl" color="#81E6D9">
             {title}
           </Text>
-          <Box>{text}</Box>
         </Square>
-      </Box>
+        <Square color='#FFFFFF'>{text}</Square>
+      </SimpleGrid>
     </Box>
   );
 };
