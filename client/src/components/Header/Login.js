@@ -60,8 +60,7 @@ function LoginForm() {
       console.log(e);
     }
     // reset LoginForm state, clearing values in fields username and password
-    const resetLoginFormState = { username: '', password: '' };
-    resetLoginFormState();
+    setFormState({ username: '', password: '' });
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.

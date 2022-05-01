@@ -59,8 +59,7 @@ function SignupForm() {
     }
 
     // reset SignupForm
-    const resetSignupFormState = { username: '', email: '', password: '' };
-    resetSignupFormState();
+    setFormState({ email: '', password: '' });
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
