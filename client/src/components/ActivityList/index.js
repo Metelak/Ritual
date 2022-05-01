@@ -1,10 +1,23 @@
 import React from 'react';
-import { Box, Circle, Square, Text, WrapItem } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  Box,
+  Circle,
+  Square,
+  Text,
+  WrapItem
+} from '@chakra-ui/react';
 
 const ActivityHome = ({ activity }) => {
   const { title, image } = activity;
-
-  // text
 
   return (
     <WrapItem p={10}>
@@ -19,6 +32,39 @@ const ActivityHome = ({ activity }) => {
         </Text>
       </Circle>
     </WrapItem>
+  );
+};
+
+const ActivityDescription = ({ activity }) => {
+  const { title, text } = activity;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef();
+  const finalRef = React.useRef();
+
+  return (
+    <>
+      <Button onClick={onOpen}>{title}</Button>
+
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{title}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>{text}</ModalBody>
+          <ModalFooter>
+            <Button colorScheme="teal" variant="outline">
+              Save Activity
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 //Make this a modal attached to activityHome, make the {title a button for modal}
@@ -46,4 +92,4 @@ const ActivityDash = ({ activity }) => {
   );
 };
 
-export { ActivityHome, ActivityDash };
+export { ActivityHome, ActivityDescription, ActivityDash };

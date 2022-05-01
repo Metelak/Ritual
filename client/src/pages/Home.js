@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityHome } from '../components/ActivityList';
+import { ActivityDescription, ActivityHome } from '../components/ActivityList';
 import { useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
 import { Wrap } from '@chakra-ui/react';
@@ -19,7 +19,8 @@ const Home = () => {
           return (
             <ActivityHome
               key={activity.title}
-              activity={activity}></ActivityHome>
+              activity={activity}>
+              </ActivityHome>
           );
         })}
     </Wrap>
