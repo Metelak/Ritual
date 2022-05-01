@@ -72,14 +72,18 @@ const Dashboard = () => {
           <Center>My Activities</Center>
           <Box p="3" flex>
             {fakeUserData.activities.map((activity) => {
-              return <ActivityCircle activity={activity}></ActivityCircle>;
+              return (
+                <ActivityCircle
+                  key={activity._id}
+                  activity={activity}></ActivityCircle>
+              );
             })}
           </Box>
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">
           <Center>My Goals</Center>
           {fakeUserData.goals.map((goal) => {
-            return <GoalList goal={goal} />;
+            return <GoalList key={goal._id} goal={goal} />;
           })}
           <Center>
             <GoalForm />
