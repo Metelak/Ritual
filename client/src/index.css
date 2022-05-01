@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.activities {
+  opacity: 60%;
+}
+
+.activities:hover {
+  opacity: 90%;
+}
+
+.activity-text {
+  text-shadow: 0px 0px 5px #000000;
+}
