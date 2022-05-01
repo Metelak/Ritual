@@ -6,22 +6,22 @@ import Auth from '../../utils/auth';
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
+  Alert, 
+  AlertIcon,
   Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   FormControl,
-  useDisclosure,
   FormLabel,
   Input,
   InputGroup,
   InputRightElement,
-  FormHelperText,
-  FormErrorMessage
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 function LoginForm() {
@@ -118,11 +118,13 @@ function LoginForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              {!isError ? (
-                <FormHelperText> </FormHelperText>
-              ) : (
-                <FormErrorMessage>User credentials required.</FormErrorMessage>
-              )}
+
+              {isError ?
+              <Alert status="error">
+                <AlertIcon />
+                Please check your credentials.
+              </Alert>
+              : <Alert status="success">You are now logged in!</Alert>}
             </FormControl>
           </ModalBody>
 
