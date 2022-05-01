@@ -6,8 +6,8 @@ import Auth from '../../utils/auth';
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
-  Alert,
-  AlertIcon,
+  // Alert,
+  // AlertIcon,
   Button,
   FormControl,
   FormLabel,
@@ -21,12 +21,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react';
 
 function LoginForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // useToast from Chakra-UI for success message
+  const toast = useToast();
+  // import positions for toast
+  const position = ['top-right'];
 
   // initialRef is where the cursor loads upon Modal opening for the user
   const initialRef = React.useRef();
@@ -39,9 +45,9 @@ function LoginForm() {
   // Using mutation LOGIN_USER to pull login fields we use in handleFormSubmit()
   const [login, { error }] = useMutation(LOGIN_USER);
 
+  // NEED TO RE-INCORPORATE vanilla JS for if (err);
   // Defining error so Modal knows on which condition to present error text to user.
-  const isError = error;
-
+  // const isError = error;
   // Using LOGIN_USER mutation variables plus user token, we can validate when a user has correctly logged in.
   // Otherwise prompt the user to enter their correct credentials or register if they do not have an account.
   const handleFormSubmit = async (event) => {
@@ -61,6 +67,27 @@ function LoginForm() {
     }
     // reset LoginForm state, clearing values in fields username and password
     setFormState({ username: '', password: '' });
+
+    // toast will display message on successful login or message on fail
+    toast({
+      title: 'Success!',
+      position: 'top-right',
+      description: "You are now logged in!",
+      status: 'success',
+      duration: 9000,
+      isClosable: true
+    });
+
+    toast({
+      title: 'We could not validate your account.',
+      position: 'top-right',
+      description: 'Please re-enter your credentials.',
+      status: 'error',
+      duration: 9000,
+      isClosable: true
+    });
+
+    onClose();
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
@@ -120,16 +147,16 @@ function LoginForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-
-              {isError ? (
+              
+              {/* Is this what we need?}
+              {/* {isError ? (
                 <Alert status="error">
                   <AlertIcon />
                   Please check your credentials.
                 </Alert>
               ) : (
                 <Alert status="success">You are now logged in!</Alert>
-              )}
-            </FormControl>
+              )}            </FormControl> */}
           </ModalBody>
 
           <ModalFooter>
