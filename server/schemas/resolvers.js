@@ -9,7 +9,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('goals')
-          .populate('completedGoals')
           .populate('activities');
 
         return userData;
@@ -21,7 +20,6 @@ const resolvers = {
       return await User.findOne({ username })
         .select('-__v -password')
         .populate('goals')
-        .populate('completedGoals')
         .populate('activities');
     },
     goals: async () => {
@@ -71,8 +69,7 @@ const resolvers = {
           { new: true, runValidators: true }
         )
           .populate('activities')
-          .populate('goals')
-          .populate('completedGoals');
+          .populate('goals');
 
         return updatedUser;
       }
