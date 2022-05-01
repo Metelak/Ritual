@@ -6,8 +6,6 @@ import { ADD_USER } from '../../utils/mutations';
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
-  Alert,
-  AlertIcon,
   Button,
   FormControl,
   FormLabel,
@@ -21,12 +19,16 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react';
 
 function SignupForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // useToast from Chakra-UI for success message
+  const toast = useToast()
 
   // initialRef is where the cursor loads upon Modal opening for the user
   const initialRef = React.useRef();
@@ -60,6 +62,16 @@ function SignupForm() {
 
     // reset SignupForm
     setFormState({ email: '', password: '' });
+
+    toast({
+      title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+    })
+
+    onClose();
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
@@ -128,11 +140,6 @@ function SignupForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-
-              <Alert status="success">
-                <AlertIcon />
-                You are now registered with Ritual.
-              </Alert>
             </FormControl>
           </ModalBody>
 
