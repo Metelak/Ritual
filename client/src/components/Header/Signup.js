@@ -6,10 +6,10 @@ import { ADD_USER } from '../../utils/mutations';
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
+  Alert,
+  AlertIcon,
   Button,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   InputGroup,
@@ -37,10 +37,7 @@ function SignupForm() {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   // Using mutation addUser to pull necessary registration fields we use in handleFormSubmit()
-  const [addUser, { error }] = useMutation(ADD_USER);
-
-  // Defining error so Modal knows on which condition to present error text to user.
-  const isError = error;
+  const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -127,12 +124,13 @@ function SignupForm() {
                     {show ? 'Hide' : 'Show'}
                   </Button>
                 </InputRightElement>
-              </InputGroup>
-              {!isError ? (
-                <FormHelperText> </FormHelperText>
-              ) : (
-                <FormErrorMessage>User credentials required.</FormErrorMessage>
-              )}
+              </InputGroup>   
+              
+              <Alert status='success'>
+              <AlertIcon />
+              You are now registered with Ritual.
+              </Alert>
+
             </FormControl>
           </ModalBody>
 
