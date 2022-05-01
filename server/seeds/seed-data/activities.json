@@ -10,23 +10,23 @@
     "image": "yoga.png"
   },
   {
-    "title": "at",
+    "title": "Journaling",
     "text": "risus semper porta volutpat quam pede lobortis ligula sit",
-    "image": "yoga.png"
+    "image": "journaling.png"
   },
   {
-    "title": "phasellus",
+    "title": "Stretching",
     "text": "nec sem duis",
-    "image": "yoga.png"
+    "image": "stretching.png"
   },
   {
-    "title": "justo",
+    "title": "Walking",
     "text": "nam congue risus semper porta volutpat quam pede lobortis",
-    "image": "yoga.png"
+    "image": "walking.png"
   },
   {
-    "title": "ultrices",
+    "title": "Meditation",
     "text": "nulla eget eros elementum",
-    "image": "yoga.png"
+    "image": "meditation.png"
   }
 ]
