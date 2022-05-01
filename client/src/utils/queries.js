@@ -31,22 +31,6 @@ export const QUERY_USER = gql`
           createdAt
         }
       }
-      completedGoals {
-        _id
-        name
-        description
-        createdAt
-        challenges {
-          _id
-          challengeText
-          createdAt
-        }
-        reflection {
-          _id
-          reflectionText
-          createdAt
-        }
-      }
     }
   }
 `;
@@ -81,22 +65,6 @@ export const QUERY_ME = gql`
           createdAt
         }
         isComplete
-      }
-      completedGoals {
-        _id
-        name
-        description
-        createdAt
-        challenges {
-          _id
-          challengeText
-          createdAt
-        }
-        reflection {
-          _id
-          reflectionText
-          createdAt
-        }
       }
     }
   }

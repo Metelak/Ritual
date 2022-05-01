@@ -9,7 +9,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('goals')
-          .populate('completedGoals')
           .populate('activities');
 
         return userData;
@@ -21,7 +20,6 @@ const resolvers = {
       return await User.findOne({ username })
         .select('-__v -password')
         .populate('goals')
-        .populate('completedGoals')
         .populate('activities');
     },
     goals: async () => {
@@ -71,8 +69,7 @@ const resolvers = {
           { new: true, runValidators: true }
         )
           .populate('activities')
-          .populate('goals')
-          .populate('completedGoals');
+          .populate('goals');
 
         return updatedUser;
       }
@@ -116,29 +113,16 @@ const resolvers = {
     },
     completeGoal: async (parent, { _id }, context) => {
       if (context.user) {
-        // remove goal from User's goal array
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          {
-            $pull: { goals: _id }
-          },
-          { new: true }
-        );
-
-        // add goal to User's completedGoals array
-        const archiveGoal = await User.findOneAndUpdate(
-          {
-            _id: context.user._id
-          },
-          {
-            $push: { completedGoals: _id }
-          },
+        // find User's goal and update boolean on isComplete
+        const completedGoal = await Goal.findOneAndUpdate(
+          { _id: _id },
+          { isComplete: true },
           { new: true }
         )
-          .populate('goals')
-          .populate('completedGoals');
+          .populate('challenges')
+          .populate('reflection');
 
-        return archiveGoal;
+        return completedGoal;
       }
 
       throw new AuthenticationError('You need to be logged in!');

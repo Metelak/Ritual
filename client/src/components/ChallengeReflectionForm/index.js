@@ -8,27 +8,101 @@ import React from 'react';
 //   QUERY_USER_CHALLENGES,
 //   QUERY_USER_REFLECTIONS
 // } from '../../utils/queries';
-import { Button, ButtonGroup, Textarea } from '@chakra-ui/react'
+import {
+  Button,
+  ButtonGroup,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  FormControl,
+  FormLabel,
+  Input,
+  useDisclosure,
+} from '@chakra-ui/react';
 
 const ChallengeReflectionForm = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef();
+  const finalRef = React.useRef();
+
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg='blackAlpha.300'
+      backdropFilter='blur(10px) hue-rotate(90deg)'
+    />
+  )
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+
+  const [text, setText] = React.useState('Challenges', 'Reflections');
+
+  // const clickHandler = (e) => {
+  //   // record the button you pressed
+  //   if (e.target.value === 'Challenges') {
+  //     setText({
+  //       name: 'Challenges',
+  //       placeholder: 'What challenges did you have with this goal?'
+  //     });
+  //   } else {
+  //     setText({
+  //       name: 'Reflections',
+  //       placeholder: 'Reflect on this goal here.'
+  //     });
+  //   }
+  // };
+
   return (
-    <div>
-      {/* <p
-        className={`m-0 ${
-          characterCount === 280 || error ? 'text-error' : ''
-        }`}>
-        Character Count: {characterCount}/280
-        {error && <span>Something went wrong...</span>}
-      </p> */}
-      <form>
-        <ButtonGroup size="sm" isAttached variant="outline">
-          <Button mr="-px" variant='outline' colorScheme='red' _active={{bg: '#FFC0CB'}}>Challenge</Button>
-          <Button mr="-px" variant='outline' colorScheme='cyan'>Reflection</Button>
-        </ButtonGroup>
-        <Textarea placeholder="What did I find challenging about this goal?" />
-        <button>Submit</button>
-      </form>
-    </div>
+    <>
+      <ButtonGroup size="sm" isAttached variant="outline">
+        <Button
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+            setText('Challenges');
+          }}
+          mr="-px"
+          variant="outline"
+          colorScheme="red"
+          _active={{ bg: '#FFC0CB' }}>
+          Challenges
+        </Button>
+        <Button onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+            setText('Reflections');
+          }} 
+          mr="-px" variant="outline" colorScheme="cyan">
+          Reflections
+        </Button>
+      </ButtonGroup>
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}>
+        {overlay}
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>{text}</FormLabel>
+              <Input />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              mr={3}
+              colorScheme="teal"
+              type="submit">
+              Save
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
@@ -108,3 +182,32 @@ export { ChallengeReflectionForm };
 //         });
 //       },
 //     });
+
+
+  /* <p
+        className={`m-0 ${
+          characterCount === 280 || error ? 'text-error' : ''
+        }`}>
+        Character Count: {characterCount}/280
+        {error && <span>Something went wrong...</span>}
+      </p> */
+
+
+/* <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>{text}</FormLabel>
+              <Input placeholder="Reflect on this goal here." />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              mr={3}
+              colorScheme="teal"
+              // isLoading={props.isSubmitting}
+              type="submit">
+              Save to goal
+            </Button>
+          </ModalFooter>
+        </ModalContent> */
