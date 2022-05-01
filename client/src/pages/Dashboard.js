@@ -3,7 +3,7 @@ import { Box, Center, Flex } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
-import { ActivityCircle } from '../components/ActivityList';
+import { ActivityDash } from '../components/ActivityList';
 import GoalList from '../components/GoalList';
 
 const fakeUserData = {
@@ -70,9 +70,9 @@ const Dashboard = () => {
       <Flex>
         <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg">
           <Center>My Activities</Center>
-          <Box p="3" flex>
+          <Box templateColumns='repeat(5, 1fr)' gap={6}>
             {fakeUserData.activities.map((activity) => {
-              return <ActivityCircle activity={activity}></ActivityCircle>;
+              return <ActivityDash activity={activity}></ActivityDash>;
             })}
           </Box>
         </Box>

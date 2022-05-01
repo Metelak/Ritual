@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Circle, Text } from '@chakra-ui/react';
+import { Box, Circle, Square, Text } from '@chakra-ui/react';
 
 const ActivityHome = ({ activity }) => {
   const { title, image } = activity;
@@ -7,7 +7,6 @@ const ActivityHome = ({ activity }) => {
   // text
 
   return (
-    <div>
       <Circle
         className="activities"
         borderRadius="full"
@@ -19,34 +18,36 @@ const ActivityHome = ({ activity }) => {
           {title}
         </Text>
       </Circle>
-    </div>
   );
 };
-//Make this a modal attached to activityHome
+//Make this a modal attached to activityHome, make the {title a button for modal}
 /* <Box>{text}</Box>
     <Box>
       <Button>add to my activities</Button>
     </Box> */
 
-const ActivityCircle = ({ activity }) => {
+const ActivityDash = ({ activity }) => {
   const { title, image, text } = activity;
   return (
     <Box margin={10}>
-      <Circle
+      <Box
         className="activities"
-        borderRadius="full"
         border="2px"
-        width="200px"
-        bg="teal"
-        bgImg={require(`../../assets/activity-images/${image}`)}
-        height="200px">
-        <Text className="activity-text" fontSize="2xl" color="#81E6D9">
-          {title}
-        </Text>
-        <div>{text}</div>
-      </Circle>
+        p={3}
+        m={2}
+        borderRadius="md">
+        <Square
+          width="200px"
+          bgImg={require(`../../assets/activity-images/${image}`)}
+          height="200px">
+          <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+            {title}
+          </Text>
+          <Box>{text}</Box>
+        </Square>
+      </Box>
     </Box>
   );
 };
 
-export { ActivityHome, ActivityCircle };
+export { ActivityHome, ActivityDash };
