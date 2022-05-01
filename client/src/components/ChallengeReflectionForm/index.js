@@ -39,6 +39,21 @@ const ChallengeReflectionForm = () => {
 
   const [text, setText] = React.useState('Challenges', 'Reflections');
 
+  // const clickHandler = (e) => {
+  //   // record the button you pressed
+  //   if (e.target.value === 'Challenges') {
+  //     setText({
+  //       name: 'Challenges',
+  //       placeholder: 'What challenges did you have with this goal?'
+  //     });
+  //   } else {
+  //     setText({
+  //       name: 'Reflections',
+  //       placeholder: 'Reflect on this goal here.'
+  //     });
+  //   }
+  // };
+
   return (
     <>
       <ButtonGroup size="sm" isAttached variant="outline">
@@ -74,34 +89,15 @@ const ChallengeReflectionForm = () => {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>{text}</FormLabel>
-              <Input placeholder="What challenges did you have with this goal?" />
+              <Input />
             </FormControl>
           </ModalBody>
           <ModalFooter>
             <Button
               mr={3}
               colorScheme="teal"
-              // isLoading={props.isSubmitting}
               type="submit">
-              Save to goal
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>{text}</FormLabel>
-              <Input placeholder="Reflect on this goal here." />
-            </FormControl>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              mr={3}
-              colorScheme="teal"
-              // isLoading={props.isSubmitting}
-              type="submit">
-              Save to goal
+              Save
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -187,7 +183,7 @@ export { ChallengeReflectionForm };
 //       },
 //     });
 
-{
+
   /* <p
         className={`m-0 ${
           characterCount === 280 || error ? 'text-error' : ''
@@ -195,4 +191,23 @@ export { ChallengeReflectionForm };
         Character Count: {characterCount}/280
         {error && <span>Something went wrong...</span>}
       </p> */
-}
+
+
+/* <ModalContent>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>{text}</FormLabel>
+              <Input placeholder="Reflect on this goal here." />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              mr={3}
+              colorScheme="teal"
+              // isLoading={props.isSubmitting}
+              type="submit">
+              Save to goal
+            </Button>
+          </ModalFooter>
+        </ModalContent> */
