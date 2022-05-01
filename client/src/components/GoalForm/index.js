@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_GOAL } from '../../utils/mutations';
-// import { QUERY_ME, QUERY_USER_GOALS } from '../../utils/queries';
 
 import {
   Modal,
@@ -16,7 +15,10 @@ import {
   FormLabel,
   Input,
   Button,
-  useDisclosure
+  useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertTitle
 } from '@chakra-ui/react';
 
 const GoalForm = () => {
@@ -29,6 +31,7 @@ const GoalForm = () => {
   const [goalState, setGoalState] = useState({ name: '', description: '' });
 
   // add Goal mutation setup
+  const [addGoal, { error }] = useMutation(ADD_GOAL);
 
   // update goalState when user adds things in input
   const handleChange = (event) => {
@@ -41,10 +44,22 @@ const GoalForm = () => {
     });
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async () => {
     console.log(goalState);
-
     const { name, description } = goalState;
+
+    // add goalState to mutation
+    try {
+      const newGoal = await addGoal({
+        variables: {
+          name: name,
+          description: description
+        }
+      });
+      console.log(newGoal);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -91,6 +106,12 @@ const GoalForm = () => {
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
+            {error && (
+              <Alert>
+                <AlertIcon />
+                <AlertTitle>Goal was not added!</AlertTitle>
+              </Alert>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>
