@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.activity-circles {
+  opacity: 60%;
+}
+
+.activity-circles:hover {
+  opacity: 90%;
+}
+
+.circle-text {
+  text-shadow: 0px 0px 5px #000000;
+}

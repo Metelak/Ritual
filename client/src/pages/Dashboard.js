@@ -15,13 +15,13 @@ const fakeUserData = {
       _id: '626dd27dcbfc48efe3a4edb9',
       title: 'Deep Breathing',
       // text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
-      // image: 'leo'
+      image: 'deep-breathing.png'
     },
     {
       _id: '626dd27dcbfc48efe3a4edbd',
       title: 'Yoga',
       // text: 'nam congue risus semper porta volutpat quam pede lobortis',
-      // image: 'parturient'
+      image: 'yoga.png'
     }
   ],
   goals: [

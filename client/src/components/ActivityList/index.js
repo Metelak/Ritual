@@ -21,16 +21,16 @@ const ActivityCircle = ({ activity }) => {
   return (
     <Box margin={10}>
         <Circle
+          className='activity-circles'
           key={title}
           borderRadius="full"
           border="2px"
           width="200px"
           bg='teal'
-          // bgImg={require(`../../assets/Ritual_logos/${image}`)}
+          bgImg={require(`../../assets/activity-images/${image}`)}
           height="200px">
-          <Text fontSize="2xl">{title}</Text>
+          <Text className='circle-text' fontSize="2xl" color='#81E6D9'>{title}</Text>
           <div>{text}</div>
-          {/* <div>activityImage: {image}</div> */}
         </Circle>
     </Box>
   );
