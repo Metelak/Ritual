@@ -90,6 +90,7 @@ function LoginForm() {
               <FormLabel>Username</FormLabel>
               <Input
                 ref={initialRef}
+                className="username-input" 
                 placeholder="username"
                 onChange={handleChange}
               />
@@ -99,7 +100,7 @@ function LoginForm() {
               <FormLabel>Password</FormLabel>
               <InputGroup>
               <Input
-                className="form-input"
+                className="password-input"
                 placeholder="******"
                 name="password"
                 type={show ? 'text' : 'password'}
