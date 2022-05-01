@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,7 +12,8 @@ import { setContext } from '@apollo/client/link/context';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 import Home from './pages/Home';
-
+import Dashboard from './pages/Dashboard';
+import { Center, Text } from '@chakra-ui/react';
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -38,11 +38,23 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <div>
-            <Header />
-            <Home></Home>
-            <Footer />
-          </div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          {/* catch any routes that are not listed above and return this */}
+          <Route
+            path="*"
+            element={
+              <section>
+                <Center height="88.6vh">
+                  <Text fontSize="5xl">There's nothing here!</Text>
+                </Center>
+              </section>
+            }
+          />
+        </Routes>
+        <Footer />
       </Router>
     </ApolloProvider>
   );
