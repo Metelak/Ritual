@@ -21,7 +21,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react';
 
 function SignupForm() {
@@ -57,6 +57,10 @@ function SignupForm() {
       // if errors are presented, use catch to console.log(e)
       console.log(e);
     }
+
+    // reset SignupForm
+    const resetSignupFormState = { username: '', email: '', password: '' };
+    resetSignupFormState();
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
@@ -124,13 +128,12 @@ function SignupForm() {
                     {show ? 'Hide' : 'Show'}
                   </Button>
                 </InputRightElement>
-              </InputGroup>   
-              
-              <Alert status='success'>
-              <AlertIcon />
-              You are now registered with Ritual.
-              </Alert>
+              </InputGroup>
 
+              <Alert status="success">
+                <AlertIcon />
+                You are now registered with Ritual.
+              </Alert>
             </FormControl>
           </ModalBody>
 
