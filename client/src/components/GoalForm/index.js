@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
@@ -18,7 +18,9 @@ import {
   useDisclosure,
   Alert,
   AlertIcon,
-  AlertTitle
+  AlertTitle,
+  FormErrorMessage,
+  useToast
 } from '@chakra-ui/react';
 
 const GoalForm = () => {
@@ -29,6 +31,9 @@ const GoalForm = () => {
 
   // state of goal Form
   const [goalState, setGoalState] = useState({ name: '', description: '' });
+  // error text state
+  const [errorMessage, setError] = useState({ type: '', message: '' });
+  const toast = useToast();
 
   // add Goal mutation setup
   const [addGoal, { error }] = useMutation(ADD_GOAL);
@@ -45,24 +50,64 @@ const GoalForm = () => {
   };
 
   const handleFormSubmit = async () => {
-    console.log(goalState);
     const { name, description } = goalState;
+
+    // validate name
+    if (!name) {
+      setError({ type: 'name', message: `Please enter your goal's name` });
+
+      return;
+    }
+    // validate name length
+    if (name.length > 280) {
+      setError({
+        type: 'name',
+        message: 'Name cannot be more than 280 characters'
+      });
+
+      return;
+    }
+    // validate description
+    if (!description) {
+      setError({ type: 'description', message: 'Please describe your goal' });
+
+      return;
+    }
+    // validate name length
+    if (description.length > 280) {
+      setError({
+        type: 'description',
+        message: 'Description cannot be more than 280 characters'
+      });
+
+      return;
+    }
 
     // add goalState to mutation
     try {
-      const newGoal = await addGoal({
+      await addGoal({
         variables: {
           name: name,
           description: description
         }
       });
-      console.log(newGoal);
     } catch (err) {
       console.log(err);
     }
 
     // reset goalState
     setGoalState({ name: '', description: '' });
+    // reset errorMessage
+    setError({ type: '', message: '' });
+
+    toast({
+      title: 'Goal added!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true
+    });
+
+    onClose();
   };
 
   return (
@@ -79,15 +124,20 @@ const GoalForm = () => {
           <ModalHeader>Create a Goal</ModalHeader>
           {/* <ModalCloseButton /> */}
           <ModalBody pb={6}>
-            <FormControl>
+            <FormControl
+              isInvalid={errorMessage.type === 'name' ? true : false}>
               <FormLabel>Name:</FormLabel>
               <Input
                 name="name"
                 placeholder="What is the goal name?"
                 onChange={handleChange}
               />
+              {errorMessage.type === 'name' && (
+                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
+              )}
             </FormControl>
-            <FormControl>
+            <FormControl
+              isInvalid={errorMessage.type === 'description' ? true : false}>
               <FormLabel>Description:</FormLabel>
               <Input
                 name="description"
@@ -97,6 +147,9 @@ const GoalForm = () => {
                 // value={input}
                 onChange={handleChange}
               />
+              {errorMessage.type === 'description' && (
+                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
+              )}
             </FormControl>
           </ModalBody>
           <ModalFooter>
