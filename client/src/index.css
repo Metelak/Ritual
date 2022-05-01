@@ -12,14 +12,14 @@ code {
     monospace;
 }
 
-.activity-circles {
+.activities {
   opacity: 60%;
 }
 
-.activity-circles:hover {
+.activities:hover {
   opacity: 90%;
 }
 
-.circle-text {
+.activity-text {
   text-shadow: 0px 0px 5px #000000;
 }

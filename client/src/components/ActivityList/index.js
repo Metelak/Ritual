@@ -1,18 +1,39 @@
 import React from 'react';
-import { Box, Button, Circle, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Circle,
+  Square,
+  SimpleGrid,
+  Text
+} from '@chakra-ui/react';
 
 const ActivityHome = ({ activity }) => {
   const { title, image, text } = activity;
 
   return (
-    <Box margin={10}>
-      <Box key={title} border="2px" p={3} m={2} borderRadius="md">
-        <Text fontSize="2xl">{title}</Text>
-        <div>{image}</div>
-        <div>{text}</div>
+    <SimpleGrid
+      className="activities"
+      margin={10}
+      columns={3}
+      minChildWidth="200px"
+      spacing={10}
+      border="2px"
+      borderRadius="md">
+      <Box key={title}>
+        <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+          {title}
+        </Text>
+        <Square
+          width="300px"
+          height="300px"
+          bgImg={require(`../../assets/activity-images/${image}`)}></Square>
+      </Box>
+      <Box>{text}</Box>
+      <Box>
         <Button>add to my activities</Button>
       </Box>
-    </Box>
+    </SimpleGrid>
   );
 };
 
@@ -20,18 +41,20 @@ const ActivityCircle = ({ activity }) => {
   const { title, image, text } = activity;
   return (
     <Box margin={10}>
-        <Circle
-          className='activity-circles'
-          key={title}
-          borderRadius="full"
-          border="2px"
-          width="200px"
-          bg='teal'
-          bgImg={require(`../../assets/activity-images/${image}`)}
-          height="200px">
-          <Text className='circle-text' fontSize="2xl" color='#81E6D9'>{title}</Text>
-          <div>{text}</div>
-        </Circle>
+      <Circle
+        className="activities"
+        key={title}
+        borderRadius="full"
+        border="2px"
+        width="200px"
+        bg="teal"
+        bgImg={require(`../../assets/activity-images/${image}`)}
+        height="200px">
+        <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+          {title}
+        </Text>
+        <div>{text}</div>
+      </Circle>
     </Box>
   );
 };
