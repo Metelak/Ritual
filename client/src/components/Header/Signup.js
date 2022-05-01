@@ -21,7 +21,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 
 function SignupForm() {
