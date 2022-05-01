@@ -13,15 +13,15 @@ const fakeUserData = {
   activities: [
     {
       _id: '626dd27dcbfc48efe3a4edb9',
-      title: 'lectus',
-      text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
-      image: 'leo'
+      title: 'Deep Breathing',
+      // text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
+      // image: 'leo'
     },
     {
       _id: '626dd27dcbfc48efe3a4edbd',
-      title: 'justo',
-      text: 'nam congue risus semper porta volutpat quam pede lobortis',
-      image: 'parturient'
+      title: 'Yoga',
+      // text: 'nam congue risus semper porta volutpat quam pede lobortis',
+      // image: 'parturient'
     }
   ],
   goals: [

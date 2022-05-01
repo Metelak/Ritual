@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Circle, Text } from '@chakra-ui/react';
 
 const ActivityHome = ({ activity }) => {
   const { title, image, text } = activity;
@@ -20,17 +20,18 @@ const ActivityCircle = ({ activity }) => {
   const { title, image, text } = activity;
   return (
     <Box margin={10}>
-      <Box
-        key={title}
-        borderRadius="full"
-        border="2px"
-        width="200px"
-        // bgImg={require(`../../assets/Ritual_logos/${image}`)}
-        height="200px">
-        <Text fontSize="2xl">{title}</Text>
-        <div>{text}</div>
-        <div>activityImage: {image}</div>
-      </Box>
+        <Circle
+          key={title}
+          borderRadius="full"
+          border="2px"
+          width="200px"
+          bg='teal'
+          // bgImg={require(`../../assets/Ritual_logos/${image}`)}
+          height="200px">
+          <Text fontSize="2xl">{title}</Text>
+          <div>{text}</div>
+          {/* <div>activityImage: {image}</div> */}
+        </Circle>
     </Box>
   );
 };

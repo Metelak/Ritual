@@ -12,7 +12,8 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
-import Home from './pages/Home';
+import Dashboard from '../src/pages/Dashboard'
+// import Home from './pages/Home';
 
 
 const httpLink = createHttpLink({
@@ -40,7 +41,8 @@ function App() {
       <Router>
           <div>
             <Header />
-            <Home></Home>
+            {/* <Home></Home> */}
+            <Dashboard></Dashboard>
             <Footer />
           </div>
       </Router>
