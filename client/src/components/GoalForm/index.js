@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 
-// import { useMutation } from '@apollo/client';
-// import { ADD_GOAL } from '../../utils/mutations';
-// import { QUERY_ME, QUERY_USER_GOALS } from '../../utils/queries';
+import { useMutation } from '@apollo/client';
+import { ADD_GOAL } from '../../utils/mutations';
 
 import {
   Modal,
@@ -15,15 +14,117 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Textarea,
   Button,
-  useDisclosure
+  useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  FormErrorMessage,
+  useToast,
+  Progress
 } from '@chakra-ui/react';
 
 const GoalForm = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const initialRef = React.useRef()
-  const finalRef = React.useRef()
+  const initialRef = React.useRef();
+  const finalRef = React.useRef();
+
+  // use toast from Chakra UI
+  const toast = useToast();
+
+  // state of goal Form
+  const [goalState, setGoalState] = useState({ name: '', description: '' });
+  // error text state
+  const [errorMessage, setError] = useState({ type: '', message: '' });
+  // set character lengths
+  const [nameLength, setNameLength] = useState(0);
+  const [descriptionLength, setDescriptionLength] = useState(0);
+
+  // add Goal mutation setup
+  const [addGoal, { error }] = useMutation(ADD_GOAL);
+
+  // update goalState when user adds things in input
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'name') {
+      let progressLength = (value.length / 280) * 100;
+
+      setNameLength(progressLength);
+    } else {
+      let progressLength = (value.length / 280) * 100;
+      setDescriptionLength(progressLength);
+    }
+
+    // add input to setGoalState
+    setGoalState({
+      ...goalState,
+      [name]: value
+    });
+  };
+
+  const handleFormSubmit = async () => {
+    const { name, description } = goalState;
+
+    // validate name
+    if (!name) {
+      setError({ type: 'name', message: `Please enter your goal's name` });
+
+      return;
+    }
+    // validate name length
+    if (name.length > 280) {
+      setError({
+        type: 'name',
+        message: 'Name cannot be more than 280 characters'
+      });
+
+      return;
+    }
+    // validate description
+    if (!description) {
+      setError({ type: 'description', message: 'Please describe your goal' });
+
+      return;
+    }
+    // validate name length
+    if (description.length > 280) {
+      setError({
+        type: 'description',
+        message: 'Description cannot be more than 280 characters'
+      });
+
+      return;
+    }
+
+    // add goalState to mutation
+    try {
+      await addGoal({
+        variables: {
+          name: name,
+          description: description
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    // reset goalState
+    setGoalState({ name: '', description: '' });
+    // reset errorMessage
+    setError({ type: '', message: '' });
+
+    toast({
+      title: 'Goal added!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true
+    });
+
+    onClose();
+  };
 
   return (
     // <Box p='3' m='10' borderWidth="2px" w="50%" borderRadius="lg">
@@ -34,37 +135,69 @@ const GoalForm = () => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Create a Goal</ModalHeader>
-        {/* <ModalCloseButton /> */}
-        <ModalBody pb={6}>
-          <FormControl>
-            <FormLabel>Name:</FormLabel>
-            <Input placeholder="What is the goal name?" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Description:</FormLabel>
-            <Input
-              id="description"
-              type="description"
-              placeholder="Write your goal here."
-              // value={input}
-              // onChange={handleInputChange}
-            />
-          </FormControl>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            mr={3}
-            colorScheme="teal"
-            // isLoading={props.isSubmitting}
-            type="submit">
-            Save
-          </Button>
-          <Button onClick={onClose}>Cancel</Button>
-        </ModalFooter>
-      </ModalContent>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create a Goal</ModalHeader>
+          {/* <ModalCloseButton /> */}
+          <ModalBody pb={6}>
+            <FormControl
+              isInvalid={errorMessage.type === 'name' ? true : false}>
+              <FormLabel>Name:</FormLabel>
+              <Input
+                name="name"
+                placeholder="What is the goal name?"
+                onChange={handleChange}
+                value={goalState.name}
+              />
+              <Progress
+                colorScheme={nameLength >= 100 ? 'red' : 'green'}
+                size="sm"
+                value={nameLength}
+              />
+              {errorMessage.type === 'name' && (
+                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
+              )}
+            </FormControl>
+            <FormControl
+              isInvalid={errorMessage.type === 'description' ? true : false}>
+              <FormLabel>Description:</FormLabel>
+              <Textarea
+                name="description"
+                id="description"
+                type="description"
+                placeholder="Write your goal here."
+                resize="none"
+                value={goalState.description}
+                onChange={handleChange}
+              />
+              <Progress
+                colorScheme={descriptionLength >= 100 ? 'red' : 'green'}
+                size="sm"
+                value={descriptionLength}
+              />
+              {errorMessage.type === 'description' && (
+                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
+              )}
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              onClick={handleFormSubmit}
+              mr={3}
+              colorScheme="teal"
+              // isLoading={props.isSubmitting}
+              type="submit">
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+          {error && (
+            <Alert status="error">
+              <AlertIcon />
+              <AlertTitle>Goal was not added!</AlertTitle>
+            </Alert>
+          )}
+        </ModalContent>
       </Modal>
     </>
 

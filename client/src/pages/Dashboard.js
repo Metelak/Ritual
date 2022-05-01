@@ -70,16 +70,20 @@ const Dashboard = () => {
       <Flex>
         <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg">
           <Center>My Activities</Center>
-          <Box templateColumns='repeat(5, 1fr)' gap={6}>
+          <Box templateColumns="repeat(5, 1fr)" gap={6}>
             {fakeUserData.activities.map((activity) => {
-              return <ActivityDash activity={activity}></ActivityDash>;
+              return (
+                <ActivityDash
+                  key={activity._id}
+                  activity={activity}></ActivityDash>
+              );
             })}
           </Box>
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">
           <Center>My Goals</Center>
           {fakeUserData.goals.map((goal) => {
-            return <GoalList goal={goal} />;
+            return <GoalList key={goal._id} goal={goal} />;
           })}
           <Center>
             <GoalForm />
