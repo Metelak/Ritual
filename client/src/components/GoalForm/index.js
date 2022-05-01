@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 
-// import { useMutation } from '@apollo/client';
-// import { ADD_GOAL } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { ADD_GOAL } from '../../utils/mutations';
 // import { QUERY_ME, QUERY_USER_GOALS } from '../../utils/queries';
 
 import {
@@ -20,10 +20,32 @@ import {
 } from '@chakra-ui/react';
 
 const GoalForm = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const initialRef = React.useRef()
-  const finalRef = React.useRef()
+  const initialRef = React.useRef();
+  const finalRef = React.useRef();
+
+  // state of goal Form
+  const [goalState, setGoalState] = useState({ name: '', description: '' });
+
+  // add Goal mutation setup
+
+  // update goalState when user adds things in input
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    // add input to setGoalState
+    setGoalState({
+      ...goalState,
+      [name]: value
+    });
+  };
+
+  const handleFormSubmit = () => {
+    console.log(goalState);
+
+    const { name, description } = goalState;
+  };
 
   return (
     // <Box p='3' m='10' borderWidth="2px" w="50%" borderRadius="lg">
@@ -34,37 +56,43 @@ const GoalForm = () => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Create a Goal</ModalHeader>
-        {/* <ModalCloseButton /> */}
-        <ModalBody pb={6}>
-          <FormControl>
-            <FormLabel>Name:</FormLabel>
-            <Input placeholder="What is the goal name?" />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Description:</FormLabel>
-            <Input
-              id="description"
-              type="description"
-              placeholder="Write your goal here."
-              // value={input}
-              // onChange={handleInputChange}
-            />
-          </FormControl>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            mr={3}
-            colorScheme="teal"
-            // isLoading={props.isSubmitting}
-            type="submit">
-            Save
-          </Button>
-          <Button onClick={onClose}>Cancel</Button>
-        </ModalFooter>
-      </ModalContent>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create a Goal</ModalHeader>
+          {/* <ModalCloseButton /> */}
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>Name:</FormLabel>
+              <Input
+                name="name"
+                placeholder="What is the goal name?"
+                onChange={handleChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Description:</FormLabel>
+              <Input
+                name="description"
+                id="description"
+                type="description"
+                placeholder="Write your goal here."
+                // value={input}
+                onChange={handleChange}
+              />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              onClick={handleFormSubmit}
+              mr={3}
+              colorScheme="teal"
+              // isLoading={props.isSubmitting}
+              type="submit">
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
 
