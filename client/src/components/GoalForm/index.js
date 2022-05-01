@@ -60,6 +60,9 @@ const GoalForm = () => {
     } catch (err) {
       console.log(err);
     }
+
+    // reset goalState
+    setGoalState({ name: '', description: '' });
   };
 
   return (
@@ -106,13 +109,13 @@ const GoalForm = () => {
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
-            {error && (
-              <Alert>
-                <AlertIcon />
-                <AlertTitle>Goal was not added!</AlertTitle>
-              </Alert>
-            )}
           </ModalFooter>
+          {error && (
+            <Alert status="error">
+              <AlertIcon />
+              <AlertTitle>Goal was not added!</AlertTitle>
+            </Alert>
+          )}
         </ModalContent>
       </Modal>
     </>
