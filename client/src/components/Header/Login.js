@@ -33,8 +33,8 @@ function LoginForm() {
   // finalRef is the last input field for user before submit or cancel button
   const finalRef = React.useRef();
 
-  // Setting form state by using state for already registered users with email and password fields.
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  // Setting form state by using state for already registered users with username and password fields.
+  const [formState, setFormState] = useState({ username: '', password: '' });
 
   // Using mutation LOGIN_USER to pull login fields we use in handleFormSubmit()
   const [login, { error }] = useMutation(LOGIN_USER);
@@ -48,7 +48,10 @@ function LoginForm() {
     event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password }
+        variables: {
+          username: formState.username,
+          password: formState.password
+        }
       });
       const token = mutationResponse.data.login.token;
       // Using Auth.js imported at the top, the user's credentials are verified with their JWT
@@ -90,7 +93,8 @@ function LoginForm() {
               <FormLabel>Username</FormLabel>
               <Input
                 ref={initialRef}
-                className="username-input" 
+                name="username"
+                className="username-input"
                 placeholder="username"
                 onChange={handleChange}
               />
@@ -99,20 +103,20 @@ function LoginForm() {
             <FormControl mt={4}>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-              <Input
-                className="password-input"
-                placeholder="******"
-                name="password"
-                type={show ? 'text' : 'password'}
-                id="password"
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <InputRightElement width='4.5rem'>
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                {show ? 'Hide' : 'Show'}
-              </Button>
-              </InputRightElement>
+                <Input
+                  className="password-input"
+                  placeholder="******"
+                  name="password"
+                  type={show ? 'text' : 'password'}
+                  id="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? 'Hide' : 'Show'}
+                  </Button>
+                </InputRightElement>
               </InputGroup>
               {!isError ? (
                 <FormHelperText> </FormHelperText>
@@ -123,7 +127,7 @@ function LoginForm() {
           </ModalBody>
 
           <ModalFooter>
-            <Button onSubmit={handleFormSubmit} colorScheme="blue" mr={3}>
+            <Button onClick={handleFormSubmit} colorScheme="blue" mr={3}>
               Enter
             </Button>
             <Button onClick={onClose}>Cancel</Button>

@@ -93,6 +93,7 @@ function SignupForm() {
               <FormLabel>Username</FormLabel>
               <Input
                 ref={initialRef}
+                name="username"
                 className="username-input"
                 placeholder="username"
                 onChange={handleChange}
@@ -102,6 +103,7 @@ function SignupForm() {
             <FormControl>
               <FormLabel>Email Address</FormLabel>
               <Input
+                name="email"
                 className="email-input"
                 placeholder="email"
                 onChange={handleChange}
@@ -135,7 +137,7 @@ function SignupForm() {
           </ModalBody>
 
           <ModalFooter>
-            <Button onSubmit={handleFormSubmit} colorScheme="blue" mr={3}>
+            <Button onClick={handleFormSubmit} colorScheme="blue" mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
@@ -144,6 +146,6 @@ function SignupForm() {
       </Modal>
     </>
   );
-};
+}
 
 export default SignupForm;
