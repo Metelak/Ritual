@@ -14,13 +14,15 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Textarea,
   Button,
   useDisclosure,
   Alert,
   AlertIcon,
   AlertTitle,
   FormErrorMessage,
-  useToast
+  useToast,
+  Progress
 } from '@chakra-ui/react';
 
 const GoalForm = () => {
@@ -29,11 +31,16 @@ const GoalForm = () => {
   const initialRef = React.useRef();
   const finalRef = React.useRef();
 
+  // use toast from Chakra UI
+  const toast = useToast();
+
   // state of goal Form
   const [goalState, setGoalState] = useState({ name: '', description: '' });
   // error text state
   const [errorMessage, setError] = useState({ type: '', message: '' });
-  const toast = useToast();
+  // set character lengths
+  const [nameLength, setNameLength] = useState(0);
+  const [descriptionLength, setDescriptionLength] = useState(0);
 
   // add Goal mutation setup
   const [addGoal, { error }] = useMutation(ADD_GOAL);
@@ -41,6 +48,15 @@ const GoalForm = () => {
   // update goalState when user adds things in input
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === 'name') {
+      let progressLength = (value.length / 280) * 100;
+
+      setNameLength(progressLength);
+    } else {
+      let progressLength = (value.length / 280) * 100;
+      setDescriptionLength(progressLength);
+    }
 
     // add input to setGoalState
     setGoalState({
@@ -131,6 +147,12 @@ const GoalForm = () => {
                 name="name"
                 placeholder="What is the goal name?"
                 onChange={handleChange}
+                value={goalState.name}
+              />
+              <Progress
+                colorScheme={nameLength >= 100 ? 'red' : 'green'}
+                size="sm"
+                value={nameLength}
               />
               {errorMessage.type === 'name' && (
                 <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
@@ -139,13 +161,19 @@ const GoalForm = () => {
             <FormControl
               isInvalid={errorMessage.type === 'description' ? true : false}>
               <FormLabel>Description:</FormLabel>
-              <Input
+              <Textarea
                 name="description"
                 id="description"
                 type="description"
                 placeholder="Write your goal here."
-                // value={input}
+                resize="none"
+                value={goalState.description}
                 onChange={handleChange}
+              />
+              <Progress
+                colorScheme={descriptionLength >= 100 ? 'red' : 'green'}
+                size="sm"
+                value={descriptionLength}
               />
               {errorMessage.type === 'description' && (
                 <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
