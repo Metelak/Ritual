@@ -1,12 +1,17 @@
 // import data
-const userData = require('./userData');
-const activityData = require('./activityData');
-const goalData = require('./goalsData');
-const { reflectionData, challengeData } = require('./reflectionsAndChallenges');
+const {
+  activities,
+  challenges,
+  goals,
+  reflections,
+  users
+} = require('./seed-data');
 
+// connect to db
 const db = require('../config/connection');
 const { User, Activity, Goal } = require('../models');
 
+// returns array of just the newly generated ids
 const getIds = (array) => {
   const idArray = [];
   for (let i = 0; i < array.length; i++) {
@@ -26,20 +31,18 @@ db.once('open', async () => {
   console.log('Deleted existing db data');
 
   // create users and get ids
-  const createUsers = await User.insertMany(userData);
+  const createUsers = await User.insertMany(users);
   const newUserIds = getIds(createUsers);
 
   console.log('Created Users');
 
   // add activities
-  const createActivities = await Activity.insertMany(activityData);
+  const createActivities = await Activity.insertMany(activities);
   const newActivityIds = getIds(createActivities);
 
   console.log('Created Activities');
 
   // give each user a random activity
-
-  newUserIds.forEach((userId) => {});
 
   for await (const userId of newUserIds) {
     // generate random activity
@@ -58,13 +61,13 @@ db.once('open', async () => {
   console.log('Added Activities to Users');
 
   // add goals to db
-  const newGoals = await Goal.insertMany(goalData);
+  const newGoals = await Goal.insertMany(goals);
   const newGoalIds = getIds(newGoals);
 
   console.log('Created Goals');
 
   // add challenges to goals
-  for await (const data of challengeData) {
+  for await (const data of challenges) {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
@@ -78,7 +81,7 @@ db.once('open', async () => {
   console.log('challenges added');
 
   // add reflections to goals
-  for await (const data of reflectionData) {
+  for await (const data of reflections) {
     let index = Math.floor(Math.random() * (newGoalIds.length - 1));
 
     await Goal.findOneAndUpdate(
