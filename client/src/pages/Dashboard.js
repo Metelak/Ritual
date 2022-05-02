@@ -11,15 +11,19 @@ import {
   AlertDescription,
   ScaleFade
 } from '@chakra-ui/react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
 import { ActivityDash } from '../components/ActivityList';
 import GoalList from '../components/GoalList';
+import { COMPLETE_GOAL } from '../utils/mutations';
 
 const Dashboard = () => {
   // query me
   const { loading, error, data: userData } = useQuery(QUERY_ME);
+
+  // complete goal mutation
+  const [completeGoal] = useMutation(COMPLETE_GOAL);
 
   const user = userData?.me;
 
@@ -136,7 +140,13 @@ const Dashboard = () => {
             </Box>
           ) : (
             user.goals.map((goal) => {
-              return <GoalList key={goal._id} goal={goal} />;
+              return (
+                <GoalList
+                  key={goal._id}
+                  goal={goal}
+                  completeGoal={completeGoal}
+                />
+              );
             })
           )}
         </Box>

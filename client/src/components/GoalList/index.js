@@ -14,13 +14,25 @@ import { ReflectionForm } from '../ReflectionForm';
 import GoalChallenges from './challenges';
 import GoalReflection from './reflection';
 
-const GoalList = ({ goal }) => {
-  // destructure props
+const GoalList = ({ goal, completeGoal }) => {
   const { _id, name, description, createdAt, challenges, reflection } = goal;
 
   const { isOpen: challengeOpen, onToggle: toggleChallenges } = useDisclosure();
   const { isOpen: reflectionOpen, onToggle: toggleReflection } =
     useDisclosure();
+
+  const completeGoalHandler = async () => {
+    console.log(_id);
+    try {
+      const runMutation = completeGoal({
+        variables: { id: _id }
+      });
+
+      console.log(runMutation);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Box margin={10}>
@@ -54,6 +66,7 @@ const GoalList = ({ goal }) => {
             </ButtonGroup>
           </Box>
         </Flex>
+        <Button onClick={completeGoalHandler}>Complete Goal</Button>
       </Box>
 
       {/* Pop-down for challenges */}
