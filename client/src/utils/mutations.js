@@ -70,11 +70,18 @@ export const ADD_CHALLENGE = gql`
 `;
 
 export const ADD_REFLECTION = gql`
-  mutation addReflection($id: ID!) {
-    addReflection(addReflection: $id) {
+  mutation AddReflection($goalId: ID!, $reflectionText: String!) {
+    addReflection(goalId: $goalId, reflectionText: $reflectionText) {
       _id
-      reflectionText
+      name
+      description
       createdAt
+      isComplete
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
     }
   }
 `;

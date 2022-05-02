@@ -18,10 +18,10 @@ import {
 } from '@chakra-ui/react';
 
 import { useMutation } from '@apollo/client';
-import { ADD_CHALLENGE } from '../../utils/mutations';
+import { ADD_REFLECTION } from '../../utils/mutations';
 
-export const ChallengeForm = ({ goalId }) => {
-  const [challengeState, setChallengeState] = useState('');
+export const ReflectionForm = ({ goalId }) => {
+  const [reflectionState, setReflectionState] = useState('');
 
   const [descriptionLength, setDescriptionLength] = useState(0);
   const [errorText, setErrorText] = useState('');
@@ -29,7 +29,7 @@ export const ChallengeForm = ({ goalId }) => {
   const toast = useToast();
 
   // add challenge mutation setup
-  const [addChallenge, { error }] = useMutation(ADD_CHALLENGE);
+  const [addReflection, { error }] = useMutation(ADD_REFLECTION);
 
   // styling components
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,37 +54,37 @@ export const ChallengeForm = ({ goalId }) => {
     let progressLength = (value.length / 280) * 100;
     setDescriptionLength(progressLength);
 
-    // add input to challengeState
-    setChallengeState(value);
+    // add input to reflectionState
+    setReflectionState(value);
   };
 
   // on form submit
   const submitHandler = async () => {
     // validate description
-    if (!challengeState) {
-      setErrorText('Please describe your challenge');
+    if (!reflectionState) {
+      setErrorText('Please describe your reflection');
       return;
     }
 
     // validate length
-    if (challengeState.length > 280) {
+    if (reflectionState.length > 280) {
       setErrorText('The description cannot be over 280 characters');
       return;
     }
 
-    // add challengeState to mutation
+    // add reflectionState to mutation
     try {
-      await addChallenge({
-        variables: { challengeText: challengeState, goalId: goalId }
+      await addReflection({
+        variables: { reflectionText: reflectionState, goalId: goalId }
       });
 
-      // reset challengeState
-      setChallengeState('');
+      // reset reflectionState
+      setReflectionState('');
       // reset errorText
       setErrorText('');
 
       toast({
-        title: 'Challenge added!',
+        title: 'Reflection added!',
         status: 'success',
         duration: 3000,
         isClosable: true,
@@ -96,7 +96,7 @@ export const ChallengeForm = ({ goalId }) => {
       console.log(err);
       toast({
         title: 'Error!',
-        description: 'Challenge was not added',
+        description: 'Reflection was not added',
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -113,8 +113,8 @@ export const ChallengeForm = ({ goalId }) => {
           onOpen();
         }}
         variant="outline"
-        colorScheme="red">
-        Add Challenge
+        colorScheme="cyan">
+        Add Reflection
       </Button>
       <Modal
         initialFocusRef={initialRef}
@@ -123,17 +123,17 @@ export const ChallengeForm = ({ goalId }) => {
         onClose={onClose}>
         {overlay}
         <ModalContent>
-          <ModalHeader>Challenge</ModalHeader>
+          <ModalHeader>Reflection</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isInvalid={errorText ? true : false}>
               <FormLabel>Description</FormLabel>
               <Textarea
                 ref={initialRef}
-                name="challenges"
-                placeholder="Please write about a challenge you found associated with this goal."
+                name="reflection"
+                placeholder="Please reflect on this goal."
                 resize="none"
-                value={challengeState}
+                value={reflectionState}
                 onChange={changeHandler}
               />
               <Progress
