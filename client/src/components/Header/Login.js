@@ -58,7 +58,7 @@ function LoginForm() {
 
   // Using LOGIN_USER mutation variables plus user token, we can validate when a user has correctly logged in.
   // Otherwise prompt the user to enter their correct credentials or register if they do not have an account.
-  const handleFormSubmit = async (formState) => {
+  const handleFormSubmit = async () => {
     // add login data using mutation
     try {
       const mutationResponse = await login({
@@ -71,9 +71,6 @@ function LoginForm() {
       // Using Auth.js imported at the top, the user's credentials are verified with their JWT
       Auth.login(token);
 
-      // reset LoginForm state, clearing values in fields username and password
-      setFormState({ username: '', password: '' });
-
       // Toast will display message on successful login
       toast({
         title: 'Success!',
@@ -84,9 +81,12 @@ function LoginForm() {
         isClosable: true
       });
 
+      // reset LoginForm state, clearing values in fields username and password
+      setFormState({ username: '', password: '' });
+
       // Close modal
       onClose();
-
+      
     } catch (e) {
       console.log(e);
       // Display error message using toast
