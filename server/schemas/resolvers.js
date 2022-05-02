@@ -127,6 +127,22 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+    reuseGoal: async (parent, { _id }, context) => {
+      if (context.user) {
+        // find User's goal and update boolean on isComplete
+        const completedGoal = await Goal.findOneAndUpdate(
+          { _id: _id },
+          { isComplete: false },
+          { new: true }
+        )
+          .populate('challenges')
+          .populate('reflection');
+
+        return completedGoal;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addChallenge: async (parent, { goalId, challengeText }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(

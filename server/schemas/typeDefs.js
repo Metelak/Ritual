@@ -59,6 +59,7 @@ const typeDefs = gql`
     removeActivity(_id: ID!): User
     addGoal(name: String!, description: String!): Goal
     completeGoal(_id: ID!): Goal
+    reuseGoal(_id: ID!): Goal
     addChallenge(goalId: ID!, challengeText: String!): Goal
     addReflection(goalId: ID!, reflectionText: String!): Goal
   }
