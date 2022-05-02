@@ -5,7 +5,6 @@ import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
 import { useNavigate } from 'react-router-dom';
 
-
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
   Button,
@@ -33,7 +32,7 @@ function SignupForm() {
   const navigate = useNavigate();
 
   // useToast from Chakra-UI for success message
-  const toast = useToast()
+  const toast = useToast();
 
   // initialRef is where the cursor loads upon Modal opening for the user
   const initialRef = React.useRef();
@@ -70,17 +69,18 @@ function SignupForm() {
 
     toast({
       title: 'Account created.',
-          description: "We've created your account for you.",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-    })
+      position: 'top-right',
+      description: "We've created your account for you.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true
+    });
 
     // Close modal
     onClose();
 
     // Redirect user to dashboard view
-    navigate('/dashboard', { replace: true});
+    navigate('/dashboard', { replace: true });
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
