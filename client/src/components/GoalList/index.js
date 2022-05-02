@@ -2,11 +2,12 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Text,
+  Heading,
   useDisclosure,
   Divider,
   Flex,
-  useToast
+  useToast,
+  Text
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -85,11 +86,46 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
   };
 
   return (
-    <Box margin={10}>
-      <Box border="2px" p={3} m={2} borderRadius="md">
-        <Text fontSize="2xl">{name}</Text>
-        <div>{description}</div>
-        <div>created at: {createdAt}</div>
+    <Box margin="30px">
+      <Box
+        border="2px"
+        p="3"
+        borderRadius="md"
+        borderColor="gray.200"
+        bgColor="teal.50">
+        <Flex justifyContent="end" mb="-6">
+          {completed ? (
+            <Button
+              onClick={reuseGoalHandler}
+              variant="ghost"
+              _hover={{ bg: 'teal.200' }}>
+              Reuse Goal
+            </Button>
+          ) : (
+            <Button
+              onClick={completeGoalHandler}
+              variant="ghost"
+              _hover={{ bg: 'teal.200' }}>
+              Complete Goal
+            </Button>
+          )}
+        </Flex>
+        <Heading fontSize="3xl" ml="5" mt="5">
+          {name}
+        </Heading>
+
+        <Box
+          mt="2"
+          ml="5"
+          mr="5"
+          border="2px"
+          borderRadius="md"
+          borderColor="gray.400"
+          minHeight="20"
+          boxShadow="lg"
+          bgColor="teal.100">
+          <Text m="2">{description}</Text>
+        </Box>
         <Flex mt="10" height="40px" flexDir="row" justifyContent="space-evenly">
           <Box>
             {completed ? (
@@ -102,7 +138,7 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
                 {challenges.length === 0 ? '' : `(${challenges.length})`}
               </Button>
             ) : (
-              <ButtonGroup isAttached variant="outline">
+              <ButtonGroup isAttached>
                 <Button
                   onClick={toggleChallenges}
                   colorScheme="red"
@@ -126,7 +162,7 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
                 {reflection.length === 0 ? '' : `(${reflection.length})`}
               </Button>
             ) : (
-              <ButtonGroup isAttached variant="outline">
+              <ButtonGroup isAttached>
                 <Button
                   onClick={toggleReflection}
                   colorScheme="teal"
@@ -139,11 +175,6 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
             )}
           </Box>
         </Flex>
-        {completed ? (
-          <Button onClick={reuseGoalHandler}>Reuse Goal</Button>
-        ) : (
-          <Button onClick={completeGoalHandler}>Complete Goal</Button>
-        )}
       </Box>
 
       {/* Pop-down for challenges */}
