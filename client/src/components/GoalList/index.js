@@ -2,10 +2,11 @@ import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 import { ChallengeReflectionForm } from '../ChallengeReflectionForm';
 import { Link } from 'react-router-dom';
+import { ChallengeForm } from '../ChallengeForm';
 
 const GoalList = ({ goal }) => {
   // destructure props
-  const { name, description, createdAt, challenges, reflection } = goal;
+  const { _id, name, description, createdAt, challenges, reflection } = goal;
 
   return (
     <Box margin={10}>
@@ -16,6 +17,7 @@ const GoalList = ({ goal }) => {
         <div>{challenges.length} challenges</div>
         <div>{reflection.length} reflection</div>
         <ChallengeReflectionForm />
+        <ChallengeForm goalId={_id}></ChallengeForm>
       </Box>
     </Box>
   );
