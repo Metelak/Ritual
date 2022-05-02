@@ -16,7 +16,6 @@
   * [License](#license)
   * [Questions](#questions)
 
-  ---
 
   ## **User-Story**
    AS A user I want an application that provides wellness activities and tracks my wellness goals
