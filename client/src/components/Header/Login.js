@@ -28,6 +28,7 @@ function LoginForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // useNavigate to redirect user after login to Dashboard
   const navigate = useNavigate();
 
   // initialRef is where the cursor loads upon Modal opening for the user
@@ -90,6 +91,7 @@ function LoginForm() {
       // Close modal
       onClose();
 
+      // Redirect user to dashboard view
       navigate('/dashboard', { replace: true});
       
     } catch (e) {
