@@ -5,7 +5,8 @@ import {
   Text,
   useDisclosure,
   Divider,
-  Flex
+  Flex,
+  useToast
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -14,8 +15,10 @@ import { ReflectionForm } from '../ReflectionForm';
 import GoalChallenges from './challenges';
 import GoalReflection from './reflection';
 
-const GoalList = ({ goal, completeGoal, completed = false }) => {
+const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
   const { _id, name, description, createdAt, challenges, reflection } = goal;
+
+  const toast = useToast();
 
   const { isOpen: challengeOpen, onToggle: toggleChallenges } = useDisclosure();
   const { isOpen: reflectionOpen, onToggle: toggleReflection } =
@@ -23,11 +26,37 @@ const GoalList = ({ goal, completeGoal, completed = false }) => {
 
   const completeGoalHandler = async () => {
     try {
-      const runMutation = completeGoal({
+      await completeGoal({
         variables: { id: _id }
       });
 
-      console.log(runMutation);
+      toast({
+        title: 'Congrats on completing your goal!',
+        description:
+          'If you would like to use it again, go to your completed goals',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: 'Error!',
+        description: '',
+        status: 'error',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  };
+
+  const reuseGoalHandler = async () => {
+    try {
+      await reuseGoal({
+        variables: { id: _id }
+      });
     } catch (err) {
       console.log(err);
     }
@@ -72,6 +101,7 @@ const GoalList = ({ goal, completeGoal, completed = false }) => {
                 colorScheme="teal"
                 icon={<ArrowDownIcon />}>
                 Reflection
+                {reflection.length === 0 ? '' : `(${reflection.length})`}
               </Button>
             ) : (
               <ButtonGroup isAttached variant="outline">
@@ -80,13 +110,16 @@ const GoalList = ({ goal, completeGoal, completed = false }) => {
                   colorScheme="teal"
                   icon={<ArrowDownIcon />}>
                   Reflection
+                  {reflection.length === 0 ? '' : `(${reflection.length})`}
                 </Button>
                 <ReflectionForm goalId={_id} />
               </ButtonGroup>
             )}
           </Box>
         </Flex>
-        {completed ? null : (
+        {completed ? (
+          <Button onClick={reuseGoalHandler}>Reuse Goal</Button>
+        ) : (
           <Button onClick={completeGoalHandler}>Complete Goal</Button>
         )}
       </Box>
