@@ -1,6 +1,7 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { REUSE_GOAL } from '../utils/mutations';
 import GoalList from '../components/GoalList';
 import {
   Box,
@@ -10,16 +11,17 @@ import {
   AlertDescription,
   Heading,
   Center,
-  Button
+  Button,
+  ScaleFade
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 const CompletedGoals = () => {
+  const [reuseGoal] = useMutation(REUSE_GOAL);
+
   const { data: userData, loading } = useQuery(QUERY_ME);
 
   const allGoals = userData?.me.goals;
-
-  console.log(userData);
 
   if (loading) {
     return <div>Loading your goals...</div>;
@@ -45,29 +47,35 @@ const CompletedGoals = () => {
         </Link>
       </Center>
       {!completedGoals.length ? (
-        <Box m="30px">
-          <Alert
-            status="info"
-            variant="subtle"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            textAlign="center"
-            height="200px"
-            borderRadius="md">
-            <AlertIcon boxSize="40px" mr={0} />
-            <AlertTitle mt={4} mb={1} fontSize="lg">
-              No goals yet!
-            </AlertTitle>
-            <AlertDescription maxWidth="sm">
-              Click Add Goal to create a goal.
-            </AlertDescription>
-          </Alert>
-        </Box>
+        <ScaleFade in>
+          <Box m="30px">
+            <Alert
+              status="info"
+              variant="subtle"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              textAlign="center"
+              height="200px"
+              borderRadius="md">
+              <AlertIcon boxSize="40px" mr={0} />
+              <AlertTitle mt={4} mb={1} fontSize="lg">
+                No goals!
+              </AlertTitle>
+              <AlertDescription maxWidth="sm">
+                Go back to the dashboard to create new goals.
+              </AlertDescription>
+            </Alert>
+          </Box>
+        </ScaleFade>
       ) : (
         completedGoals.map((goal) => {
           return (
-            <GoalList goal={goal} completed={true} key={goal._id}></GoalList>
+            <GoalList
+              goal={goal}
+              completed={true}
+              key={goal._id}
+              reuseGoal={reuseGoal}></GoalList>
           );
         })
       )}
