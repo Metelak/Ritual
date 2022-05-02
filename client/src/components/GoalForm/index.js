@@ -41,7 +41,7 @@ const GoalForm = () => {
   const [descriptionLength, setDescriptionLength] = useState(0);
 
   // add Goal mutation setup
-  const [addGoal, { error }] = useMutation(ADD_GOAL);
+  const [addGoal] = useMutation(ADD_GOAL);
 
   // update goalState when user adds things in input
   const handleChange = (event) => {

@@ -113,7 +113,6 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
         <Heading fontSize="3xl" ml="5" mt="5">
           {name}
         </Heading>
-
         <Box
           mt="2"
           ml="5"
@@ -125,6 +124,9 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
           boxShadow="lg"
           bgColor="teal.100">
           <Text m="2">{description}</Text>
+          <Flex justifyContent="end">
+            <Text m="2">{createdAt}</Text>
+          </Flex>
         </Box>
         <Flex mt="10" height="40px" flexDir="row" justifyContent="space-evenly">
           <Box>
