@@ -29,6 +29,15 @@ const Dashboard = () => {
 
   const user = userData?.me;
 
+  let incompleteUserGoals;
+  if (user) {
+    incompleteUserGoals = user.goals.filter((goal) => {
+      return !goal.isComplete;
+    });
+
+    console.log('incomplete', incompleteUserGoals);
+  }
+
   console.log(user);
 
   const handleViewCompletedGoals = () => {
@@ -123,8 +132,7 @@ const Dashboard = () => {
           <Center>
             <GoalForm />
           </Center>
-
-          {user.goals.length === 0 ? (
+          {incompleteUserGoals.length === 0 ? (
             <Box m="30px">
               <Alert
                 status="info"
@@ -145,7 +153,7 @@ const Dashboard = () => {
               </Alert>
             </Box>
           ) : (
-            user.goals.map((goal) => {
+            incompleteUserGoals.map((goal) => {
               return (
                 <GoalList
                   key={goal._id}
