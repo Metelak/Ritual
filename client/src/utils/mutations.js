@@ -108,6 +108,15 @@ export const COMPLETE_GOAL = gql`
   }
 `;
 
+export const REUSE_GOAL = gql`
+  mutation reuseGoal($id: ID!) {
+    reuseGoal(_id: $id) {
+      _id
+      isComplete
+    }
+  }
+`;
+
 export const REMOVE_ACTIVITY = gql`
   mutation removeActivity($id: ID!) {
     removeActivity(removeActivity: $id) {
