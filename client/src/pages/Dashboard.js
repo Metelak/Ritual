@@ -36,7 +36,8 @@ const Dashboard = () => {
             alignItems="center"
             justifyContent="center"
             textAlign="center"
-            height="300px">
+            height="300px"
+            borderRadius="md">
             <AlertIcon boxSize="50px" />
             <AlertTitle mt="20px" mb="35px" fontSize="5xl">
               User login Required
