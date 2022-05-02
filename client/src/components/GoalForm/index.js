@@ -104,36 +104,35 @@ const GoalForm = () => {
           description: description
         }
       });
+
+      // reset goalState
+      setGoalState({ name: '', description: '' });
+      // reset errorMessage
+      setError({ type: '', message: '' });
+
+      // success toast
+      toast({
+        title: 'Goal added!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+
+      // close modal
+      onClose();
     } catch (err) {
       console.log(err);
+      toast({
+        title: 'Error!',
+        description: 'Goal was not added',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
     }
-
-    // reset goalState
-    setGoalState({ name: '', description: '' });
-    // reset errorMessage
-    setError({ type: '', message: '' });
-
-    // success toast
-    toast({
-      title: 'Goal added!',
-      status: 'success',
-      duration: 3000,
-      isClosable: true
-    });
-
-    // close modal
-    onClose();
   };
-
-  if (error) {
-    toast({
-      title: 'Error!',
-      description: 'Goal was not added',
-      status: 'error',
-      duration: 3000,
-      isClosable: true
-    });
-  }
 
   return (
     <>
