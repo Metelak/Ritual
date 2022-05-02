@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box,
   Center,
@@ -21,6 +22,8 @@ const Dashboard = () => {
   const { loading, error, data: userData } = useQuery(QUERY_ME);
 
   const user = userData?.me;
+
+  console.log(user);
 
   if (error) {
     return (
@@ -58,15 +61,37 @@ const Dashboard = () => {
           <Heading className="center-text" fontSize="3xl" color="#2C7A7B">
             My Activities
           </Heading>
-          <Box templateColumns="repeat(5, 1fr)" gap={6}>
-            {user.activities.map((activity) => {
-              return (
-                <ActivityDash
-                  key={activity._id}
-                  activity={activity}></ActivityDash>
-              );
-            })}
-          </Box>
+          {user.activities.length === 0 ? (
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                height="200px">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No activities yet!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Go to the <Link to="/">homepage</Link> to view and add
+                  activities.
+                </AlertDescription>
+              </Alert>
+            </Box>
+          ) : (
+            <Box templateColumns="repeat(5, 1fr)" gap={6}>
+              {user.activities.map((activity) => {
+                return (
+                  <ActivityDash
+                    key={activity._id}
+                    activity={activity}></ActivityDash>
+                );
+              })}
+            </Box>
+          )}
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">
           <Heading className="center-text" fontSize="3xl" color="#2C7A7B">
