@@ -48,21 +48,40 @@ export const ADD_ACTIVITY = gql`
 `;
 
 export const ADD_CHALLENGE = gql`
-  mutation addChallenge($id: ID!) {
-    addChallenge(addChallenge: $id) {
+  mutation AddChallenge($goalId: ID!, $challengeText: String!) {
+    addChallenge(goalId: $goalId, challengeText: $challengeText) {
       _id
-      challengeText
+      name
+      description
       createdAt
+      isComplete
+      challenges {
+        _id
+        challengeText
+        createdAt
+      }
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
     }
   }
 `;
 
 export const ADD_REFLECTION = gql`
-  mutation addReflection($id: ID!) {
-    addReflection(addReflection: $id) {
+  mutation AddReflection($goalId: ID!, $reflectionText: String!) {
+    addReflection(goalId: $goalId, reflectionText: $reflectionText) {
       _id
-      reflectionText
+      name
+      description
       createdAt
+      isComplete
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
     }
   }
 `;

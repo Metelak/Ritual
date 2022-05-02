@@ -1,93 +1,144 @@
 import React from 'react';
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  ScaleFade
+} from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
 import { ActivityDash } from '../components/ActivityList';
 import GoalList from '../components/GoalList';
 
-const fakeUserData = {
-  _id: '626dd2c8db8783636bb74a0f',
-  username: 'mike',
-  email: 'mike@mike.com',
-  activities: [
-    {
-      _id: '626dd27dcbfc48efe3a4edb9',
-      title: 'Deep Breathing',
-      // text: 'nulla ultrices aliquet maecenas leo odio condimentum id luctus',
-      image: 'deep-breathing.png'
-    },
-    {
-      _id: '626dd27dcbfc48efe3a4edbd',
-      title: 'Yoga',
-      // text: 'nam congue risus semper porta volutpat quam pede lobortis',
-      image: 'yoga.png'
-    }
-  ],
-  goals: [
-    {
-      _id: '626dd43bd3ee7a5ae5824836',
-      name: 'stretch!',
-      description: "make sure you're stretching. No old man back here!",
-      createdAt: 'Apr 30th, 2022 at 7:28 pm',
-      challenges: [],
-      reflection: [
-        {
-          _id: '626dd45fd3ee7a5ae582483f',
-          reflectionText: 'I did it! Woohoo!',
-          createdAt: 'Apr 30th, 2022 at 7:29 pm'
-        }
-      ],
-      isComplete: false
-    },
-    {
-      _id: '626dd44fd3ee7a5ae5824839',
-      name: 'Smile',
-      description: 'Happy thoughts',
-      createdAt: 'Apr 30th, 2022 at 7:29 pm',
-      challenges: [
-        {
-          _id: '626dd474d3ee7a5ae5824844',
-          challengeText: 'This is challenging!',
-          createdAt: 'Apr 30th, 2022 at 7:29 pm'
-        }
-      ],
-      reflection: [
-        {
-          _id: '626dd48ad3ee7a5ae5824846',
-          reflectionText: 'This was fun to think about',
-          createdAt: 'Apr 30th, 2022 at 7:30 pm'
-        }
-      ],
-      isComplete: false
-    }
-  ]
-};
-
 const Dashboard = () => {
+  // query me
+  const { loading, error, data: userData } = useQuery(QUERY_ME);
+
+  const user = userData?.me;
+
+  console.log(user);
+
+  if (error) {
+    return (
+      <ScaleFade in="true">
+        <Box pl="15px" pr="15px" pt="150px" pb="300px">
+          <Alert
+            status="error"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="300px"
+            borderRadius="md">
+            <AlertIcon boxSize="50px" />
+            <AlertTitle mt="20px" mb="35px" fontSize="5xl">
+              User login Required
+            </AlertTitle>
+            <AlertDescription fontSize="large">
+              You are not logged in. Please log in to view your dashboard!
+            </AlertDescription>
+          </Alert>
+        </Box>
+      </ScaleFade>
+    );
+  }
+
+  if (loading) {
+    return <div>Loading your dashboard...</div>;
+  }
+
   return (
     <div>
       <Flex>
-        <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg">
-          <Center>My Activities</Center>
-          <Box templateColumns="repeat(5, 1fr)" gap={6}>
-            {fakeUserData.activities.map((activity) => {
-              return (
-                <ActivityDash
-                  key={activity._id}
-                  activity={activity}></ActivityDash>
-              );
-            })}
-          </Box>
+        <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg" bg="#FFFFFF">
+          <Heading
+            className="center-text"
+            fontSize="3xl"
+            color="#2C7A7B"
+            mt="20px">
+            My Activities
+          </Heading>
+          {user.activities.length === 0 ? (
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                borderRadius="md"
+                height="200px">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No activities yet!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Go to the{' '}
+                  <i>
+                    <Link to="/">homepage</Link>
+                  </i>{' '}
+                  to view and add activities.
+                </AlertDescription>
+              </Alert>
+            </Box>
+          ) : (
+            <Box templateColumns="repeat(5, 1fr)" gap={6}>
+              {user.activities.map((activity) => {
+                return (
+                  <ActivityDash
+                    key={activity._id}
+                    activity={activity}></ActivityDash>
+                );
+              })}
+            </Box>
+          )}
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">
-          <Center>My Goals</Center>
-          {fakeUserData.goals.map((goal) => {
-            return <GoalList key={goal._id} goal={goal} />;
-          })}
+          <Heading
+            className="center-text"
+            fontSize="3xl"
+            color="#2C7A7B"
+            mt="20px">
+            My Goals
+          </Heading>
           <Center>
             <GoalForm />
           </Center>
+
+          {user.goals.length === 0 ? (
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                height="200px"
+                borderRadius="md">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No goals yet!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Click Add Goal to create a goal.
+                </AlertDescription>
+              </Alert>
+            </Box>
+          ) : (
+            user.goals.map((goal) => {
+              return <GoalList key={goal._id} goal={goal} />;
+            })
+          )}
         </Box>
       </Flex>
     </div>
