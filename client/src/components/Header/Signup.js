@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
+import { useNavigate } from 'react-router-dom';
+
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
@@ -26,6 +28,9 @@ import {
 function SignupForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // useNavigate to redirect user after signup to Dashboard
+  const navigate = useNavigate();
 
   // useToast from Chakra-UI for success message
   const toast = useToast()
@@ -71,7 +76,11 @@ function SignupForm() {
           isClosable: true,
     })
 
+    // Close modal
     onClose();
+
+    // Redirect user to dashboard view
+    navigate('/dashboard', { replace: true});
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
