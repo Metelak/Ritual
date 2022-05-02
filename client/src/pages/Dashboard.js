@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   if (error) {
     return (
-      <ScaleFade in="true">
+      <ScaleFade in>
         <Box pl="15px" pr="15px" pt="150px" pb="300px">
           <Alert
             status="error"
