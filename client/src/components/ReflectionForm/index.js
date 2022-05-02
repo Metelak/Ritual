@@ -14,11 +14,13 @@ import {
   Textarea,
   Progress,
   FormErrorMessage,
-  useToast
+  useToast,
+  IconButton
 } from '@chakra-ui/react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_REFLECTION } from '../../utils/mutations';
+import { AddIcon } from '@chakra-ui/icons';
 
 export const ReflectionForm = ({ goalId }) => {
   const [reflectionState, setReflectionState] = useState('');
@@ -107,15 +109,13 @@ export const ReflectionForm = ({ goalId }) => {
 
   return (
     <>
-      <Button
+      <IconButton
         onClick={() => {
           setOverlay(<OverlayOne />);
           onOpen();
         }}
-        variant="outline"
-        colorScheme="cyan">
-        Add Reflection
-      </Button>
+        icon={<AddIcon />}
+        colorScheme="teal"></IconButton>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -123,11 +123,11 @@ export const ReflectionForm = ({ goalId }) => {
         onClose={onClose}>
         {overlay}
         <ModalContent>
-          <ModalHeader>Reflection</ModalHeader>
+          <ModalHeader>Add Reflection</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isInvalid={errorText ? true : false}>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>Description:</FormLabel>
               <Textarea
                 ref={initialRef}
                 name="reflection"

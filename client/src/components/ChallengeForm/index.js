@@ -14,11 +14,13 @@ import {
   Textarea,
   Progress,
   FormErrorMessage,
-  useToast
+  useToast,
+  IconButton
 } from '@chakra-ui/react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_CHALLENGE } from '../../utils/mutations';
+import { AddIcon } from '@chakra-ui/icons';
 
 export const ChallengeForm = ({ goalId }) => {
   const [challengeState, setChallengeState] = useState('');
@@ -107,15 +109,13 @@ export const ChallengeForm = ({ goalId }) => {
 
   return (
     <>
-      <Button
+      <IconButton
         onClick={() => {
           setOverlay(<OverlayOne />);
           onOpen();
         }}
-        variant="outline"
-        colorScheme="red">
-        Add Challenge
-      </Button>
+        icon={<AddIcon />}
+        colorScheme="red"></IconButton>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -123,11 +123,11 @@ export const ChallengeForm = ({ goalId }) => {
         onClose={onClose}>
         {overlay}
         <ModalContent>
-          <ModalHeader>Challenge</ModalHeader>
+          <ModalHeader>Add Challenge</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isInvalid={errorText ? true : false}>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>Description:</FormLabel>
               <Textarea
                 ref={initialRef}
                 name="challenges"
