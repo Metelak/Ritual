@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 // import { Link } from 'react-router-dom';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 // Imports from @chakra-ui/react to assist with Modal and form styling.
 import {
@@ -26,6 +27,8 @@ import {
 function LoginForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate();
 
   // initialRef is where the cursor loads upon Modal opening for the user
   const initialRef = React.useRef();
@@ -86,6 +89,8 @@ function LoginForm() {
 
       // Close modal
       onClose();
+
+      navigate('/dashboard', { replace: true});
       
     } catch (e) {
       console.log(e);
