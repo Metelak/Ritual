@@ -14,6 +14,8 @@ code {
 
 .activities {
   opacity: 60%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .activities:hover {
@@ -22,4 +24,8 @@ code {
 
 .activity-text {
   text-shadow: 0px 0px 5px #000000;
+}
+
+.center-text {
+  text-align: center;
 }

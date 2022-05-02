@@ -25,8 +25,31 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GOAL = gql`
-  mutation addGoal($id: ID!) {
-    addGoal(GoalId: $id) {
+  mutation AddGoal($name: String!, $description: String!) {
+    addGoal(name: $name, description: $description) {
+      _id
+      name
+      description
+      createdAt
+    }
+  }
+`;
+
+export const ADD_ACTIVITY = gql`
+  mutation addActivity($id: ID!) {
+    addActivity(addActivity: $id) {
+      _id
+      title
+      text
+      createdAt
+      image
+    }
+  }
+`;
+
+export const ADD_CHALLENGE = gql`
+  mutation AddChallenge($goalId: ID!, $challengeText: String!) {
+    addChallenge(goalId: $goalId, challengeText: $challengeText) {
       _id
       name
       description
@@ -46,34 +69,19 @@ export const ADD_GOAL = gql`
   }
 `;
 
-export const ADD_ACTIVITY = gql`
-  mutation addActivity($id: ID!) {
-    addActivity(addActivity: $id) {
-      _id
-      title
-      text
-      createdAt
-      image
-    }
-  }
-`;
-
-export const ADD_CHALLENGE = gql`
-  mutation addChallenge($id: ID!) {
-    addChallenge(addChallenge: $id) {
-      _id
-      challengeText
-      createdAt
-    }
-  }
-`;
-
 export const ADD_REFLECTION = gql`
-  mutation addReflection($id: ID!) {
-    addReflection(addReflection: $id) {
+  mutation AddReflection($goalId: ID!, $reflectionText: String!) {
+    addReflection(goalId: $goalId, reflectionText: $reflectionText) {
       _id
-      reflectionText
+      name
+      description
       createdAt
+      isComplete
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
     }
   }
 `;

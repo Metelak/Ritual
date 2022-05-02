@@ -11,9 +11,8 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
-import Dashboard from '../src/pages/Dashboard'
+import Dashboard from '../src/pages/Dashboard';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
 import { Center, Text } from '@chakra-ui/react';
 
 const httpLink = createHttpLink({
