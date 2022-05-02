@@ -15,27 +15,30 @@ import { ReflectionForm } from '../ReflectionForm';
 import GoalChallenges from './challenges';
 import GoalReflection from './reflection';
 
+// completed (standing for if we're viewing completed goals) is defaulted to false
 const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
   const { _id, name, description, createdAt, challenges, reflection } = goal;
 
+  // use chakraUI's toast
   const toast = useToast();
 
+  // set useDisclosure function to custom names
   const { isOpen: challengeOpen, onToggle: toggleChallenges } = useDisclosure();
   const { isOpen: reflectionOpen, onToggle: toggleReflection } =
     useDisclosure();
 
+  // complete goal was pressed
   const completeGoalHandler = async () => {
     try {
       await completeGoal({
         variables: { id: _id }
       });
-
       toast({
         title: 'Congrats on completing your goal!',
         description:
           'If you would like to use it again, go to your completed goals',
         status: 'success',
-        duration: 3000,
+        duration: 6000,
         isClosable: true,
         position: 'top-right'
       });
@@ -43,22 +46,41 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
       console.log(err);
       toast({
         title: 'Error!',
-        description: '',
+        description: 'We were unable to add your goal to completed goals',
         status: 'error',
-        duration: 6000,
+        duration: 3000,
         isClosable: true,
         position: 'top-right'
       });
     }
   };
 
+  // reuse goal was pressed
   const reuseGoalHandler = async () => {
     try {
       await reuseGoal({
         variables: { id: _id }
       });
+
+      toast({
+        title: 'Goal restored',
+        description:
+          'You can now view and interact with this goal in the dashboard',
+        status: 'success',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
     } catch (err) {
       console.log(err);
+      toast({
+        title: 'Error!',
+        description: 'We were unable to add this back to your reused goals.',
+        status: 'error',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
     }
   };
 
