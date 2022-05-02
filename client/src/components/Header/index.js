@@ -6,7 +6,8 @@ import {
   Heading,
   Spacer,
   ButtonGroup,
-  Image
+  Image,
+  Button
 } from '@chakra-ui/react';
 // import Auth from '../../utils/auth';
 
@@ -16,11 +17,14 @@ import LoginForm from './Login';
 // import SignupForm from SignupForm.js
 import SignupForm from './Signup';
 
+// import logout() from Auth.js
+import Auth from '../../utils/auth';
+
 const Header = () => {
-  // const logout = (event) => {
-  //   event.preventDefault();
-  //   Auth.logout();
-  // };
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
 
   return (
     <header>
@@ -44,14 +48,22 @@ const Header = () => {
             </Box>
           </Link>
           <Spacer />
-          <ButtonGroup gap="2" pr="3">
-            <SignupForm colorScheme="whiteAlpha" variant="outline">
-              Sign Up
-            </SignupForm>
-            <LoginForm colorScheme="whiteAlpha" variant="outline">
-              Login
-            </LoginForm>
-          </ButtonGroup>
+          {Auth.loggedIn() ? (
+            <>
+              <ButtonGroup gap="2" pr="3">
+                <Button onClick={Auth.logout}>Logout</Button>
+              </ButtonGroup>
+            </>
+          ) : (
+            <ButtonGroup gap="2" pr="3">
+              <SignupForm colorScheme="whiteAlpha" variant="outline">
+                Sign Up
+              </SignupForm>
+              <LoginForm colorScheme="whiteAlpha" variant="outline">
+                Login
+              </LoginForm>
+            </ButtonGroup>
+          )}
         </Flex>
       </div>
     </header>
