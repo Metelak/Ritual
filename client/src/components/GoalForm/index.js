@@ -140,9 +140,7 @@ const GoalForm = () => {
       <Button
         leftIcon={<SmallAddIcon />}
         onClick={onOpen}
-        size="lg"
-        mt="15px"
-        ml="10px"
+        size="md"
         colorScheme="teal">
         Add Goal
       </Button>

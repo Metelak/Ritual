@@ -10,7 +10,8 @@ import {
   AlertTitle,
   AlertDescription,
   ScaleFade,
-  Button
+  Button,
+  ButtonGroup
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -132,7 +133,15 @@ const Dashboard = () => {
             My Goals
           </Heading>
           <Center>
-            <GoalForm />
+            <ButtonGroup isAttached mt="3">
+              <GoalForm />
+              <Button
+                onClick={handleViewCompletedGoals}
+                colorScheme="teal"
+                size="md">
+                Completed Goals
+              </Button>
+            </ButtonGroup>
           </Center>
           {incompleteUserGoals.length === 0 ? (
             <ScaleFade in>
@@ -167,9 +176,6 @@ const Dashboard = () => {
               );
             })
           )}
-          <Button onClick={handleViewCompletedGoals}>
-            View Completed Goals
-          </Button>
         </Box>
       </Flex>
     </div>
