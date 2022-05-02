@@ -86,29 +86,31 @@ const Dashboard = () => {
             My Activities
           </Heading>
           {user.activities.length === 0 ? (
-            <Box m="30px">
-              <Alert
-                status="info"
-                variant="subtle"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                textAlign="center"
-                borderRadius="md"
-                height="200px">
-                <AlertIcon boxSize="40px" mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize="lg">
-                  No activities yet!
-                </AlertTitle>
-                <AlertDescription maxWidth="sm">
-                  Go to the{' '}
-                  <i>
-                    <Link to="/">homepage</Link>
-                  </i>{' '}
-                  to view and add activities.
-                </AlertDescription>
-              </Alert>
-            </Box>
+            <ScaleFade in>
+              <Box m="30px">
+                <Alert
+                  status="info"
+                  variant="subtle"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  borderRadius="md"
+                  height="200px">
+                  <AlertIcon boxSize="40px" mr={0} />
+                  <AlertTitle mt={4} mb={1} fontSize="lg">
+                    No activities!
+                  </AlertTitle>
+                  <AlertDescription maxWidth="sm">
+                    Go to the{' '}
+                    <i>
+                      <Link to="/">homepage</Link>
+                    </i>{' '}
+                    to view and add activities.
+                  </AlertDescription>
+                </Alert>
+              </Box>
+            </ScaleFade>
           ) : (
             <Box templateColumns="repeat(5, 1fr)" gap={6}>
               {user.activities.map((activity) => {
@@ -133,25 +135,27 @@ const Dashboard = () => {
             <GoalForm />
           </Center>
           {incompleteUserGoals.length === 0 ? (
-            <Box m="30px">
-              <Alert
-                status="info"
-                variant="subtle"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                textAlign="center"
-                height="200px"
-                borderRadius="md">
-                <AlertIcon boxSize="40px" mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize="lg">
-                  No goals yet!
-                </AlertTitle>
-                <AlertDescription maxWidth="sm">
-                  Click Add Goal to create a goal.
-                </AlertDescription>
-              </Alert>
-            </Box>
+            <ScaleFade in>
+              <Box m="30px">
+                <Alert
+                  status="info"
+                  variant="subtle"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  height="200px"
+                  borderRadius="md">
+                  <AlertIcon boxSize="40px" mr={0} />
+                  <AlertTitle mt={4} mb={1} fontSize="lg">
+                    No goals!
+                  </AlertTitle>
+                  <AlertDescription maxWidth="sm">
+                    Click Add Goal to create a goal.
+                  </AlertDescription>
+                </Alert>
+              </Box>
+            </ScaleFade>
           ) : (
             incompleteUserGoals.map((goal) => {
               return (
