@@ -8,8 +8,6 @@ import { ADD_USER } from '../../utils/mutations';
 import {
   Button,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   InputGroup,
@@ -21,12 +19,16 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react';
 
 function SignupForm() {
   // Importing functions from @chakra-ui/react for when Modal isOpn, onOpen, onClose as useDisclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // useToast from Chakra-UI for success message
+  const toast = useToast()
 
   // initialRef is where the cursor loads upon Modal opening for the user
   const initialRef = React.useRef();
@@ -37,10 +39,7 @@ function SignupForm() {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
   // Using mutation addUser to pull necessary registration fields we use in handleFormSubmit()
-  const [addUser, { error }] = useMutation(ADD_USER);
-
-  // Defining error so Modal knows on which condition to present error text to user.
-  const isError = error;
+  const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -60,6 +59,19 @@ function SignupForm() {
       // if errors are presented, use catch to console.log(e)
       console.log(e);
     }
+
+    // reset SignupForm
+    setFormState({ email: '', password: '' });
+
+    toast({
+      title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+    })
+
+    onClose();
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
@@ -128,11 +140,6 @@ function SignupForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              {!isError ? (
-                <FormHelperText> </FormHelperText>
-              ) : (
-                <FormErrorMessage>User credentials required.</FormErrorMessage>
-              )}
             </FormControl>
           </ModalBody>
 
