@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Center,
@@ -9,7 +9,8 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  ScaleFade
+  ScaleFade,
+  Button
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -19,6 +20,7 @@ import GoalList from '../components/GoalList';
 import { COMPLETE_GOAL } from '../utils/mutations';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   // query me
   const { loading, error, data: userData } = useQuery(QUERY_ME);
 
@@ -28,6 +30,10 @@ const Dashboard = () => {
   const user = userData?.me;
 
   console.log(user);
+
+  const handleViewCompletedGoals = () => {
+    navigate('/completed-goals');
+  };
 
   if (error) {
     return (
@@ -149,6 +155,9 @@ const Dashboard = () => {
               );
             })
           )}
+          <Button onClick={handleViewCompletedGoals}>
+            View Completed Goals
+          </Button>
         </Box>
       </Flex>
     </div>

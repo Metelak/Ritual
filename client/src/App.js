@@ -13,6 +13,7 @@ import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 import Dashboard from '../src/pages/Dashboard';
 import Home from './pages/Home';
+import CompletedGoals from './pages/CompletedGoals';
 import { Center, Text } from '@chakra-ui/react';
 
 const httpLink = createHttpLink({
@@ -40,8 +41,9 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Home />}></Route>
+          <Route path="dashboard" element={<Dashboard />}></Route>
+          <Route path="completed-goals" element={<CompletedGoals />}></Route>
           {/* catch any routes that are not listed above and return this */}
           <Route
             path="*"
