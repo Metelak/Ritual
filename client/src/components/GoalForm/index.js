@@ -21,6 +21,7 @@ import {
   Progress,
   ModalCloseButton
 } from '@chakra-ui/react';
+import { SmallAddIcon } from '@chakra-ui/icons';
 
 const GoalForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -136,7 +137,15 @@ const GoalForm = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Add Goal</Button>
+      <Button
+        leftIcon={<SmallAddIcon />}
+        onClick={onOpen}
+        size="lg"
+        mt="15px"
+        ml="10px"
+        colorScheme="teal">
+        Add Goal
+      </Button>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
