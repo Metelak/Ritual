@@ -58,10 +58,10 @@ const Header = () => {
             </>
           ) : (
             <ButtonGroup gap="2" pr="3">
-              <SignupForm colorScheme="whiteAlpha" variant="outline">
+              <SignupForm >
                 Sign Up
               </SignupForm>
-              <LoginForm colorScheme="whiteAlpha" variant="outline">
+              <LoginForm>
                 Login
               </LoginForm>
             </ButtonGroup>

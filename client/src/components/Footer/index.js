@@ -3,8 +3,6 @@ import { Box, Center, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   return (
-    <footer>
-      <div>
         <Center className='footer' minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
           <Box p="5">
               <Text fontSize='xl' color='#FFFFFF'>
@@ -12,8 +10,6 @@ const Footer = () => {
               </Text>
           </Box>
         </Center>
-      </div>
-    </footer>
   );
 };
 

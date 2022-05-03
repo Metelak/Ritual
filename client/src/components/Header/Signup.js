@@ -96,16 +96,27 @@ function SignupForm() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px)"
+    />
+  );
+
+  const [overlay] = React.useState(<OverlayOne />);
+
   return (
     <>
-      <Button onClick={onOpen}>Sign Up</Button>
+      <Button color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }} onClick={onOpen}>
+        Sign Up
+      </Button>
 
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-        <ModalOverlay />
+        {overlay}
         <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
           <ModalCloseButton />
@@ -153,7 +164,7 @@ function SignupForm() {
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={handleFormSubmit} colorScheme="blue" mr={3}>
+            <Button onClick={handleFormSubmit} colorScheme="teal" mr={3}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>

@@ -56,7 +56,7 @@ function App() {
             }
           />
         </Routes>
-        <Footer />
+        <Footer className='footer' />
       </Router>
     </ApolloProvider>
   );
