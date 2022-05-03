@@ -81,7 +81,7 @@ function LoginForm() {
         position: 'top-right',
         description: 'You are now logged in!',
         status: 'success',
-        duration: 9000,
+        duration: 3000,
         isClosable: true
       });
 
@@ -103,7 +103,7 @@ function LoginForm() {
         description:
           'Please re-enter your credentials, or sign up to create a new account.',
         status: 'error',
-        duration: 9000,
+        duration: 3000,
         isClosable: true
       });
       // Leave modal open for user to re-try login credentials
