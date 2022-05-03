@@ -57,7 +57,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveActivity(_id: ID!): User
     removeActivity(_id: ID!): User
-    addGoal(name: String!, description: String!): Goal
+    addGoal(name: String!, description: String!): User
     completeGoal(_id: ID!): Goal
     reuseGoal(_id: ID!): Goal
     addChallenge(goalId: ID!, challengeText: String!): Goal
