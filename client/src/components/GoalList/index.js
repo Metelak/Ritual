@@ -107,8 +107,6 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
               onChange={completeGoalHandler}
               size="lg"
               colorScheme="green"
-              // variant="ghost"
-              // _hover={{ bg: 'teal.200' }}>
             >
               Goal Complete
             </Checkbox>
