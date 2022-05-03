@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const activitySubtypeSchema = require('./ActivitySubtypes');
 
 const activitySchema = new Schema(
   {
@@ -17,9 +18,7 @@ const activitySchema = new Schema(
     image: {
       type: String
     },
-    subtypes: {
-      type: String
-    }
+    subtypes: [activitySubtypeSchema] 
   },
   {
     toJSON: {
