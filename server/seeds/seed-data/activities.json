@@ -62,7 +62,13 @@
   },
   {
     "title": "Meditation",
-    "text": "nulla eget eros elementum",
-    "image": "meditation.png"
+    "text": "There are many forms of meditation. Some guided, some not. You may choose to focus on your breath, on an image, or a sound. Meditation can be merged with movement (yoga, walking, swimming), or any repeated task. You might find meditation in a craft such as painting, drawing, knitting, crocheting, or household tasks such as cooking, cleaning, or washing dishes, even folding laundry. Find the opportunity for joy in bringing mindfulness to all your tasks.",
+    "image": "meditation.png",
+    "subtypes": [
+      "Guided Meditation",
+      "Breath Focus Meditation",
+      "Crafty Meditation Time",
+      "Household Tasks"
+    ]
   }
 ]
