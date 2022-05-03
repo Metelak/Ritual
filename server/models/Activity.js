@@ -16,6 +16,9 @@ const activitySchema = new Schema(
     },
     image: {
       type: String
+    },
+    subtypes: {
+      type: String
     }
   },
   {
