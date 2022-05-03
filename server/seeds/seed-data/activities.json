@@ -1,8 +1,14 @@
 [
   {
-    "title": "Deep Breathing",
-    "text": "nulla ultrices aliquet maecenas leo odio condimentum id luctus",
-    "image": "deep-breathing.png"
+    "title": "Breathing",
+    "text": "There are many kinds of breathing techniques one can use to regulate energy and mood.",
+    "image": "deep-breathing.png",
+    "subtypes": [
+      "Energizing Breath: The next time you are feeling tired, try the double-breath technique. Breath in twice through your nose, and then exhale twice through your mouth. It might feel weird the first time or two, but you will get the hang of it. Breathing it twice through the nose (almost like sniffing, “sniff–sniff”), and then twice out the mouth (“haaa–haaa” sound). This breath can be stimulating in a gentle way, like drinking a cup of black tea, not too strong, but just enough of a boost to brighten your day. Try practicing this in the morning or midday to receive maximum benefit; you only need to practice three to five rounds before you begin to feel a difference.",
+      "Calming Breath: Soothe your nervous system by breathing in through your nose, and then out through your mouth. Purse your lips like you are blowing out a candle; this will extend the length of your exhale. By doing so, you stimulate the parasympathetic nervous system and signal the brain and body to relax. Practice breathing in for a count of four or five, and exhale for a count of eight or ten. Do not push your body to breathe in a way that does not feel comfortable for you. Practice this breath for 1-5 minutes or longer.",
+      "Balancing Breath: Using the four-part breath, sometimes called box-breathing, begin to breathe in for a count of four or five, exhaling for the same duration. When that feels comfortable, add a hold at the top of your inhale, retaining the breath for the same amount of time, and continue to practice the even exhale. Add in a hold at the bottom, or retention on exhale for the same amount of time. Eventually you will breathe in four even parts. You might imagine as you inhale that you are tracing a line up the side of a box in front of you, as you retain the inhale, let your mind travel across the top of the box; as you exhale, your mind envisions traveling down the other side of the box, and then as you pause before your next inhale, let your mind trace the bottom edge of the box. Starting each round following the same pattern. Feel free to alter the length of the inhale or exhale to suit your needs, but keep all four sides evenly balanced. When you feel ready, begin breathing smoothly in and out, completing your practice with a few rounds of breath without any holds at the top or bottom. Practice 2-5 minutes, as you are able.",
+      "Release Anger or Frustration: Using Lion's breath can help relieve tension and stress by stretching your entire face, including the jaw and tongue. Take a deep inhalation through the nose. Then simultaneously open your mouth wide and stretch your tongue out, curling its tip down toward the chin, open your eyes wide, contract the muscles on the front of your throat, and exhale the breath slowly out through your mouth with a distinct “ha” sound. While this breath exercise may feel silly at first, it works! The practice can remind you not to take life so seriously. Repeat 3-5 times, as needed."
+    ]
   },
   {
     "title": "Yoga",
