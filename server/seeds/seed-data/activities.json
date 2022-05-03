@@ -27,8 +27,14 @@
   },
   {
     "title": "Journaling",
-    "text": "risus semper porta volutpat quam pede lobortis ligula sit",
-    "image": "journaling.png"
+    "text": "Journaling can be a practice of reflection, a means of processing, and even a creative outlet. Setting aside time to write daily can help a person determine habits or thought patterns that they might wish to change or strengthen. Without seeing our choices, it is more difficult to understand where our greatest opportunities lay. Take time to write today. Find a notebook that you find inspiring. Do you prefer writing with pencils? Ballpoint pens? Gel pens? Felt markers? Or do you prefer to type on a keyboard while seated in a favorite place with a cup of tea or candle for inspiration? While typing is usually faster, there is something to the process of putting “pen to paper” and committing to the act of writing. Some say that writing by hand can increase memory recall and sharpen critical thinking, not to mention engage in a form of play and expression through handwriting and drawing.",
+    "image": "journaling.png",
+    "subtypes" : [
+      "The Pen is Mightier Than the Keyboard: https://www.pens.com/blog/the-benefits-of-handwriting-vs-typing/",
+      "Bullet Journaling: https://www.oprahdaily.com/life/work-money/a32155559/how-to-start-a-bullet-journal/",
+      "Clear Habits Journal: https://jamesclear.com/habit-journal",
+      "Prompts for Today: *Write One Thing I am Proud of *One Thing I am Challenged by *One Thing I Would Like to Let Go of"
+    ]
   },
   {
     "title": "Stretching",
