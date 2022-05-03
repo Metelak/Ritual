@@ -52,8 +52,13 @@
   },
   {
     "title": "Walking",
-    "text": "nam congue risus semper porta volutpat quam pede lobortis",
-    "image": "walking.png"
+    "text": "Walking can be a great way to get the blood and lymph of your body circulating, especially as more and more of our days are spent seated. Take time to look around at the world beyond your feet. Look up at trees, the sky; notice other people, animals. Observe the changing seasons. How does the ground feel under your feet on pavement versus grass? Sand? Notice your feet, knees. Maybe you listen to music, a podcast, or the birds! You might bring a bag with you and pick up pieces of trash, or feel inspired to write or draw with chalk. Walking can be done in short stints or turn into a hike. Choose your own adventure. What would be fun today?",
+    "image": "walking.png",
+    "subtypes" : [
+      "Walking meditation in your neighborhood",
+      "Nature walk",
+      "Move body to move lymph and increase circulation"
+    ]
   },
   {
     "title": "Meditation",
