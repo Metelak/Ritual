@@ -29,3 +29,10 @@ code {
 .center-text {
   text-align: center;
 }
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
