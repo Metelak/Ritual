@@ -41,7 +41,7 @@ const GoalForm = () => {
   const [descriptionLength, setDescriptionLength] = useState(0);
 
   // add Goal mutation setup
-  const [addGoal, { error }] = useMutation(ADD_GOAL);
+  const [addGoal] = useMutation(ADD_GOAL);
 
   // update goalState when user adds things in input
   const handleChange = (event) => {
@@ -140,9 +140,7 @@ const GoalForm = () => {
       <Button
         leftIcon={<SmallAddIcon />}
         onClick={onOpen}
-        size="lg"
-        mt="15px"
-        ml="10px"
+        size="md"
         colorScheme="teal">
         Add Goal
       </Button>

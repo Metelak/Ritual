@@ -87,13 +87,13 @@ export const ADD_REFLECTION = gql`
 `;
 
 export const COMPLETE_GOAL = gql`
-  mutation completeGoal($id: ID!) {
-    completedGoals(removeGoal: $id) {
+  mutation CompleteGoal($id: ID!) {
+    completeGoal(_id: $id) {
       _id
       name
       description
-      createdAt
       isComplete
+      createdAt
       challenges {
         _id
         challengeText
@@ -104,6 +104,15 @@ export const COMPLETE_GOAL = gql`
         reflectionText
         createdAt
       }
+    }
+  }
+`;
+
+export const REUSE_GOAL = gql`
+  mutation reuseGoal($id: ID!) {
+    reuseGoal(_id: $id) {
+      _id
+      isComplete
     }
   }
 `;

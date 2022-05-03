@@ -2,10 +2,12 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Text,
+  Heading,
   useDisclosure,
   Divider,
-  Flex
+  Flex,
+  useToast,
+  Text
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -14,44 +16,165 @@ import { ReflectionForm } from '../ReflectionForm';
 import GoalChallenges from './challenges';
 import GoalReflection from './reflection';
 
-const GoalList = ({ goal }) => {
-  // destructure props
+// completed (standing for if we're viewing completed goals) is defaulted to false
+const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
   const { _id, name, description, createdAt, challenges, reflection } = goal;
 
+  // use chakraUI's toast
+  const toast = useToast();
+
+  // set useDisclosure function to custom names
   const { isOpen: challengeOpen, onToggle: toggleChallenges } = useDisclosure();
   const { isOpen: reflectionOpen, onToggle: toggleReflection } =
     useDisclosure();
 
+  // complete goal was pressed
+  const completeGoalHandler = async () => {
+    try {
+      await completeGoal({
+        variables: { id: _id }
+      });
+      toast({
+        title: 'Congrats on completing your goal!',
+        description:
+          'If you would like to use it again, go to your completed goals',
+        status: 'success',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: 'Error!',
+        description: 'We were unable to add your goal to completed goals',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  };
+
+  // reuse goal was pressed
+  const reuseGoalHandler = async () => {
+    try {
+      await reuseGoal({
+        variables: { id: _id }
+      });
+
+      toast({
+        title: 'Goal restored',
+        description:
+          'You can now view and interact with this goal in the dashboard',
+        status: 'success',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: 'Error!',
+        description: 'We were unable to add this back to your reused goals.',
+        status: 'error',
+        duration: 6000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  };
+
   return (
-    <Box margin={10}>
-      <Box key={name} border="2px" p={3} m={2} borderRadius="md">
-        <Text fontSize="2xl">{name}</Text>
-        <div>{description}</div>
-        <div>created at: {createdAt}</div>
+    <Box margin="30px">
+      <Box
+        border="2px"
+        p="3"
+        borderRadius="md"
+        borderColor="gray.200"
+        bgColor="teal.50">
+        <Flex justifyContent="end" mb="-6">
+          {completed ? (
+            <Button
+              onClick={reuseGoalHandler}
+              variant="ghost"
+              _hover={{ bg: 'teal.200' }}>
+              Reuse Goal
+            </Button>
+          ) : (
+            <Button
+              onClick={completeGoalHandler}
+              variant="ghost"
+              _hover={{ bg: 'teal.200' }}>
+              Complete Goal
+            </Button>
+          )}
+        </Flex>
+        <Heading fontSize="3xl" ml="5" mt="5">
+          {name}
+        </Heading>
+        <Box
+          mt="2"
+          ml="5"
+          mr="5"
+          border="2px"
+          borderRadius="md"
+          borderColor="gray.400"
+          minHeight="20"
+          boxShadow="lg"
+          bgColor="teal.100">
+          <Text m="2">{description}</Text>
+          <Flex justifyContent="end">
+            <Text m="2">{createdAt}</Text>
+          </Flex>
+        </Box>
         <Flex mt="10" height="40px" flexDir="row" justifyContent="space-evenly">
           <Box>
-            <ButtonGroup isAttached variant="outline">
+            {completed ? (
               <Button
                 onClick={toggleChallenges}
+                isDisabled={challenges.length === 0 ? true : false}
                 colorScheme="red"
                 icon={<ArrowDownIcon />}>
                 Challenges
                 {challenges.length === 0 ? '' : `(${challenges.length})`}
               </Button>
-              <ChallengeForm goalId={_id} />
-            </ButtonGroup>
+            ) : (
+              <ButtonGroup isAttached>
+                <Button
+                  onClick={toggleChallenges}
+                  colorScheme="red"
+                  icon={<ArrowDownIcon />}>
+                  Challenges
+                  {challenges.length === 0 ? '' : `(${challenges.length})`}
+                </Button>
+                <ChallengeForm goalId={_id} />
+              </ButtonGroup>
+            )}
           </Box>
           <Divider orientation="vertical" />
           <Box>
-            <ButtonGroup isAttached variant="outline">
+            {completed ? (
               <Button
+                isDisabled={reflection.length === 0 ? true : false}
                 onClick={toggleReflection}
                 colorScheme="teal"
                 icon={<ArrowDownIcon />}>
                 Reflection
+                {reflection.length === 0 ? '' : `(${reflection.length})`}
               </Button>
-              <ReflectionForm goalId={_id} />
-            </ButtonGroup>
+            ) : (
+              <ButtonGroup isAttached>
+                <Button
+                  onClick={toggleReflection}
+                  colorScheme="teal"
+                  icon={<ArrowDownIcon />}>
+                  Reflection
+                  {reflection.length === 0 ? '' : `(${reflection.length})`}
+                </Button>
+                <ReflectionForm goalId={_id} />
+              </ButtonGroup>
+            )}
           </Box>
         </Flex>
       </Box>

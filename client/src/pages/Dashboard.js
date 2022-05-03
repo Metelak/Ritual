@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Center,
@@ -9,25 +9,45 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  ScaleFade
+  ScaleFade,
+  Button,
+  ButtonGroup
 } from '@chakra-ui/react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
 import { ActivityDash } from '../components/ActivityList';
 import GoalList from '../components/GoalList';
+import { COMPLETE_GOAL } from '../utils/mutations';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   // query me
   const { loading, error, data: userData } = useQuery(QUERY_ME);
 
+  // complete goal mutation
+  const [completeGoal] = useMutation(COMPLETE_GOAL);
+
   const user = userData?.me;
+
+  let incompleteUserGoals;
+  if (user) {
+    incompleteUserGoals = user.goals.filter((goal) => {
+      return !goal.isComplete;
+    });
+
+    console.log('incomplete', incompleteUserGoals);
+  }
 
   console.log(user);
 
+  const handleViewCompletedGoals = () => {
+    navigate('/completed-goals');
+  };
+
   if (error) {
     return (
-      <ScaleFade in="true">
+      <ScaleFade in>
         <Box pl="15px" pr="15px" pt="150px" pb="300px">
           <Alert
             status="error"
@@ -67,29 +87,31 @@ const Dashboard = () => {
             My Activities
           </Heading>
           {user.activities.length === 0 ? (
-            <Box m="30px">
-              <Alert
-                status="info"
-                variant="subtle"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                textAlign="center"
-                borderRadius="md"
-                height="200px">
-                <AlertIcon boxSize="40px" mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize="lg">
-                  No activities yet!
-                </AlertTitle>
-                <AlertDescription maxWidth="sm">
-                  Go to the{' '}
-                  <i>
-                    <Link to="/">homepage</Link>
-                  </i>{' '}
-                  to view and add activities.
-                </AlertDescription>
-              </Alert>
-            </Box>
+            <ScaleFade in>
+              <Box m="30px">
+                <Alert
+                  status="info"
+                  variant="subtle"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  borderRadius="md"
+                  height="200px">
+                  <AlertIcon boxSize="40px" mr={0} />
+                  <AlertTitle mt={4} mb={1} fontSize="lg">
+                    No activities!
+                  </AlertTitle>
+                  <AlertDescription maxWidth="sm">
+                    Go to the{' '}
+                    <i>
+                      <Link to="/">homepage</Link>
+                    </i>{' '}
+                    to view and add activities.
+                  </AlertDescription>
+                </Alert>
+              </Box>
+            </ScaleFade>
           ) : (
             <Box templateColumns="repeat(5, 1fr)" gap={6}>
               {user.activities.map((activity) => {
@@ -111,32 +133,47 @@ const Dashboard = () => {
             My Goals
           </Heading>
           <Center>
-            <GoalForm />
+            <ButtonGroup isAttached mt="3">
+              <GoalForm />
+              <Button
+                onClick={handleViewCompletedGoals}
+                colorScheme="teal"
+                size="md">
+                Completed Goals
+              </Button>
+            </ButtonGroup>
           </Center>
-
-          {user.goals.length === 0 ? (
-            <Box m="30px">
-              <Alert
-                status="info"
-                variant="subtle"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                textAlign="center"
-                height="200px"
-                borderRadius="md">
-                <AlertIcon boxSize="40px" mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize="lg">
-                  No goals yet!
-                </AlertTitle>
-                <AlertDescription maxWidth="sm">
-                  Click Add Goal to create a goal.
-                </AlertDescription>
-              </Alert>
-            </Box>
+          {incompleteUserGoals.length === 0 ? (
+            <ScaleFade in>
+              <Box m="30px">
+                <Alert
+                  status="info"
+                  variant="subtle"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  height="200px"
+                  borderRadius="md">
+                  <AlertIcon boxSize="40px" mr={0} />
+                  <AlertTitle mt={4} mb={1} fontSize="lg">
+                    No goals!
+                  </AlertTitle>
+                  <AlertDescription maxWidth="sm">
+                    Click Add Goal to create a goal.
+                  </AlertDescription>
+                </Alert>
+              </Box>
+            </ScaleFade>
           ) : (
-            user.goals.map((goal) => {
-              return <GoalList key={goal._id} goal={goal} />;
+            incompleteUserGoals.map((goal) => {
+              return (
+                <GoalList
+                  key={goal._id}
+                  goal={goal}
+                  completeGoal={completeGoal}
+                />
+              );
             })
           )}
         </Box>
