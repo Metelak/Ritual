@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -20,7 +20,15 @@ import { ActivityDash } from '../components/ActivityList';
 import GoalList from '../components/GoalList';
 import { COMPLETE_GOAL } from '../utils/mutations';
 
+import { useStoreContext } from '../utils/state/UserContext';
+import { ADD_GOALS, ADD_ACTIVITIES } from '../utils/state/actions';
+
 const Dashboard = () => {
+  const [state, dispatch] = useStoreContext();
+
+  const [userGoals, setGoals] = useState([]);
+  const [userActivities, setActivities] = useState([]);
+
   const navigate = useNavigate();
   // query me
   const { loading, error, data: userData } = useQuery(QUERY_ME);
@@ -28,18 +36,37 @@ const Dashboard = () => {
   // complete goal mutation
   const [completeGoal] = useMutation(COMPLETE_GOAL);
 
-  const user = userData?.me;
+  // destructure global variables
+  const { goals, activities } = state;
 
-  let incompleteUserGoals;
-  if (user) {
-    incompleteUserGoals = user.goals.filter((goal) => {
-      return !goal.isComplete;
-    });
+  // if global store exists for goals and activities, use that
+  useEffect(() => {
+    if (goals.length) {
+      setGoals(
+        goals.filter((goal) => {
+          return !goal.isComplete;
+        })
+      );
+    } else if (activities.length) {
+      setActivities(activities);
+    }
+  }, [goals, activities]);
 
-    console.log('incomplete', incompleteUserGoals);
-  }
+  // if not, fill global store with user info
+  useEffect(() => {
+    if (userData) {
+      dispatch({
+        type: ADD_GOALS,
+        goals: userData.me.goals
+      });
+      dispatch({
+        type: ADD_ACTIVITIES,
+        activities: userData.me.activities
+      });
+    }
+  }, [userData, dispatch]);
 
-  console.log(user);
+  // TODO need to clear store on Sign Out!!
 
   const handleViewCompletedGoals = () => {
     navigate('/completed-goals');
@@ -86,7 +113,7 @@ const Dashboard = () => {
             mt="20px">
             My Activities
           </Heading>
-          {user.activities.length === 0 ? (
+          {userActivities.length === 0 ? (
             <ScaleFade in>
               <Box m="30px">
                 <Alert
@@ -114,7 +141,7 @@ const Dashboard = () => {
             </ScaleFade>
           ) : (
             <Box templateColumns="repeat(5, 1fr)" gap={6}>
-              {user.activities.map((activity) => {
+              {userActivities.map((activity) => {
                 return (
                   <ActivityDash
                     key={activity._id}
@@ -143,7 +170,7 @@ const Dashboard = () => {
               </Button>
             </ButtonGroup>
           </Center>
-          {incompleteUserGoals.length === 0 ? (
+          {userGoals.length === 0 ? (
             <ScaleFade in>
               <Box m="30px">
                 <Alert
@@ -166,7 +193,7 @@ const Dashboard = () => {
               </Box>
             </ScaleFade>
           ) : (
-            incompleteUserGoals.map((goal) => {
+            userGoals.map((goal) => {
               return (
                 <GoalList
                   key={goal._id}
