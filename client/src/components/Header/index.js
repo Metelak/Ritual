@@ -26,8 +26,6 @@ const Header = () => {
     Auth.logout();
   };
 
-  // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
-
   return (
     <header>
       <div>
