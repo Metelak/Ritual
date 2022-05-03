@@ -31,9 +31,6 @@ const Header = () => {
   // useNavigate to redirect user to Dashboard using onClick
   const routeToMyDashboard = useNavigate();
 
-  // Redirect user to dashboard view
-  // routeToMyDashboard('/dashboard', { replace: true });
-
   // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
 
   return (
