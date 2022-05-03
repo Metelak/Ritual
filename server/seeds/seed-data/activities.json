@@ -1,32 +1,87 @@
 [
   {
-    "title": "Breathing",
-    "text": "There are many kinds of breathing techniques one can use to regulate energy and mood.",
-    "image": "deep-breathing.png",
-    "subtypes": [
-      "Energizing Breath: The next time you are feeling tired, try the double-breath technique. Breath in twice through your nose, and then exhale twice through your mouth. It might feel weird the first time or two, but you will get the hang of it. Breathing it twice through the nose (almost like sniffing, “sniff sniff”), and then twice out the mouth (“haaa haaa” sound). This breath can be stimulating in a gentle way, like drinking a cup of black tea, not too strong, but just enough of a boost to brighten your day. Try practicing this in the morning or midday to receive maximum benefit; you only need to practice three to five rounds before you begin to feel a difference.",
-      "Calming Breath: Soothe your nervous system by breathing in through your nose, and then out through your mouth. Purse your lips like you are blowing out a candle; this will extend the length of your exhale. By doing so, you stimulate the parasympathetic nervous system and signal the brain and body to relax. Practice breathing in for a count of four or five, and exhale for a count of eight or ten. Do not push your body to breathe in a way that does not feel comfortable for you. Practice this breath for 1-5 minutes or longer.",
-      "Balancing Breath: Using the four-part breath, sometimes called box-breathing, begin to breathe in for a count of four or five, exhaling for the same duration. When that feels comfortable, add a hold at the top of your inhale, retaining the breath for the same amount of time, and continue to practice the even exhale. Add in a hold at the bottom, or retention on exhale for the same amount of time. Eventually you will breathe in four even parts. You might imagine as you inhale that you are tracing a line up the side of a box in front of you, as you retain the inhale, let your mind travel across the top of the box; as you exhale, your mind envisions traveling down the other side of the box, and then as you pause before your next inhale, let your mind trace the bottom edge of the box. Starting each round following the same pattern. Feel free to alter the length of the inhale or exhale to suit your needs, but keep all four sides evenly balanced. When you feel ready, begin breathing smoothly in and out, completing your practice with a few rounds of breath without any holds at the top or bottom. Practice 2-5 minutes, as you are able.",
-      "Release Anger or Frustration: Using Lion's breath can help relieve tension and stress by stretching your entire face, including the jaw and tongue. Take a deep inhalation through the nose. Then simultaneously open your mouth wide and stretch your tongue out, curling its tip down toward the chin, open your eyes wide, contract the muscles on the front of your throat, and exhale the breath slowly out through your mouth with a distinct “ha” sound. While this breath exercise may feel silly at first, it works! The practice can remind you not to take life so seriously. Repeat 3-5 times, as needed."
-    ]
+    "title": "Energizing Breath",
+    "text": "The next time you are feeling tired, try the double-breath technique. Breath in twice through your nose, and then exhale twice through your mouth. It might feel weird the first time or two, but you will get the hang of it. Breathing it twice through the nose (almost like sniffing, “sniff sniff”), and then twice out the mouth (“haaa haaa” sound). This breath can be stimulating in a gentle way, like drinking a cup of black tea, not too strong, but just enough of a boost to brighten your day. Try practicing this in the morning or midday to receive maximum benefit; you only need to practice three to five rounds before you begin to feel a difference.",
+    "image": "deep-breathing.png"
   },
   {
-    "title": "Yoga",
-    "text": "There are so many kinds of yoga; some people are only aware of one type or another. Most Westerners practice physical asana (postures or shapes). Yoga can include breath work and meditation. Below are a few types that incorporate different philosophies or amounts of physical effort.",
+    "title": "Calming Breath",
+    "text": "Soothe your nervous system by breathing in through your nose, and then out through your mouth. Purse your lips like you are blowing out a candle; this will extend the length of your exhale. By doing so, you stimulate the parasympathetic nervous system and signal the brain and body to relax. Practice breathing in for a count of four or five, and exhale for a count of eight or ten. Do not push your body to breathe in a way that does not feel comfortable for you. Practice this breath for 1-5 minutes or longer.",
+    "image": "deep-breathing.png"
+  },
+  {
+    "title": "Balancing Breath",
+    "text": "Using the four-part breath, sometimes called box-breathing, begin to breathe in for a count of four or five, exhaling for the same duration. When that feels comfortable, add a hold at the top of your inhale, retaining the breath for the same amount of time, and continue to practice the even exhale. Add in a hold at the bottom, or retention on exhale for the same amount of time. Eventually you will breathe in four even parts. You might imagine as you inhale that you are tracing a line up the side of a box in front of you, as you retain the inhale, let your mind travel across the top of the box; as you exhale, your mind envisions traveling down the other side of the box, and then as you pause before your next inhale, let your mind trace the bottom edge of the box. Starting each round following the same pattern. Feel free to alter the length of the inhale or exhale to suit your needs, but keep all four sides evenly balanced. When you feel ready, begin breathing smoothly in and out, completing your practice with a few rounds of breath without any holds at the top or bottom. Practice 2-5 minutes, as you are able.",
+    "image": "deep-breathing.png"
+  },
+  {
+    "title": "Cathartic Breath",
+    "text": ": Using Lion's breath can help relieve tension and stress by stretching your entire face, including the jaw and tongue. Take a deep inhalation through the nose. Then simultaneously open your mouth wide and stretch your tongue out, curling its tip down toward the chin, open your eyes wide, contract the muscles on the front of your throat, and exhale the breath slowly out through your mouth with a distinct “ha” sound. While this breath exercise may feel silly at first, it works! The practice can remind you not to take life so seriously. Repeat 3-5 times, as needed.",
+    "image": "deep-breathing.png"
+  },
+  {
+    "title": "Ashtanga Yoga",
+    "text": "Ashtanga is a set series that stays the same from practice to practice; but that does not mean that your experience will be the same! In a way, becoming more familiar can help students recognize what is working well and what is challenging for them on a daily basis, observing growth and change. Classes can be practiced in groups or individually. Traditionally led in mysore fashion, meaning each student practices what they know from their teacher individually in the same room; in modern contexts many students choose to be led together through the entire primary or secondary sequence. Class usually starts with Sun Salutations, then moves into a standing sequence that involves, balance, twisting, and forward folds, and inversions. The traditional lineage where most Western Vinyasa comes from. Classes can be unheated (room temperature) or heated (80-85 degrees), but not as hot as Bikram yoga. Ashtanga can be challenging, but also a great gateway into physical practice.",
+    "image": "yoga.png"
+  },
+  {
+    "title": "Bikram Yoga",
+    "text": "Like Ashtanga Yoga, Bikram is a form of yoga that is rigorous and has a set structure. It is most often practiced in a studio with radiant heat, boosting up to 110 degrees Fahrenheit.",
+    "image": "yoga.png"
+  },
+  {
+    "title": "Hatha Yoga",
+    "text": "A form of slow, deliberate practice, hatha, or Ha (Sun) Tha (Moon) is a practice of balance. The breath is drawn out (dirgha pranayama, three-part, or full-complete/natural breath) to encourage focus within each shape. Shapes are often held 5-10 breaths. Shapes are often repeated on the right and left side of the body to allow students the chance to observe what is changing within their own bodies.",
+    "image": "yoga.png"
+  },
+  {
+    "title": "Vinyasa Yoga",
+    "text": "Most classes have a form of sun-salutations, or “flows”, moving swiftly one breath at a time through the nose. Most classes use ujjayi pranayama (which the teacher should explain) as an energizing, smoothing breath. In Vinyasa, the aim is to connect breath to movement. Vinyasa can lead a person to feel stronger, lighter, and brighter. Classes are offered all over the place! Some are heated, others unheated. You can practice with others or on your own. It is best if you have never practiced before to find a teacher you trust to guide you through, providing suggestions and support. Remember, it is your body and your practice!",
     "image": "yoga.png",
     "subtypes": [
-      "Ashtanga Vinyasa: Ashtanga is a set series that stays the same from practice to practice; but that does not mean that your experience will be the same! In a way, becoming more familiar can help students recognize what is working well and what is challenging for them on a daily basis, observing growth and change. Classes can be practiced in groups or individually. Traditionally led in mysore fashion, meaning each student practices what they know from their teacher individually in the same room; in modern contexts many students choose to be led together through the entire primary or secondary sequence. Class usually starts with Sun Salutations, then moves into a standing sequence that involves, balance, twisting, and forward folds, and inversions. The traditional lineage where most Western Vinyasa comes from. Classes can be unheated (room temperature) or heated (80-85 degrees), but not as hot as Bikram yoga. Ashtanga can be challenging, but also a great gateway into physical practice.",
-      "Bikram Yoga:  Like Ashtanga Yoga, Bikram is a form of yoga that is rigorous and has a set structure. It is most often practiced in a studio with radiant heat, boosting up to 110 degrees Fahrenheit.",
-      "Hatha Yoga: A form of slow, deliberate practice, hatha, or Ha (Sun) Tha (Moon) is a practice of balance. The breath is slower (dirgha pranayama, three-part, or full-complete/natural breath) to encourage focus within each shape. Shapes are often held 5-10 breaths. Shapes are often repeated on the right and left side of the body to allow students the chance to observe what is changing within their own bodies.",
-      "Vinyasa Yoga: Most classes have a form of sun-salutations, or “flows”, moving swiftly one breath at a time through the nose. Most classes use ujjayi pranayama (which the teacher should explain) as an energizing, smoothing breath. In Vinyasa, the aim is to connect breath to movement. Vinyasa can lead a person to feel stronger, lighter, and brighter. Classes are offered all over the place! Some are heated, others unheated. You can practice with others or on your own. It is best if you have never practiced before to find a teacher you trust to guide you through, providing suggestions and support. Remember, it is your body and your practice!",
+      
       "Yin Yoga: A contemplative practice, mostly seated or reclining. Not heated. Focus is on joints, ligaments, and connective tissue. It is less about “doing” and more about “being”, which can be challenging for students. A good practice to support quieting the mind. Students use their own breath, and find stillness within each pose. It is not uncommon to practice 4-6 poses in an hour. Practices target meridians in the body, which stimulate acupressure points, much like acupuncture (following principles of Traditional Chinese Medicine).",
       "Restorative Yoga: Often confused with Yin. Restorative is similar in that students are often on the ground, however restorative classes use props to allow students to relax into the pose, whereas in Yin, students are without props, allowing their bodies to feel sensations of resistance.",
       "Yoga Nidra: A form of rest and meditation, often guided by a teacher who leads students through a body scan or internal meditation. Deeply restful, but not the same as sleeping, students stay conscious and mindful of their intentions, often using the practice as a way of staying true to their sankalpa (or purpose) to bring about positive change in their life."
     ]
   },
   {
+    "title": "Restorative Yoga",
+    "text": "Often confused with Yin. Restorative is similar in that students are often on the ground, however restorative classes use props to allow students to relax into the pose, whereas in Yin, students are without props, allowing their bodies to feel sensations of resistance.",
+    "image": "yoga.png"
+  },
+  {
+    "title": "Yin Yoga",
+    "text": "A contemplative practice, mostly seated or reclining. Not heated. Focus is on joints, ligaments, and connective tissue. It is less about “doing” and more about “being”, which can be challenging for students. A good practice to support quieting the mind. Students use their own breath, and find stillness within each pose. It is not uncommon to practice 4-6 poses in an hour. Practices target meridians in the body, which stimulate acupressure points, much like acupuncture (following principles of Traditional Chinese Medicine).",
+    "image": "yoga.png"
+  },
+  {
+    "title": "Yoga Nidra",
+    "text": " A form of rest and meditation, often guided by a teacher who leads students through a body scan or internal meditation. Deeply restful, but not the same as sleeping, students stay conscious and mindful of their intentions, often using the practice as a way of staying true to their sankalpa (or purpose) to bring about positive change in their life.",
+    "image": "yoga.png"
+  },
+  {
     "title": "Journaling",
     "text": "Journaling can be a practice of reflection, a means of processing, and even a creative outlet. Setting aside time to write daily can help a person determine habits or thought patterns that they might wish to change or strengthen. Without seeing our choices, it is more difficult to understand where our greatest opportunities lay. Take time to write today. Find a notebook that you find inspiring. Do you prefer writing with pencils? Ballpoint pens? Gel pens? Felt markers? Or do you prefer to type on a keyboard while seated in a favorite place with a cup of tea or candle for inspiration? While typing is usually faster, there is something to the process of putting “pen to paper” and committing to the act of writing. Some say that writing by hand can increase memory recall and sharpen critical thinking, not to mention engage in a form of play and expression through handwriting and drawing.",
+    "image": "journaling.png"
+  },
+  {
+    "title": "Pen vs. Keyboard",
+    "text": "Article: 'The Pen is Mightier Than the Keyboard': https://www.pens.com/blog/the-benefits-of-handwriting-vs-typing/",
+    "image": "journaling.png"
+  },
+  {
+    "title": "Bullet Journaling",
+    "text": "Article: 'How to Start a Bullet Journal' : https://www.oprahdaily.com/life/work-money/a32155559/how-to-start-a-bullet-journal/",
+    "image": "journaling.png",
+    "subtypes": [
+
+      "Prompts for Today: *Write One Thing I am Proud of *One Thing I am Challenged by *One Thing I Would Like to Let Go of"
+    ]
+  },
+  {
+    "title": "Clear Habits Journal",
+    "text": "How to Define your Habits Using a Journal: https://jamesclear.com/habit-journal",
     "image": "journaling.png",
     "subtypes": [
       "The Pen is Mightier Than the Keyboard: https://www.pens.com/blog/the-benefits-of-handwriting-vs-typing/",
@@ -36,39 +91,78 @@
     ]
   },
   {
-    "title": "Stretching",
-    "text": "Stretching can be a quick way to get the blood flowing again and reduce stagnation in our bodies. Find a space where you can span the length of your body and try these moves!",
-    "image": "stretching.png",
-    "subtypes": [
-      "Arms: Using a wall, bring your right hand to the surface of the wall, your fingers pointing behind you. Begin to turn your body toward the left (i.e. center of the room). As you roll away from the wall you should feel a stretch down the front side of your shoulder, down the arm, and sometimes even into your fingers. To come out of the stretch, turn back “forward” or toward the wall and release. Repeat on the other side.",
-      "Legs: Standing, feet together, take a big step back with your right foot (3 or 4 feet), toes pointing slightly to the right at a 45 degree angle, press your right heel to the floor and bend your left knee forward. Hips are facing forward like headlights of a car. Hands can rest on your hips, heart or above you (warrior 1 pose). When done, step your right foot forward to meet the left, and then try the other side. See how each side feels. Notice what is different. After you finish the left side, try bending both knees as you fold forward. Feel Free to increase the distance between your feet. You might keep a subtle bend to your knees as you rest your chest on your thighs. Look back at your knees, and direct the crown of your head toward the ground, this will give a good stretch the backside of your legs (especially the hamstrings)! Send your weight out of your heels and toward your toes to deepen the sensation you feel in the stretch. You can use your arms to hold your calves or ankles, and even add a gentle pull, but do not push yourself beyond a gentle stretch. Breath three or four times; maybe even exhale through the mouth. This can release stress. When you are ready, press through your feet and come back up to stand. Take a few steps or stand still and notice how you feel. If you need anything additional, listen to your body and follow cues to move. What helps you feel good today?",
-      "Chest: Bring your hands together behind your back, interlace your fingers, or do the best you can to capture one hand with the other. As you exhale, begin to lengthen your arms behind you and feel the front side of your chest open as you squeeze your shoulder blades together. You can lift your head or tuck your chin, both are good options. When you are done, release your arms forward.",
-      "Shoulders: From a seated or standing position, as you inhale, lift your shoulders toward your ears, and as you exhale, slide your shoulders down and back, feeling the scapula move around and down. Do this a few times. Then switch directions. You can also do a side bend, inhaling arms upward, and then leaning to the right or left, capturing one wrist with the other hand or letting palms mirror each other. Another great stretch for the space between your shoulder and spine is “eagle” arms, looping one arm under the other in front of your body; if that doe not work for you, pretend you are giving yourself a hug. You can raise and lower elbows as you breath a few times, then as you inhale, spread your arms wide beside you, and as you exhale switch which arm is on top, etc.",
-      "Neck:From a seated posture, gently bring one ear towards one shoulder, feel the back side of your neck. Rest here as two or three breaths, then on exhale, lower chin towards chest. On inhale, begin to bring the other ear towards the other shoulder. Stay there and breathe two or three times, and then exhale allowing the head to roll forward again. You can repeat the process, or begin to take the head in a gentle semi-circle, or full circle, pausing as you feel the need. You can also practice lifting the chin towards the sky on inhale, and nodding toward the chin on exhale, like saying a big “YES”; as you lift the chin up, feel the stretch on the front side of your neck, as you exhale downwards, feel the stretch on the back side of your neck. When you have finished, then take the chin from right to left and left to right, gazing behind you. You might tilt the chin downwards on exhale and lift it up as you inhale on this stretch before you try the other side; this is a great stretch for the scalene muscles which are responsible for turning and supporting your head from side to side.",
-      "Low back: Sphinx pose is great for applying gentle pressure to our lumbar spine. From a prone (face down) position, bring your elbows in close to the body and then rest on your forearms. Keep your head lifted and neutral gazing in front of you instead of down (it is easy to let the head drop, keep it level). This will help re-establish your natural posture and relieve pressure in the low back and gently strengthen the paraspinal muscles. This stretch also elongates the abdominals on the front side of your body and lengthens the psoas, which is a deep muscle inside both sides of your hips running to the bottom rib. If for any reason your lower back feels irritated in this shape, separate your feet a little bit wider apart, or place a folded blanket or towel under your pubis. Make sure your legs are relaxed and that you are not gripping through your gluteal muscles. In this shape you are being supported by the structure of your bones. You can release from this shape laying prone, turning your head in one direction, and drawing that knee up alongside the body (half-frog pose); repeat on the other side. Another great shape (as a counter pose to sphinx) is called childs pose. While on the ground, bring your hips over your heels, if there is too much pressure on the knees, put a folded planet or pillow between your bottom and your heels to help. Your knees can be close together or further apart. Hands can be extended on the floor beyond your head or rest next to your hips, tops of the hands on the floor, palms turned up behind you.",
-      "Feet and Ankles: If it works for you to kneel, tuck your toes under as you sit back towards your heels, this will stretch the base of your feet. As you breathe, direct attention into your feet. Stay here for at least three to five breaths, then relax the tops of your feet to the floor. Feel free to take a childs pose, or sit back on your heels again, this time applying pressure to the tops of your feet, gently lifting the knees off the floor, this will stretch the front sides of your ankles. Only a breath or two will do! You can then sit (or lay down) and let your legs go out in front of you (or lift them toward the sky) and roll through your ankles. Finish by standing up, taking a few steps, and wiggle your toes, you should feel energized through your feet! If feet continue to be a problem, try integrating a cushion under you if you stand while working, or invest in a pair of shoes with supportive arches.",
-      "Face : Try yawning, or moving your jaw from side to side if you feel like your jaw is tight. This is especially helpful if you grind your teeth while you sleep or suffer from TMJD."
-    ]
+    "title": "Prompts for Today",
+    "text": "Write one thing you are proud of. One thing you are challenged by. One think you would like to let go of.",
+    "image": "journaling.png"
   },
   {
-    "title": "Walking",
-    "text": "Walking can be a great way to get the blood and lymph of your body circulating, especially as more and more of our days are spent seated. Take time to look around at the world beyond your feet. Look up at trees, the sky; notice other people, animals. Observe the changing seasons. How does the ground feel under your feet on pavement versus grass? Sand? Notice your feet, knees. Maybe you listen to music, a podcast, or the birds! You might bring a bag with you and pick up pieces of trash, or feel inspired to write or draw with chalk. Walking can be done in short stints or turn into a hike. Choose your own adventure. What would be fun today?",
-    "image": "walking.png",
-    "subtypes": [
-      "Walking meditation in your neighborhood",
-      "Nature walk",
-      "Move body to move lymph and increase circulation"
-    ]
+    "title": "Stretching: Arms",
+    "text": "Using a wall, bring your right hand to the surface of the wall, your fingers pointing behind you. Begin to turn your body toward the left (i.e. center of the room). As you roll away from the wall you should feel a stretch down the front side of your shoulder, down the arm, and sometimes even into your fingers. To come out of the stretch, turn back “forward” or toward the wall and release. Repeat on the other side.",
+    "image": "stretching.png"
   },
   {
-    "title": "Meditation",
+    "title": "Stretching: Legs",
+    "text": "Standing, feet together, take a big step back with your right foot (3 or 4 feet), toes pointing slightly to the right at a 45 degree angle, press your right heel to the floor and bend your left knee forward. Hips are facing forward like headlights of a car. Hands can rest on your hips, heart or above you (warrior 1 pose). When done, step your right foot forward to meet the left, and then try the other side. See how each side feels. Notice what is different. After you finish the left side, try bending both knees as you fold forward. Feel Free to increase the distance between your feet. You might keep a subtle bend to your knees as you rest your chest on your thighs. Look back at your knees, and direct the crown of your head toward the ground, this will give a good stretch the backside of your legs (especially the hamstrings)! Send your weight out of your heels and toward your toes to deepen the sensation you feel in the stretch. You can use your arms to hold your calves or ankles, and even add a gentle pull, but do not push yourself beyond a gentle stretch. Breath three or four times; maybe even exhale through the mouth. This can release stress. When you are ready, press through your feet and come back up to stand. Take a few steps or stand still and notice how you feel. If you need anything additional, listen to your body and follow cues to move. What helps you feel good today?",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Stretching: Chest",
+    "text": "Bring your hands together behind your back, interlace your fingers, or do the best you can to capture one hand with the other. As you exhale, begin to lengthen your arms behind you and feel the front side of your chest open as you squeeze your shoulder blades together. You can lift your head or tuck your chin, both are good options. When you are done, release your arms forward.",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Stretching: Shoulders",
+    "text": "From a seated or standing position, as you inhale, lift your shoulders toward your ears, and as you exhale, slide your shoulders down and back, feeling the scapula move around and down. Do this a few times. Then switch directions. You can also do a side bend, inhaling arms upward, and then leaning to the right or left, capturing one wrist with the other hand or letting palms mirror each other. Another great stretch for the space between your shoulder and spine is “eagle” arms, looping one arm under the other in front of your body; if that doe not work for you, pretend you are giving yourself a hug. You can raise and lower elbows as you breath a few times, then as you inhale, spread your arms wide beside you, and as you exhale switch which arm is on top, etc.",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Stretching: Low back",
+    "text": "Sphinx pose is great for applying gentle pressure to our lumbar spine. From a prone (face down) position, bring your elbows in close to the body and then rest on your forearms. Keep your head lifted and neutral gazing in front of you instead of down (it is easy to let the head drop, keep it level). This will help re-establish your natural posture and relieve pressure in the low back and gently strengthen the paraspinal muscles. This stretch also elongates the abdominals on the front side of your body and lengthens the psoas, which is a deep muscle inside both sides of your hips running to the bottom rib. If for any reason your lower back feels irritated in this shape, separate your feet a little bit wider apart, or place a folded blanket or towel under your pubis. Make sure your legs are relaxed and that you are not gripping through your gluteal muscles. In this shape you are being supported by the structure of your bones. You can release from this shape laying prone, turning your head in one direction, and drawing that knee up alongside the body (half-frog pose); repeat on the other side. Another great shape (as a counter pose to sphinx) is called childs pose. While on the ground, bring your hips over your heels, if there is too much pressure on the knees, put a folded planet or pillow between your bottom and your heels to help. Your knees can be close together or further apart. Hands can be extended on the floor beyond your head or rest next to your hips, tops of the hands on the floor, palms turned up behind you.",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Stretching: Feet and Ankles",
+    "text": "If it works for you to kneel, tuck your toes under as you sit back towards your heels, this will stretch the base of your feet. As you breathe, direct attention into your feet. Stay here for at least three to five breaths, then relax the tops of your feet to the floor. Feel free to take a childs pose, or sit back on your heels again, this time applying pressure to the tops of your feet, gently lifting the knees off the floor, this will stretch the front sides of your ankles. Only a breath or two will do! You can then sit (or lay down) and let your legs go out in front of you (or lift them toward the sky) and roll through your ankles. Finish by standing up, taking a few steps, and wiggle your toes, you should feel energized through your feet! If feet continue to be a problem, try integrating a cushion under you if you stand while working, or invest in a pair of shoes with supportive arches.",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Stretching: Face",
+    "text": "Try yawning, or moving your jaw from side to side if you feel like your jaw is tight. This is especially helpful if you grind your teeth while you sleep or suffer from TMJD.",
+    "image": "stretching.png"
+  },
+  {
+    "title": "Increase Circulation",
+    "text": "Walking can be a great way to get the blood and lymph of your body circulating, especially as more and more of our days are spent seated behind a computer, at desks, in cars, or on couches. Notice how good it feels to move and breathe. Listen to music or a podcast, and if you're up to it, keep a steady rhythm, pushing yourself gently up hills, and maybe going a little further each time!",
+    "image": "walking.png"
+  },
+  {
+    "title": "Nature Walk",
+    "text": "Take time to look around at the world beyond your feet. Look up at trees, the sky. Observe the changing seasons. You might bring a bag with you and pick up pieces of trash. Walking can be done in short stints or turn into a hike. Choose your own adventure!",
+    "image": "walking.png"
+  },
+  {
+    "title": "Neighborhood Walk",
+    "text": "Notice other people and their activities. Kids playing, people doing yard work. The hum of traffic. What domestic and wild animals are around? Notice how the ground feels different under your feet on pavement versus grass, sand, or mud. Notice your feet, knees, hips, and low back. Maybe you bring a piece of chalk with you; if you feel inspired, leave a message on the sidewalk to uplift others! What would be fun today for you today?",
+    "image": "walking.png"
+  },
+  {
+    "title": "Guided Meditation",
     "text": "There are many forms of meditation. Some guided, some not. You may choose to focus on your breath, on an image, or a sound. Meditation can be merged with movement (yoga, walking, swimming), or any repeated task. You might find meditation in a craft such as painting, drawing, knitting, crocheting, or household tasks such as cooking, cleaning, or washing dishes, even folding laundry. Find the opportunity for joy in bringing mindfulness to all your tasks.",
-    "image": "meditation.png",
-    "subtypes": [
-      "Guided Meditation",
-      "Breath Focus Meditation",
-      "Crafty Meditation Time",
-      "Household Tasks"
-    ]
+    "image": "meditation.png"
+  },
+  {
+    "title": "Breath Focus Meditation",
+    "text": "Breath focus, or anapana meditation, is the most accessible form of meditation. It does not require any external tools, memberships, or teachers. All you need to do is witness your breath. Try closing your eyes the next time you are in a comfortable seated location, and feel the touch of breath through your nostrils. See if you can continue to pay attention to your breath even if other things vye for your attention. Remember you can always start again on your next breath, and use it as a reset button! Try starting with one minute, and gradually add more time. Soon you might find that time flies without pressure. Do not judge your experience, each time you practice it may be different.",
+    "image": "meditation.png"
+  },
+  {
+    "title": "Crafty Meditation Time",
+    "text": "We often think of meditation as being merged with stillness, but it can also be found in movement or in repeated tasks! Try your hand at painting, drawing, knitting, crocheting. Indulge in textures, colors, and shapes. Find your focus in the process rather than the end result.",
+    "image": "meditation.png"
+  },
+  {
+    "title": "Chores as Meditation",
+    "text": "There is a saying in Zen Buddhism, 'Chop Wood, Carry Water.'  This simple phrases emphasizes the need for committing to and thriving during the process of any task. No matter how skilled you are at meditation in other forms, you can work to bring mindfulness to every chore at hand. These tasks can be done mindfully and with appreciation. See if you can bring a focused mind to any thing you do, and rather seeing it as a challenge, find delight in the practice. You might be surprised at the joy that can be found in washing dishes, vacuuming, raking leaves, or even folding laundry. Find the opportunity for joy by bringing mindfulness to all you do!",
+    "image": "meditation.png"
   }
 ]
