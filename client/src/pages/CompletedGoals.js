@@ -71,11 +71,10 @@ const CompletedGoals = () => {
       ) : (
         completedGoals.map((goal) => {
           return (
-            <Box ml="20" mr="20" mb="15">
+            <Box key={goal._id} ml="20" mr="20" mb="15">
               <GoalList
                 goal={goal}
                 completed={true}
-                key={goal._id}
                 reuseGoal={reuseGoal}></GoalList>
             </Box>
           );
