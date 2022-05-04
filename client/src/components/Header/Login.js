@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   InputGroup,
@@ -38,11 +39,14 @@ function LoginForm() {
 
   // useToast from Chakra-UI for success message
   const toast = useToast();
-  // // import positions for toast
+  // import positions for toast
   // const position = ['top-right'];
 
   // Setting initial form state by using state for already registered users with username and password fields.
   const [formState, setFormState] = useState({ username: '', password: '' });
+
+  // Initial form state for error message
+  const [errorMessage, setError] = useState({ type: '', message: '' });
 
   // User login using LOGIN_USER mutation
   const [login] = useMutation(LOGIN_USER);
@@ -63,12 +67,24 @@ function LoginForm() {
   // Using LOGIN_USER mutation variables plus user token, we can validate when a user has correctly logged in.
   // Otherwise prompt the user to enter their correct credentials or register if they do not have an account.
   const handleFormSubmit = async () => {
+    const { username, password } = formState;
+
+    // validate
+    if (!username) {
+      setError({ type: 'username', message: 'Username is required.' });
+      return;
+    }
+    if (!password) {
+      setError({ type: 'password', message: 'Password is required.' });
+      return;
+    }
+
     // add login data using mutation
     try {
       const mutationResponse = await login({
         variables: {
-          username: formState.username,
-          password: formState.password
+          username: username,
+          password: password
         }
       });
       const token = mutationResponse.data.login.token;
@@ -140,18 +156,20 @@ function LoginForm() {
           <ModalHeader>Welcome Back!</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
+            <FormControl isInvalid={errorMessage.type === 'username'}>
               <FormLabel>Username</FormLabel>
               <Input
                 ref={initialRef}
                 name="username"
                 className="username-input"
                 placeholder="username"
+                value={formState.username}
                 onChange={handleChange}
               />
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isInvalid={errorMessage.type === 'password'}>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
@@ -169,6 +187,7 @@ function LoginForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
           </ModalBody>
 

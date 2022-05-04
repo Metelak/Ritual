@@ -93,6 +93,7 @@ function SignupForm() {
       // reset SignupForm
       setFormState({ email: '', password: '' });
 
+      // success toast
       toast({
         title: 'Account created.',
         position: 'top-right',
