@@ -54,11 +54,11 @@ const Header = () => {
               </Heading>
             </Box>
           </Link>
-          <Spacer/>
+          <Spacer />
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                {window.location.pathname === '/Dashboard' ? (
+                {window.location.pathname === '/dashboard' ? (
                   <>
                     <Button
                       onClick={() => navigate('/')}
@@ -78,7 +78,7 @@ const Header = () => {
                 ) : (
                   <>
                     <Button
-                      onClick={() => navigate('/Dashboard')}
+                      onClick={() => navigate('/dashboard')}
                       color="#FFFFFF"
                       variant="ghost"
                       _hover={{ bg: 'teal.300' }}>
