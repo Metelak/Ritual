@@ -31,7 +31,7 @@ export const ReflectionForm = ({ goalId }) => {
   const toast = useToast();
 
   // add challenge mutation setup
-  const [addReflection, { error }] = useMutation(ADD_REFLECTION);
+  const [addReflection] = useMutation(ADD_REFLECTION);
 
   // styling components
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,10 +40,7 @@ export const ReflectionForm = ({ goalId }) => {
   const finalRef = React.useRef();
 
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
   );
 
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
@@ -126,7 +123,7 @@ export const ReflectionForm = ({ goalId }) => {
           <ModalHeader>Add Reflection</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl isInvalid={errorText ? true : false}>
+            <FormControl isInvalid={errorText}>
               <FormLabel>Description:</FormLabel>
               <Textarea
                 ref={initialRef}
@@ -141,7 +138,7 @@ export const ReflectionForm = ({ goalId }) => {
                 size="sm"
                 value={descriptionLength}
               />
-              {errorText && <FormErrorMessage>{errorText}</FormErrorMessage>}
+              <FormErrorMessage>{errorText}</FormErrorMessage>
             </FormControl>
           </ModalBody>
           <ModalFooter>

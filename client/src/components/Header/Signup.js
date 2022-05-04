@@ -188,9 +188,7 @@ function SignupForm() {
                 placeholder="username"
                 onChange={handleChange}
               />
-              {errorMessage.type === 'username' && (
-                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
-              )}
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
 
             <FormControl isInvalid={errorMessage.type === 'email'}>
@@ -202,9 +200,7 @@ function SignupForm() {
                 placeholder="email"
                 onChange={handleChange}
               />
-              {errorMessage.type === 'email' && (
-                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
-              )}
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
 
             <FormControl mt={4} isInvalid={errorMessage.type === 'password'}>
@@ -225,9 +221,7 @@ function SignupForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              {errorMessage.type === 'password' && (
-                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
-              )}
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
           </ModalBody>
 
