@@ -31,8 +31,6 @@ const Header = () => {
   // useNavigate to redirect user to Dashboard using onClick
   const routeToMyDashboard = useNavigate();
 
-  // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
-
   return (
     <header>
       <div>
@@ -58,7 +56,9 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                <Button onClick={ () => routeToMyDashboard('/Dashboard')}>My Dashboard</Button>
+                <Button onClick={() => routeToMyDashboard('/Dashboard')}>
+                  My Dashboard
+                </Button>
                 <Button onClick={Auth.logout}>Logout</Button>
               </ButtonGroup>
             </>
