@@ -12,27 +12,59 @@ code {
     monospace;
 }
 
+/* --- ACTIVITIES STYLING --- */
 .activities {
-  opacity: 60%;
+  opacity: 65%;
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 2px 2px 10px #000000;
 }
 
 .activities:hover {
-  opacity: 90%;
+  opacity: 100%;
 }
 
 .activity-text {
-  text-shadow: 0px 0px 5px #000000;
+  text-shadow: 2px 2px 10px #000000;
+  color: white;
 }
 
+
+/* --- TEXT STYLING --- */
 .center-text {
   text-align: center;
 }
 
-.footer {
-  position:fixed;
-    width:100%;
-    bottom:0px;
-    opacity:50%;
+.chakra-heading h1, img {
+  padding: 10px;
+}
+
+.chakra-wrap {
+  margin-top: 25px;
+}
+
+/* --- HEADER STYLING --- */
+button.chakra-button__group {
+  margin-right: 50px;
+}
+
+header img {
+  margin-left: 25px;
+}
+
+.css-1coznbk {
+  height: 125px;
+}
+
+/* --- BODY STYLING --- */
+
+.css-k008qs {
+margin-top: 20px;
+}
+/* --- FOOTER STYLING --- */
+footer {
+  position: absolute;
+  width:100%;
+  bottom: -75px;
+  opacity:50%;
 }

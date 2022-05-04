@@ -103,7 +103,7 @@ const ActivityHome = ({ activity }) => {
         width="300px"
         height="300px"
         bgImg={require(`../../assets/activity-images/${image}`)}>
-        <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+        <Text className="activity-text" fontSize="2xl">
           {title}
         </Text>
         <Modal
@@ -191,7 +191,7 @@ const ActivityDash = ({ activity }) => {
           width="200px"
           height="200px"
           bgImg={require(`../../assets/activity-images/${image}`)}>
-          <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+          <Text className="activity-text" fontSize="2xl">
             {title}
           </Text>
         </Square>
