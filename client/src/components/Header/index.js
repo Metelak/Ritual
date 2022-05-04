@@ -29,7 +29,7 @@ const Header = () => {
   };
 
   // useNavigate to redirect user to Dashboard using onClick
-  const routeToMyDashboard = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <header>
@@ -58,20 +58,23 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                <Button
-                  onClick={() => routeToMyDashboard('/Dashboard')}
-                  color="#FFFFFF"
-                  variant="ghost"
-                  _hover={{ bg: 'teal.300' }}>
-                  My Dashboard
-                </Button>
-                <Button
-                  onClick={Auth.logout}
-                  color="#FFFFFF"
-                  variant="ghost"
-                  _hover={{ bg: 'teal.300' }}>
-                  Logout
-                </Button>
+                {window.location.pathname === '/Dashboard' ? (
+                  <Button
+                    onClick={() => navigate('/')}
+                    color="#FFFFFF"
+                    variant="ghost"
+                    _hover={{ bg: 'teal.300' }}>
+                    Add Activities
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => navigate('/Dashboard')}
+                    color="#FFFFFF"
+                    variant="ghost"
+                    _hover={{ bg: 'teal.300' }}>
+                    My Dashboard
+                  </Button>
+                )}
               </ButtonGroup>
             </>
           ) : (
