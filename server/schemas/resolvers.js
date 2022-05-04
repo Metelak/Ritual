@@ -100,13 +100,21 @@ const resolvers = {
           ...args
         });
 
-        await User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { goals: goal._id } },
           { new: true }
-        );
+        ).populate({
+          path: 'goals',
+          populate: [
+            {
+              path: 'challenges'
+            },
+            { path: 'reflection' }
+          ]
+        });
 
-        return goal;
+        return updatedUser;
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -118,9 +126,7 @@ const resolvers = {
           { _id: _id },
           { isComplete: true },
           { new: true }
-        )
-          .populate('challenges')
-          .populate('reflection');
+        );
 
         return completedGoal;
       }

@@ -7,7 +7,8 @@ import {
   Divider,
   Flex,
   useToast,
-  Text
+  Text,
+  Checkbox
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -102,12 +103,13 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
               Reuse Goal
             </Button>
           ) : (
-            <Button
-              onClick={completeGoalHandler}
-              variant="ghost"
-              _hover={{ bg: 'teal.200' }}>
-              Complete Goal
-            </Button>
+            <Checkbox
+              onChange={completeGoalHandler}
+              size="lg"
+              colorScheme="green"
+            >
+              Goal Complete
+            </Checkbox>
           )}
         </Flex>
         <Heading fontSize="3xl" ml="5" mt="5">

@@ -7,9 +7,12 @@ import {
   Spacer,
   ButtonGroup,
   Image,
-  Button
+  Button,
+  extendTheme
 } from '@chakra-ui/react';
-// import Auth from '../../utils/auth';
+
+// to redirect user to Dashboard if button is clicked while user is logged in.
+import { useNavigate } from 'react-router-dom';
 
 // import login from Login.js
 import LoginForm from './Login';
@@ -26,11 +29,20 @@ const Header = () => {
     Auth.logout();
   };
 
+<<<<<<< HEAD
+=======
+  // useNavigate to redirect user to Dashboard using onClick
+  const routeToMyDashboard = useNavigate();
+
+  // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
+
+>>>>>>> 23581d3631b3988734766bb5ac5c142424c2d49a
   return (
     <header>
       <div>
         <Flex minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
           <Link to="/">
+            <Box size={{sm:'md', xl:'lg'}}>
             <Image
               pl="3"
               width="100px"
@@ -39,10 +51,11 @@ const Header = () => {
               src={require('../../assets/Ritual_logos/lotus-logo-white.png')}
               alt="lotus logo"
             />
+            </Box>
           </Link>
           <Link to="/">
             <Box p="3">
-              <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
+              <Heading as="h1" size='4xl' isTruncated color="#FFFFFF">
                 RITUAL
               </Heading>
             </Box>
@@ -51,15 +64,16 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                <Button onClick={Auth.logout}>Logout</Button>
+                <Button onClick={ () => routeToMyDashboard('/Dashboard')} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>My Dashboard</Button>
+                <Button onClick={Auth.logout} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>Logout</Button>
               </ButtonGroup>
             </>
           ) : (
             <ButtonGroup gap="2" pr="3">
-              <SignupForm colorScheme="whiteAlpha" variant="outline">
+              <SignupForm >
                 Sign Up
               </SignupForm>
-              <LoginForm colorScheme="whiteAlpha" variant="outline">
+              <LoginForm>
                 Login
               </LoginForm>
             </ButtonGroup>

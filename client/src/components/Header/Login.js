@@ -114,17 +114,26 @@ function LoginForm() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px)"
+    />
+  );
+
+  const [overlay] = React.useState(<OverlayOne />);
+
   // function LoginForm() will generate the following Modal
   return (
     <>
-      <Button onClick={onOpen}>Login</Button>
+      <Button color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }} onClick={onOpen}>Login</Button>
 
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-        <ModalOverlay />
+        {overlay}
         <ModalContent>
           <ModalHeader>Welcome Back!</ModalHeader>
           <ModalCloseButton />
@@ -162,7 +171,7 @@ function LoginForm() {
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={handleFormSubmit} colorScheme="blue" mr={3}>
+            <Button onClick={handleFormSubmit} colorScheme="teal" mr={3}>
               Enter
             </Button>
             <Button onClick={onClose}>Cancel</Button>

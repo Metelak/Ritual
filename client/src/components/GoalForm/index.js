@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_GOAL } from '../../utils/mutations';
 
+import { useStoreContext } from '../../utils/state/UserContext';
+import { ADD_GOALS } from '../../utils/state/actions';
+
 import {
   Modal,
   ModalOverlay,
@@ -31,6 +34,9 @@ const GoalForm = () => {
 
   // use toast from Chakra UI
   const toast = useToast();
+
+  // global state declaration (only using reducer)
+  const [, dispatch] = useStoreContext();
 
   // state of goal Form
   const [goalState, setGoalState] = useState({ name: '', description: '' });
@@ -99,11 +105,19 @@ const GoalForm = () => {
 
     // add goalState to mutation
     try {
-      await addGoal({
+      const response = await addGoal({
         variables: {
           name: name,
           description: description
         }
+      });
+
+      console.log(response);
+
+      // add to global state
+      dispatch({
+        type: ADD_GOALS,
+        goals: response.data.addGoal.goals
       });
 
       // reset goalState
@@ -135,6 +149,15 @@ const GoalForm = () => {
     }
   };
 
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px)"
+    />
+  );
+
+  const [overlay] = React.useState(<OverlayOne />);
+
   return (
     <>
       <Button
@@ -149,7 +172,7 @@ const GoalForm = () => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-        <ModalOverlay />
+        {overlay}
         <ModalContent>
           <ModalHeader>Create a Goal</ModalHeader>
           <ModalCloseButton />
