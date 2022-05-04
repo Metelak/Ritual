@@ -7,7 +7,8 @@ import {
   Spacer,
   ButtonGroup,
   Image,
-  Button
+  Button,
+  extendTheme
 } from '@chakra-ui/react';
 
 // to redirect user to Dashboard if button is clicked while user is logged in.
@@ -38,6 +39,7 @@ const Header = () => {
       <div>
         <Flex minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
           <Link to="/">
+            <Box size={{sm:'md', xl:'lg'}}>
             <Image
               pl="3"
               width="100px"
@@ -46,10 +48,11 @@ const Header = () => {
               src={require('../../assets/Ritual_logos/lotus-logo-white.png')}
               alt="lotus logo"
             />
+            </Box>
           </Link>
           <Link to="/">
             <Box p="3">
-              <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
+              <Heading as="h1" size='4xl' isTruncated color="#FFFFFF">
                 RITUAL
               </Heading>
             </Box>
@@ -58,16 +61,16 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                <Button onClick={ () => routeToMyDashboard('/Dashboard')}>My Dashboard</Button>
-                <Button onClick={Auth.logout}>Logout</Button>
+                <Button onClick={ () => routeToMyDashboard('/Dashboard')} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>My Dashboard</Button>
+                <Button onClick={Auth.logout} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>Logout</Button>
               </ButtonGroup>
             </>
           ) : (
             <ButtonGroup gap="2" pr="3">
-              <SignupForm colorScheme="whiteAlpha" variant="outline">
+              <SignupForm >
                 Sign Up
               </SignupForm>
-              <LoginForm colorScheme="whiteAlpha" variant="outline">
+              <LoginForm>
                 Login
               </LoginForm>
             </ButtonGroup>
