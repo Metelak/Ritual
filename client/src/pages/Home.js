@@ -15,11 +15,13 @@ const Home = () => {
   return (
     // <Grid templateColumns='repeat(5, 1fr)' gap={6}>
     <Wrap>
+      <Center>
       {activityData.activities.map((activity) => {
         return (
           <ActivityHome key={activity.title} activity={activity}></ActivityHome>
         );
       })}
+      </Center>
     </Wrap>
     // </Grid>
   );
