@@ -108,7 +108,7 @@ const Dashboard = () => {
   return (
     <div>
       <Stack direction={['column', 'row']}>
-      <Box w="50%" minHeight="100%" bg="#FFFFFF">
+        <Box w="50%" minHeight="100%" bg="#FFFFFF">
           <Heading
             className="center-text"
             fontSize="4xl"
@@ -155,9 +155,15 @@ const Dashboard = () => {
           )}
         </Box>
         <Center>
-        <Divider orientation='vertical' width='1px' minHeight='100%' variant='solid' bg='#234E52' />
+          <Divider
+            orientation="vertical"
+            width="1px"
+            minHeight="100%"
+            variant="solid"
+            bg="#234E52"
+          />
         </Center>
-        <Box w="50%" minHeight='100%'>
+        <Box w="50%" minHeight="100%">
           <Heading
             className="center-text"
             fontSize="4xl"

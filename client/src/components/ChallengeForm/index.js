@@ -31,7 +31,7 @@ export const ChallengeForm = ({ goalId }) => {
   const toast = useToast();
 
   // add challenge mutation setup
-  const [addChallenge, { error }] = useMutation(ADD_CHALLENGE);
+  const [addChallenge] = useMutation(ADD_CHALLENGE);
 
   // styling components
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,10 +40,7 @@ export const ChallengeForm = ({ goalId }) => {
   const finalRef = React.useRef();
 
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
   );
 
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
@@ -101,7 +98,7 @@ export const ChallengeForm = ({ goalId }) => {
         description: 'Challenge was not added',
         status: 'error',
         duration: 3000,
-        isClosable: true, 
+        isClosable: true,
         position: 'top-right'
       });
     }
@@ -126,7 +123,7 @@ export const ChallengeForm = ({ goalId }) => {
           <ModalHeader>Add Challenge</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl isInvalid={errorText ? true : false}>
+            <FormControl isInvalid={errorText}>
               <FormLabel>Description:</FormLabel>
               <Textarea
                 ref={initialRef}
@@ -141,7 +138,7 @@ export const ChallengeForm = ({ goalId }) => {
                 size="sm"
                 value={descriptionLength}
               />
-              {errorText && <FormErrorMessage>{errorText}</FormErrorMessage>}
+              <FormErrorMessage>{errorText}</FormErrorMessage>
             </FormControl>
           </ModalBody>
           <ModalFooter>

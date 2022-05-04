@@ -21,7 +21,8 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  useToast
+  useToast,
+  FormErrorMessage
 } from '@chakra-ui/react';
 
 function SignupForm() {
@@ -39,48 +40,103 @@ function SignupForm() {
   // finalRef is the last input field for user before submit or cancel button
   const finalRef = React.useRef();
 
-  // Setting form state by using state for already registered users with email and password fields.
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  // Setting form state by using state for already registered users with username email and password fields.
+  const [formState, setFormState] = useState({
+    username: '',
+    email: '',
+    password: ''
+  });
+
+  const [errorMessage, setError] = useState({ type: '', message: '' });
 
   // Using mutation addUser to pull necessary registration fields we use in handleFormSubmit()
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const { username, email, password } = formState;
+
+    // validate input
+    if (!username) {
+      setError({ type: 'username', message: 'Username is required' });
+      return;
+    }
+    if (!email) {
+      setError({ type: 'email', message: 'Email is required' });
+      return;
+    }
+    if (!password) {
+      setError({ type: 'password', message: 'Password is required' });
+      return;
+    }
+    if (password.length < 6) {
+      setError({
+        type: 'password',
+        message: 'Password must be at least 5 characters'
+      });
+      return;
+    }
+
     // The block of code to be tested for errors while the program is being executed is written in the try block
     try {
       const mutationResponse = await addUser({
         variables: {
-          username: formState.username,
-          email: formState.email,
-          password: formState.password
+          username: username,
+          email: email,
+          password: password
         }
       });
       // Using Auth.js imported at the top, the user's credentials are verified with their JWT
       const token = mutationResponse.data.addUser.token;
       Auth.login(token);
+
+      // reset SignupForm
+      setFormState({ email: '', password: '' });
+
+      // success toast
+      toast({
+        title: 'Account created.',
+        position: 'top-right',
+        description: "We've created your account for you.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      });
+
+      // Close modal
+      onClose();
+
+      // Redirect user to dashboard view
+      navigate('/dashboard', { replace: true });
     } catch (e) {
       // if errors are presented, use catch to console.log(e)
       console.log(e);
+
+      // display error toast
+      // render specific message based on what the error contains
+      let errorMessage = 'We could not create an account for you.';
+      if (e.message.includes('username')) {
+        errorMessage = 'That username is already being used.';
+      }
+      if (e.message.includes('duplicate key' && 'email')) {
+        errorMessage = 'That email already belongs to a user.';
+      }
+      if (e.message.includes('email' && 'match')) {
+        errorMessage = 'Not a valid email address.';
+      }
+      // error toast
+      toast({
+        title: 'Error!',
+        position: 'top-right',
+        description: errorMessage,
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+
+      // close modal
+      onClose();
     }
-
-    // reset SignupForm
-    setFormState({ email: '', password: '' });
-
-    toast({
-      title: 'Account created.',
-      position: 'top-right',
-      description: "We've created your account for you.",
-      status: 'success',
-      duration: 9000,
-      isClosable: true
-    });
-
-    // Close modal
-    onClose();
-
-    // Redirect user to dashboard view
-    navigate('/dashboard', { replace: true });
   };
 
   // Any time form input has been added it registers on the page as users type, generating and returning updated form state.
@@ -97,17 +153,18 @@ function SignupForm() {
   const handleClick = () => setShow(!show);
 
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
   );
 
   const [overlay] = React.useState(<OverlayOne />);
 
   return (
     <>
-      <Button color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }} onClick={onOpen}>
+      <Button
+        color="#FFFFFF"
+        variant="ghost"
+        _hover={{ bg: 'teal.300' }}
+        onClick={onOpen}>
         Sign Up
       </Button>
 
@@ -121,28 +178,32 @@ function SignupForm() {
           <ModalHeader>Create your account</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
+            <FormControl isInvalid={errorMessage.type === 'username'}>
               <FormLabel>Username</FormLabel>
               <Input
                 ref={initialRef}
                 name="username"
+                value={formState.username}
                 className="username-input"
                 placeholder="username"
                 onChange={handleChange}
               />
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
 
-            <FormControl>
+            <FormControl isInvalid={errorMessage.type === 'email'}>
               <FormLabel>Email Address</FormLabel>
               <Input
                 name="email"
+                value={formState.email}
                 className="email-input"
                 placeholder="email"
                 onChange={handleChange}
               />
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} isInvalid={errorMessage.type === 'password'}>
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
@@ -160,6 +221,7 @@ function SignupForm() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
           </ModalBody>
 
