@@ -42,7 +42,7 @@ export const ChallengeForm = ({ goalId }) => {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
+      backdropFilter="blur(10px)"
     />
   );
 
@@ -101,7 +101,7 @@ export const ChallengeForm = ({ goalId }) => {
         description: 'Challenge was not added',
         status: 'error',
         duration: 3000,
-        isClosable: true,
+        isClosable: true, 
         position: 'top-right'
       });
     }

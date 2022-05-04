@@ -143,18 +143,15 @@ const Dashboard = () => {
               </Box>
             </ScaleFade>
           ) : (
-            <>
-              <Text>To add more, go to the homepage</Text>
-              <Box templateColumns="repeat(5, 1fr)" gap={6}>
-                {userActivities.map((activity) => {
-                  return (
-                    <ActivityDash
-                      key={activity._id}
-                      activity={activity}></ActivityDash>
-                  );
-                })}
-              </Box>
-            </>
+            <Box templateColumns="repeat(5, 1fr)" gap={6}>
+              {userActivities.map((activity) => {
+                return (
+                  <ActivityDash
+                    key={activity._id}
+                    activity={activity}></ActivityDash>
+                );
+              })}
+            </Box>
           )}
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">

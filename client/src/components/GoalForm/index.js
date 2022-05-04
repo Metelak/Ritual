@@ -149,6 +149,15 @@ const GoalForm = () => {
     }
   };
 
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px)"
+    />
+  );
+
+  const [overlay] = React.useState(<OverlayOne />);
+
   return (
     <>
       <Button
@@ -163,7 +172,7 @@ const GoalForm = () => {
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}>
-        <ModalOverlay />
+        {overlay}
         <ModalContent>
           <ModalHeader>Create a Goal</ModalHeader>
           <ModalCloseButton />
