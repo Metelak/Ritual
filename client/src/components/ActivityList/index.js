@@ -19,7 +19,7 @@ import {
   Collapse,
   Heading
 } from '@chakra-ui/react';
-import { SmallCloseIcon } from '@chakra-ui/icons';
+import { SmallCloseIcon, ArrowUpIcon } from '@chakra-ui/icons';
 
 import { useMutation } from '@apollo/client';
 import { ADD_ACTIVITY, REMOVE_ACTIVITY } from '../../utils/mutations';
@@ -201,28 +201,28 @@ const ActivityDash = ({ activity }) => {
               bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
       <Box
         onClick={activityClickHandler}
-        border="2px"
-        borderColor="#FFFFFF"
         borderRadius="lg"
-        bg="#285E61"
+        bg="teal.100"
+        borderColor="gray.200"
+        border="1px"
         maxWidth="100%"
         fontSize="2xl"
         p="25px"
         cursor="pointer">
-        <Flex justifyContent="end" mb="-8">
+        <Flex justifyContent="end" mb="-9">
           <IconButton
             onClick={removeActivityHandler}
             variant="outline"
             aria-label="remove activity"
             colorScheme="teal"
-            color="#FFFFFF"
+            color="#285E61"
             width="10px"
             size="sm"
             icon={<SmallCloseIcon />}
           />
         </Flex>
-        <Heading color='#FFFFFF' size='lg'>
-        {title}
+        <Heading color="#285E61" size="lg">
+          {title}
         </Heading>
       </Box>
 
@@ -230,15 +230,28 @@ const ActivityDash = ({ activity }) => {
       <Collapse in={activityOpen}>
         <Flex
           maxHeight="200px"
-          p="40px"
-          color="white"
+          p="30px"
+          color="#285E61"
+          borderColor="gray.200"
           ml="2"
           mr="2"
-          bg="teal.400"
+          bg="teal.50"
           rounded="md"
           shadow="md"
           justifyContent="center"
           overflow="hidden">
+          <IconButton
+            size="md"
+            mt="-5"
+            ml='-3'
+            onClick={toggleActivityText}
+            icon={<ArrowUpIcon />}
+            variant="ghost"
+            colorScheme="teal"
+            borderRadius="full"
+            fontSize="xl"
+            aria-label="Close Reflections"
+          />
           <Text overflow="auto">{text}</Text>
         </Flex>
       </Collapse>

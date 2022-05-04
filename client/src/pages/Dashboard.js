@@ -112,7 +112,7 @@ const Dashboard = () => {
           <Heading
             className="center-text"
             fontSize="4xl"
-            color="#2C7A7B"
+            color="#285E61"
             mt="20px">
             My Activities
           </Heading>
@@ -161,7 +161,7 @@ const Dashboard = () => {
           <Heading
             className="center-text"
             fontSize="4xl"
-            color="#2C7A7B"
+            color="#285E61"
             mt="20px">
             My Goals
           </Heading>
