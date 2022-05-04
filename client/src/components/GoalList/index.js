@@ -107,12 +107,13 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
               onChange={completeGoalHandler}
               size="lg"
               colorScheme="green"
+              color='#285E61'
             >
               Goal Complete
             </Checkbox>
           )}
         </Flex>
-        <Heading fontSize="3xl" ml="5" mt="5">
+        <Heading fontSize="3xl" color='#285E61' ml="5" mt="5">
           {name}
         </Heading>
         <Box
