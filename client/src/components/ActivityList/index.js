@@ -15,7 +15,8 @@ import {
   Text,
   WrapItem,
   SimpleGrid,
-  useToast
+  useToast,
+  Center
 } from '@chakra-ui/react';
 
 import { useMutation } from '@apollo/client';

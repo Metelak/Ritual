@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     // <Grid templateColumns='repeat(5, 1fr)' gap={6}>
-    <Wrap>
+    <Wrap spacing='5px' justify='center'>
       {activityData.activities.map((activity) => {
         return (
           <ActivityHome key={activity.title} activity={activity}></ActivityHome>
