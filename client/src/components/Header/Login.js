@@ -92,8 +92,7 @@ function LoginForm() {
       onClose();
 
       // Redirect user to dashboard view
-      navigate('/dashboard', { replace: true});
-      
+      navigate('/dashboard', { replace: true });
     } catch (e) {
       console.log(e);
       // Display error message using toast
@@ -115,10 +114,7 @@ function LoginForm() {
   const handleClick = () => setShow(!show);
 
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
   );
 
   const [overlay] = React.useState(<OverlayOne />);
@@ -126,7 +122,13 @@ function LoginForm() {
   // function LoginForm() will generate the following Modal
   return (
     <>
-      <Button color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }} onClick={onOpen}>Login</Button>
+      <Button
+        color="#FFFFFF"
+        variant="ghost"
+        _hover={{ bg: 'teal.300' }}
+        onClick={onOpen}>
+        Login
+      </Button>
 
       <Modal
         initialFocusRef={initialRef}
