@@ -52,13 +52,17 @@ export const ADD_GOAL = gql`
 `;
 
 export const ADD_ACTIVITY = gql`
-  mutation addActivity($id: ID!) {
-    addActivity(addActivity: $id) {
+  mutation saveActivity($id: ID!) {
+    saveActivity(_id: $id) {
       _id
-      title
-      text
-      createdAt
-      image
+      username
+      email
+      activities {
+        _id
+        title
+        text
+        image
+      }
     }
   }
 `;
@@ -135,12 +139,16 @@ export const REUSE_GOAL = gql`
 
 export const REMOVE_ACTIVITY = gql`
   mutation removeActivity($id: ID!) {
-    removeActivity(removeActivity: $id) {
+    removeActivity(_id: $id) {
       _id
-      name
-      description
-      image
-      link
+      username
+      email
+      activities {
+        _id
+        title
+        text
+        image
+      }
     }
   }
 `;
