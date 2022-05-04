@@ -2,63 +2,57 @@
   {
     "title": "Energizing Breath",
     "text": "The next time you are feeling tired, try the double-breath technique. Breath in twice through your nose, and then exhale twice through your mouth. It might feel weird the first time or two, but you will get the hang of it. Breathing it twice through the nose (almost like sniffing, “sniff sniff”), and then twice out the mouth (“haaa haaa” sound). This breath can be stimulating in a gentle way, like drinking a cup of black tea, not too strong, but just enough of a boost to brighten your day. Try practicing this in the morning or midday to receive maximum benefit; you only need to practice three to five rounds before you begin to feel a difference.",
-    "image": "deep-breathing.png"
+    "image": "energizing-breath.png"
   },
   {
     "title": "Calming Breath",
     "text": "Soothe your nervous system by breathing in through your nose, and then out through your mouth. Purse your lips like you are blowing out a candle; this will extend the length of your exhale. By doing so, you stimulate the parasympathetic nervous system and signal the brain and body to relax. Practice breathing in for a count of four or five, and exhale for a count of eight or ten. Do not push your body to breathe in a way that does not feel comfortable for you. Practice this breath for 1-5 minutes or longer.",
-    "image": "deep-breathing.png"
+    "image": "pursed-lip-breathing.png"
   },
   {
     "title": "Balancing Breath",
     "text": "Using the four-part breath, sometimes called box-breathing, begin to breathe in for a count of four or five, exhaling for the same duration. When that feels comfortable, add a hold at the top of your inhale, retaining the breath for the same amount of time, and continue to practice the even exhale. Add in a hold at the bottom, or retention on exhale for the same amount of time. Eventually you will breathe in four even parts. You might imagine as you inhale that you are tracing a line up the side of a box in front of you, as you retain the inhale, let your mind travel across the top of the box; as you exhale, your mind envisions traveling down the other side of the box, and then as you pause before your next inhale, let your mind trace the bottom edge of the box. Starting each round following the same pattern. Feel free to alter the length of the inhale or exhale to suit your needs, but keep all four sides evenly balanced. When you feel ready, begin breathing smoothly in and out, completing your practice with a few rounds of breath without any holds at the top or bottom. Practice 2-5 minutes, as you are able.",
-    "image": "deep-breathing.png"
+    "image": "balancing-breath.png"
   },
   {
-    "title": "Cathartic Breath",
-    "text": ": Using Lion's breath can help relieve tension and stress by stretching your entire face, including the jaw and tongue. Take a deep inhalation through the nose. Then simultaneously open your mouth wide and stretch your tongue out, curling its tip down toward the chin, open your eyes wide, contract the muscles on the front of your throat, and exhale the breath slowly out through your mouth with a distinct “ha” sound. While this breath exercise may feel silly at first, it works! The practice can remind you not to take life so seriously. Repeat 3-5 times, as needed.",
-    "image": "deep-breathing.png"
+    "title": "Lion's Breath",
+    "text": "Using lion's breath can help relieve tension and stress by stretching your entire face, including the jaw and tongue. Take a deep inhalation through the nose. Then simultaneously open your mouth wide and stretch your tongue out, curling its tip down toward the chin, open your eyes wide, contract the muscles on the front of your throat, and exhale the breath slowly out through your mouth with a distinct “ha” sound. While this breath exercise may feel silly at first, it works! The practice can remind you not to take life so seriously. Repeat 3-5 times, as needed.",
+    "image": "lions-breath.png"
   },
   {
     "title": "Ashtanga Yoga",
     "text": "Ashtanga is a set series that stays the same from practice to practice; but that does not mean that your experience will be the same! In a way, becoming more familiar can help students recognize what is working well and what is challenging for them on a daily basis, observing growth and change. Classes can be practiced in groups or individually. Traditionally led in mysore fashion, meaning each student practices what they know from their teacher individually in the same room; in modern contexts many students choose to be led together through the entire primary or secondary sequence. Class usually starts with Sun Salutations, then moves into a standing sequence that involves, balance, twisting, and forward folds, and inversions. The traditional lineage where most Western Vinyasa comes from. Classes can be unheated (room temperature) or heated (80-85 degrees), but not as hot as Bikram yoga. Ashtanga can be challenging, but also a great gateway into physical practice.",
-    "image": "yoga.png"
+    "image": "adho-muka-svanasana.png"
   },
   {
     "title": "Bikram Yoga",
     "text": "Like Ashtanga Yoga, Bikram is a form of yoga that is rigorous and has a set structure. It is most often practiced in a studio with radiant heat, boosting up to 110 degrees Fahrenheit.",
-    "image": "yoga.png"
+    "image": "bikram-yoga.png"
   },
   {
     "title": "Hatha Yoga",
     "text": "A form of slow, deliberate practice, hatha, or Ha (Sun) Tha (Moon) is a practice of balance. The breath is drawn out (dirgha pranayama, three-part, or full-complete/natural breath) to encourage focus within each shape. Shapes are often held 5-10 breaths. Shapes are often repeated on the right and left side of the body to allow students the chance to observe what is changing within their own bodies.",
-    "image": "yoga.png"
+    "image": "hatha-yoga.png"
   },
   {
     "title": "Vinyasa Yoga",
     "text": "Most classes have a form of sun-salutations, or “flows”, moving swiftly one breath at a time through the nose. Most classes use ujjayi pranayama (which the teacher should explain) as an energizing, smoothing breath. In Vinyasa, the aim is to connect breath to movement. Vinyasa can lead a person to feel stronger, lighter, and brighter. Classes are offered all over the place! Some are heated, others unheated. You can practice with others or on your own. It is best if you have never practiced before to find a teacher you trust to guide you through, providing suggestions and support. Remember, it is your body and your practice!",
-    "image": "yoga.png",
-    "subtypes": [
-      
-      "Yin Yoga: A contemplative practice, mostly seated or reclining. Not heated. Focus is on joints, ligaments, and connective tissue. It is less about “doing” and more about “being”, which can be challenging for students. A good practice to support quieting the mind. Students use their own breath, and find stillness within each pose. It is not uncommon to practice 4-6 poses in an hour. Practices target meridians in the body, which stimulate acupressure points, much like acupuncture (following principles of Traditional Chinese Medicine).",
-      "Restorative Yoga: Often confused with Yin. Restorative is similar in that students are often on the ground, however restorative classes use props to allow students to relax into the pose, whereas in Yin, students are without props, allowing their bodies to feel sensations of resistance.",
-      "Yoga Nidra: A form of rest and meditation, often guided by a teacher who leads students through a body scan or internal meditation. Deeply restful, but not the same as sleeping, students stay conscious and mindful of their intentions, often using the practice as a way of staying true to their sankalpa (or purpose) to bring about positive change in their life."
-    ]
+    "image": "yoga.png"
   },
   {
     "title": "Restorative Yoga",
     "text": "Often confused with Yin. Restorative is similar in that students are often on the ground, however restorative classes use props to allow students to relax into the pose, whereas in Yin, students are without props, allowing their bodies to feel sensations of resistance.",
-    "image": "yoga.png"
+    "image": "restorative.png"
   },
   {
     "title": "Yin Yoga",
     "text": "A contemplative practice, mostly seated or reclining. Not heated. Focus is on joints, ligaments, and connective tissue. It is less about “doing” and more about “being”, which can be challenging for students. A good practice to support quieting the mind. Students use their own breath, and find stillness within each pose. It is not uncommon to practice 4-6 poses in an hour. Practices target meridians in the body, which stimulate acupressure points, much like acupuncture (following principles of Traditional Chinese Medicine).",
-    "image": "yoga.png"
+    "image": "yin-yoga.png"
   },
   {
     "title": "Yoga Nidra",
     "text": " A form of rest and meditation, often guided by a teacher who leads students through a body scan or internal meditation. Deeply restful, but not the same as sleeping, students stay conscious and mindful of their intentions, often using the practice as a way of staying true to their sankalpa (or purpose) to bring about positive change in their life.",
-    "image": "yoga.png"
+    "image": "yoga-nidra.png"
   },
   {
     "title": "Journaling",
@@ -68,37 +62,27 @@
   {
     "title": "Pen vs. Keyboard",
     "text": "Article: 'The Pen is Mightier Than the Keyboard': https://www.pens.com/blog/the-benefits-of-handwriting-vs-typing/",
-    "image": "journaling.png"
+    "image": "writing-pen.png"
   },
   {
     "title": "Bullet Journaling",
     "text": "Article: 'How to Start a Bullet Journal' : https://www.oprahdaily.com/life/work-money/a32155559/how-to-start-a-bullet-journal/",
-    "image": "journaling.png",
-    "subtypes": [
-
-      "Prompts for Today: *Write One Thing I am Proud of *One Thing I am Challenged by *One Thing I Would Like to Let Go of"
-    ]
+    "image": "bullet-journal.png"
   },
   {
     "title": "Clear Habits Journal",
     "text": "How to Define your Habits Using a Journal: https://jamesclear.com/habit-journal",
-    "image": "journaling.png",
-    "subtypes": [
-      "The Pen is Mightier Than the Keyboard: https://www.pens.com/blog/the-benefits-of-handwriting-vs-typing/",
-      "Bullet Journaling: https://www.oprahdaily.com/life/work-money/a32155559/how-to-start-a-bullet-journal/",
-      "Clear Habits Journal: https://jamesclear.com/habit-journal",
-      "Prompts for Today: *Write One Thing I am Proud of *One Thing I am Challenged by *One Thing I Would Like to Let Go of"
-    ]
+    "image": "clear-habit-journal.png"
   },
   {
     "title": "Prompts for Today",
     "text": "Write one thing you are proud of. One thing you are challenged by. One think you would like to let go of.",
-    "image": "journaling.png"
+    "image": "writing-prompt.png"
   },
   {
     "title": "Stretching: Arms",
     "text": "Using a wall, bring your right hand to the surface of the wall, your fingers pointing behind you. Begin to turn your body toward the left (i.e. center of the room). As you roll away from the wall you should feel a stretch down the front side of your shoulder, down the arm, and sometimes even into your fingers. To come out of the stretch, turn back “forward” or toward the wall and release. Repeat on the other side.",
-    "image": "stretching.png"
+    "image": "wall-arm-stretch.png"
   },
   {
     "title": "Stretching: Legs",
