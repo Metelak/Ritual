@@ -1,5 +1,5 @@
 import React from 'react';
-import ActivityHome from '../components/ActivityList/ActivityHome';
+import { ActivityHome } from '../components/ActivityList/';
 import { useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
 import { Wrap } from '@chakra-ui/react';

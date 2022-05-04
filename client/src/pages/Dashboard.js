@@ -17,7 +17,7 @@ import {
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
-import ActivityDash from '../components/ActivityList/ActivityDash';
+import { ActivityDash } from '../components/ActivityList/';
 import GoalList from '../components/GoalList';
 import { COMPLETE_GOAL } from '../utils/mutations';
 

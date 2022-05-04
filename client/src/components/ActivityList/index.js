@@ -14,30 +14,84 @@ import {
   Square,
   Text,
   WrapItem,
-  SimpleGrid
+  SimpleGrid,
+  useToast
 } from '@chakra-ui/react';
-import { ADD_ACTIVITY } from '../../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
+
+import { useMutation } from '@apollo/client';
+import { ADD_ACTIVITY, REMOVE_ACTIVITY } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
+
+import { useStoreContext } from '../../utils/state/UserContext';
+import { ADD_ACTIVITIES } from '../../utils/state/actions';
+
+/*-----------------------
+----- ACTIVITY HOME -----
+-------------------------*/
 
 const ActivityHome = ({ activity }) => {
-  const { title, image, text } = activity;
-  // add activity mutation setup
-  const [addActivity, { error }] = useMutation(ADD_ACTIVITY);
+  const { _id, title, image, text } = activity;
 
-  const addActivityHandler = async () => {
-    try {
-      await addActivity({
-        variables: { id: _id }
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [state, dispatch] = useStoreContext();
+
+  const toast = useToast();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const initialRef = React.useRef();
   const finalRef = React.useRef();
+
+  const [saveActivity] = useMutation(ADD_ACTIVITY);
+
+  // if user clicks add activity on homepage
+  const handleHomeClick = async () => {
+    // validate user login
+    if (!Auth.loggedIn()) {
+      toast({
+        title: 'Not logged in!',
+        description: 'Please log in to save this activity',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+      return;
+    }
+
+    // run mutation
+    try {
+      const response = await saveActivity({
+        variables: { id: _id }
+      });
+
+      dispatch({
+        type: ADD_ACTIVITIES,
+        activities: response.data.saveActivity.activities
+      });
+
+      toast({
+        title: 'Activity saved!',
+        description: 'To view the activity, go to your dashboard',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+
+      onClose();
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: 'Save activity failed!',
+        description: 'We could not save this activity. Please try again.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    }
+  };
 
   return (
     <WrapItem p={10}>
@@ -63,9 +117,16 @@ const ActivityHome = ({ activity }) => {
             <ModalBody>{text}</ModalBody>
             <ModalFooter>
               <Button
+                isDisabled={
+                  state.activities.find((activity) => {
+                    return activity._id === _id;
+                  })
+                    ? true
+                    : false
+                }
                 colorScheme="teal"
                 variant="outline"
-                onClick={addActivityHandler}>
+                onClick={handleHomeClick}>
                 Save Activity
               </Button>
             </ModalFooter>
@@ -76,46 +137,68 @@ const ActivityHome = ({ activity }) => {
   );
 };
 
+/*-----------------------
+----- ACTIVITY DASH -----
+-------------------------*/
+
 const ActivityDash = ({ activity }) => {
-  const { title, image, text } = activity;
+  const { _id, title, image, text } = activity;
 
-  const addActivity = () => {
-    const { data: userData, loading } = useQuery(QUERY_ME);
+  const toast = useToast();
 
-    const allActivities = userData?.me.activities;
+  const [removeActivity] = useMutation(REMOVE_ACTIVITY);
 
-    if (loading) {
-      return <div>Loading your activities...</div>;
-    }
+  // if remove activity is clicked
+  const removeActivityHandler = async () => {
+    // run mutation
+    try {
+      await removeActivity({
+        variables: { id: _id }
+      });
 
-    let savedActivities;
-    if (allActivities) {
-      savedActivities = allActivities.filter((activity) => {
-        return activity.isSaved === true;
+      toast({
+        title: 'Activity removed!',
+        description: 'If you wish to add it again, go to the homepage',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      });
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: 'Error!',
+        description: 'We were unable to remove the activity.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
       });
     }
-    return (
-      <Box margin={5}>
-        <SimpleGrid
-          className="activities"
-          columns={2}
-          border="2px"
-          borderColor="#FFFFFF"
-          borderRadius="md"
-          bg="teal">
-          <Square
-            width="200px"
-            height="200px"
-            bgImg={require(`../../assets/activity-images/${image}`)}>
-            <Text className="activity-text" fontSize="2xl" color="#81E6D9">
-              {title}
-            </Text>
-          </Square>
-          <Square color="#FFFFFF">{text}</Square>
-        </SimpleGrid>
-      </Box>
-    );
   };
+
+  return (
+    <Box margin={5}>
+      <SimpleGrid
+        className="activities"
+        columns={2}
+        border="2px"
+        borderColor="#FFFFFF"
+        borderRadius="md"
+        bg="teal">
+        <Square
+          width="200px"
+          height="200px"
+          bgImg={require(`../../assets/activity-images/${image}`)}>
+          <Text className="activity-text" fontSize="2xl" color="#81E6D9">
+            {title}
+          </Text>
+        </Square>
+        <Square color="#FFFFFF">{text}</Square>
+      </SimpleGrid>
+      <Button onClick={removeActivityHandler}>Complete Activity</Button>
+    </Box>
+  );
 };
 
 export { ActivityHome, ActivityDash };
