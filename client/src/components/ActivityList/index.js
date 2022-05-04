@@ -207,7 +207,6 @@ const ActivityDash = ({ activity }) => {
         bg="#285E61"
         maxWidth="100%"
         fontSize="2xl"
-        color="#81E6D9"
         p="10px"
         cursor="pointer">
         <Flex justifyContent="end" mb="-8">
