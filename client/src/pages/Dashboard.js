@@ -111,7 +111,7 @@ const Dashboard = () => {
       <Box w="50%" minHeight="100%" bg="#FFFFFF">
           <Heading
             className="center-text"
-            fontSize="3xl"
+            fontSize="4xl"
             color="#2C7A7B"
             mt="20px">
             My Activities
@@ -160,7 +160,7 @@ const Dashboard = () => {
         <Box w="50%" minHeight='100%'>
           <Heading
             className="center-text"
-            fontSize="3xl"
+            fontSize="4xl"
             color="#2C7A7B"
             mt="20px">
             My Goals

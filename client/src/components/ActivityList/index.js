@@ -16,7 +16,8 @@ import {
   useToast,
   IconButton,
   Flex,
-  Collapse
+  Collapse,
+  Heading
 } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 
@@ -199,15 +200,14 @@ const ActivityDash = ({ activity }) => {
               height="200px"
               bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
       <Box
-        className="activity-text"
         onClick={activityClickHandler}
         border="2px"
         borderColor="#FFFFFF"
-        borderRadius="md"
+        borderRadius="lg"
         bg="#285E61"
         maxWidth="100%"
         fontSize="2xl"
-        p="10px"
+        p="25px"
         cursor="pointer">
         <Flex justifyContent="end" mb="-8">
           <IconButton
@@ -221,7 +221,9 @@ const ActivityDash = ({ activity }) => {
             icon={<SmallCloseIcon />}
           />
         </Flex>
+        <Heading color='#FFFFFF' size='lg'>
         {title}
+        </Heading>
       </Box>
 
       {/*  */}
