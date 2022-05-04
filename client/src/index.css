@@ -13,17 +13,19 @@ code {
 }
 
 .activities {
-  opacity: 60%;
+  opacity: 65%;
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 2px 2px 10px #000000;
 }
 
 .activities:hover {
-  opacity: 90%;
+  opacity: 100%;
 }
 
 .activity-text {
-  text-shadow: 0px 0px 5px #000000;
+  text-shadow: 2px 2px 10px #000000;
+  color: white;
 }
 
 .center-text {
