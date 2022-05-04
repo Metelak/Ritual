@@ -15,7 +15,8 @@ import {
   WrapItem,
   useToast,
   IconButton,
-  Flex
+  Flex,
+  Collapse
 } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 
@@ -143,16 +144,17 @@ const ActivityHome = ({ activity }) => {
 -------------------------*/
 
 const ActivityDash = ({ activity }) => {
-  const { _id, title } = activity;
+  const { _id, title, text } = activity;
 
-  const { isOpen: activityOpen, onToggle: toggleActivityText } = useDisclosure();
+  const { isOpen: activityOpen, onToggle: toggleActivityText } =
+    useDisclosure();
 
   const toast = useToast();
 
   const [removeActivity] = useMutation(REMOVE_ACTIVITY);
 
   // if remove activity is clicked
-  const removeActivityHandler = async () => {
+  const removeActivityHandler = async (event) => {
     // run mutation
     try {
       await removeActivity({
@@ -180,6 +182,16 @@ const ActivityDash = ({ activity }) => {
     }
   };
 
+  // if user clicks on the activity (excludes the remove button)
+  const activityClickHandler = (event) => {
+    // makes sure target is not the close button
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    toggleActivityText();
+  };
+
   return (
     <Box margin={5}>
       {/* <Square
@@ -188,8 +200,7 @@ const ActivityDash = ({ activity }) => {
               bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
       <Box
         className="activity-text"
-        onClick={toggleActivityText}
-        isDisabled={activities.length === 0 ? true : false}
+        onClick={activityClickHandler}
         border="2px"
         borderColor="#FFFFFF"
         borderRadius="md"
@@ -197,29 +208,39 @@ const ActivityDash = ({ activity }) => {
         maxWidth="100%"
         fontSize="2xl"
         color="#81E6D9"
-        p="10px">
-          {activities.length === 0 ? '' : `(${activities.length})`}
-          <Flex justifyContent='end' mb='-8'>
-        <IconButton
-          onClick={removeActivityHandler}
-          variant="outline"
-          aria-label="remove activity"
-          colorScheme="teal"
-          color="#FFFFFF"
-          width="10px"
-          size="sm"
-          icon={<SmallCloseIcon />}
-        />
+        p="10px"
+        cursor="pointer">
+        <Flex justifyContent="end" mb="-8">
+          <IconButton
+            onClick={removeActivityHandler}
+            variant="outline"
+            aria-label="remove activity"
+            colorScheme="teal"
+            color="#FFFFFF"
+            width="10px"
+            size="sm"
+            icon={<SmallCloseIcon />}
+          />
         </Flex>
         {title}
       </Box>
 
-      <ActivityText
-        activityOpen={activityOpen}
-        activities={activities}
-        toggleActivityText={toggleActivityText}
-        activityId={_id}
-      />
+      {/*  */}
+      <Collapse in={activityOpen}>
+        <Flex
+          maxHeight="200px"
+          p="40px"
+          color="white"
+          ml="2"
+          mr="2"
+          bg="teal.400"
+          rounded="md"
+          shadow="md"
+          justifyContent="center"
+          overflow="hidden">
+          <Text overflow="auto">{text}</Text>
+        </Flex>
+      </Collapse>
     </Box>
   );
 };
