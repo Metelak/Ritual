@@ -11,12 +11,14 @@ import {
   Button,
   Box,
   Circle,
-  Square,
   Text,
   WrapItem,
-  SimpleGrid,
-  useToast
+  useToast,
+  IconButton,
+  Flex,
+  Collapse
 } from '@chakra-ui/react';
+import { SmallCloseIcon } from '@chakra-ui/icons';
 
 import { useMutation } from '@apollo/client';
 import { ADD_ACTIVITY, REMOVE_ACTIVITY } from '../../utils/mutations';
@@ -142,14 +144,17 @@ const ActivityHome = ({ activity }) => {
 -------------------------*/
 
 const ActivityDash = ({ activity }) => {
-  const { _id, title, image, text } = activity;
+  const { _id, title, text } = activity;
+
+  const { isOpen: activityOpen, onToggle: toggleActivityText } =
+    useDisclosure();
 
   const toast = useToast();
 
   const [removeActivity] = useMutation(REMOVE_ACTIVITY);
 
   // if remove activity is clicked
-  const removeActivityHandler = async () => {
+  const removeActivityHandler = async (event) => {
     // run mutation
     try {
       await removeActivity({
@@ -177,26 +182,65 @@ const ActivityDash = ({ activity }) => {
     }
   };
 
+  // if user clicks on the activity (excludes the remove button)
+  const activityClickHandler = (event) => {
+    // makes sure target is not the close button
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    toggleActivityText();
+  };
+
   return (
     <Box margin={5}>
-      <SimpleGrid
-        className="activities"
-        columns={2}
+      {/* <Square
+              width="200px"
+              height="200px"
+              bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
+      <Box
+        className="activity-text"
+        onClick={activityClickHandler}
         border="2px"
         borderColor="#FFFFFF"
         borderRadius="md"
-        bg="teal">
-        <Square
-          width="200px"
-          height="200px"
-          bgImg={require(`../../assets/activity-images/${image}`)}>
-          <Text className="activity-text" fontSize="2xl">
-            {title}
-          </Text>
-        </Square>
-        <Square color="#FFFFFF">{text}</Square>
-      </SimpleGrid>
-      <Button onClick={removeActivityHandler}>Complete Activity</Button>
+        bg="#285E61"
+        maxWidth="100%"
+        fontSize="2xl"
+        color="#81E6D9"
+        p="10px"
+        cursor="pointer">
+        <Flex justifyContent="end" mb="-8">
+          <IconButton
+            onClick={removeActivityHandler}
+            variant="outline"
+            aria-label="remove activity"
+            colorScheme="teal"
+            color="#FFFFFF"
+            width="10px"
+            size="sm"
+            icon={<SmallCloseIcon />}
+          />
+        </Flex>
+        {title}
+      </Box>
+
+      {/*  */}
+      <Collapse in={activityOpen}>
+        <Flex
+          maxHeight="200px"
+          p="40px"
+          color="white"
+          ml="2"
+          mr="2"
+          bg="teal.400"
+          rounded="md"
+          shadow="md"
+          justifyContent="center"
+          overflow="hidden">
+          <Text overflow="auto">{text}</Text>
+        </Flex>
+      </Collapse>
     </Box>
   );
 };
