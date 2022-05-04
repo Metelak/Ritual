@@ -106,51 +106,51 @@ const Dashboard = () => {
     <div>
       <Flex>
         <Box borderWidth="2px" w="50%" h="80%" borderRadius="lg" bg="#FFFFFF">
-          <Heading
-            className="center-text"
-            fontSize="3xl"
-            color="#2C7A7B"
-            mt="20px">
-            My Activities
-          </Heading>
-          {userActivities.length === 0 ? (
-            <ScaleFade in>
-              <Box m="30px">
-                <Alert
-                  status="info"
-                  variant="subtle"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  textAlign="center"
-                  borderRadius="md"
-                  height="200px">
-                  <AlertIcon boxSize="40px" mr={0} />
-                  <AlertTitle mt={4} mb={1} fontSize="lg">
-                    No activities!
-                  </AlertTitle>
-                  <AlertDescription maxWidth="sm">
-                    Go to the{' '}
-                    <i>
-                      <Link to="/">homepage</Link>
-                    </i>{' '}
-                    to view and add activities.
-                  </AlertDescription>
-                </Alert>
-              </Box>
-            </ScaleFade>
-          ) : (
-            <Box templateColumns="repeat(5, 1fr)" gap={6}>
-              {userActivities.map((activity) => {
-                return (
-                  <ActivityDash
-                    key={activity._id}
-                    activity={activity}></ActivityDash>
-                );
-              })}
+        <Heading
+          className="center-text"
+          fontSize="3xl"
+          color="#2C7A7B"
+          mt="20px">
+          My Activities
+        </Heading>
+        {userActivities.length === 0 ? (
+          <ScaleFade in>
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                borderRadius="md"
+                height="200px">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No activities!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Go to the{' '}
+                  <i>
+                    <Link to="/">homepage</Link>
+                  </i>{' '}
+                  to view and add activities.
+                </AlertDescription>
+              </Alert>
             </Box>
-          )}
-        </Box>
+          </ScaleFade>
+        ) : (
+          <Box templateColumns="repeat(5, 1fr)" gap={6}>
+            {userActivities.map((activity) => {
+              return (
+                <ActivityDash
+                  key={activity._id}
+                  activity={activity}></ActivityDash>
+              );
+            })}
+          </Box>
+        )}
+      </Box>  
         <Box borderWidth="2px" w="50%" borderRadius="lg">
           <Heading
             className="center-text"
