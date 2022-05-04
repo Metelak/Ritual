@@ -87,7 +87,7 @@ const resolvers = {
           {
             new: true
           }
-        );
+        ).populate('activities');
 
         return updateUser;
       }

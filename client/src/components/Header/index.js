@@ -32,27 +32,25 @@ const Header = () => {
   // useNavigate to redirect user to Dashboard using onClick
   const routeToMyDashboard = useNavigate();
 
-  // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
-
   return (
     <header>
       <div>
         <Flex minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
           <Link to="/">
-            <Box size={{sm:'md', xl:'lg'}}>
-            <Image
-              pl="3"
-              width="100px"
-              height="75px"
-              objectFit="cover"
-              src={require('../../assets/Ritual_logos/lotus-logo-white.png')}
-              alt="lotus logo"
-            />
+            <Box size={{ sm: 'md', xl: 'lg' }}>
+              <Image
+                pl="3"
+                width="100px"
+                height="75px"
+                objectFit="cover"
+                src={require('../../assets/Ritual_logos/lotus-logo-white.png')}
+                alt="lotus logo"
+              />
             </Box>
           </Link>
           <Link to="/">
             <Box p="3">
-              <Heading as="h1" size='4xl' isTruncated color="#FFFFFF">
+              <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
                 RITUAL
               </Heading>
             </Box>
@@ -61,18 +59,26 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                <Button onClick={ () => routeToMyDashboard('/Dashboard')} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>My Dashboard</Button>
-                <Button onClick={Auth.logout} color='#FFFFFF' variant="ghost" _hover={{ bg: 'teal.300' }}>Logout</Button>
+                <Button
+                  onClick={() => routeToMyDashboard('/Dashboard')}
+                  color="#FFFFFF"
+                  variant="ghost"
+                  _hover={{ bg: 'teal.300' }}>
+                  My Dashboard
+                </Button>
+                <Button
+                  onClick={Auth.logout}
+                  color="#FFFFFF"
+                  variant="ghost"
+                  _hover={{ bg: 'teal.300' }}>
+                  Logout
+                </Button>
               </ButtonGroup>
             </>
           ) : (
             <ButtonGroup gap="2" pr="3">
-              <SignupForm >
-                Sign Up
-              </SignupForm>
-              <LoginForm>
-                Login
-              </LoginForm>
+              <SignupForm>Sign Up</SignupForm>
+              <LoginForm>Login</LoginForm>
             </ButtonGroup>
           )}
         </Flex>
