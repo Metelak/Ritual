@@ -7,8 +7,7 @@ import {
   Spacer,
   ButtonGroup,
   Image,
-  Button,
-  extendTheme
+  Button
 } from '@chakra-ui/react';
 
 // to redirect user to Dashboard if button is clicked while user is logged in.
