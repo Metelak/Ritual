@@ -11,13 +11,11 @@ import {
   Button,
   Box,
   Circle,
-  Square,
   Text,
   WrapItem,
-  SimpleGrid,
   useToast,
   IconButton,
-  Center
+  Flex
 } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 
@@ -145,7 +143,9 @@ const ActivityHome = ({ activity }) => {
 -------------------------*/
 
 const ActivityDash = ({ activity }) => {
-  const { _id, title, image, text } = activity;
+  const { _id, title } = activity;
+
+  const { isOpen: activityOpen, onToggle: toggleActivityText } = useDisclosure();
 
   const toast = useToast();
 
@@ -182,36 +182,44 @@ const ActivityDash = ({ activity }) => {
 
   return (
     <Box margin={5}>
-      <SimpleGrid
-        className="activities"
-        columns={3}
-        spacing='10'
+      {/* <Square
+              width="200px"
+              height="200px"
+              bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
+      <Box
+        className="activity-text"
+        onClick={toggleActivityText}
+        isDisabled={activities.length === 0 ? true : false}
         border="2px"
         borderColor="#FFFFFF"
         borderRadius="md"
-        bg="teal">
-        <Square
-          width="200px"
-          height="200px"
-          bgImg={require(`../../assets/activity-images/${image}`)}>
-          <Text className="activity-text" fontSize="2xl" color="#81E6D9">
-            {title}
-          </Text>
-        </Square>
-          <Square width='350px'  height='200px' color="#FFFFFF">{text}</Square>
-          <IconButton
-            onClick={removeActivityHandler}
-            variant="outline"
-            aria-label="remove activity"
-            colorScheme="teal"
-            ml='75%'
-            mt='2'
-            color="#FFFFFF"
-            width='10px'
-            size='sm'
-            icon={<SmallCloseIcon />}
-          />
-      </SimpleGrid>
+        bg="#285E61"
+        maxWidth="100%"
+        fontSize="2xl"
+        color="#81E6D9"
+        p="10px">
+          {activities.length === 0 ? '' : `(${activities.length})`}
+          <Flex justifyContent='end' mb='-8'>
+        <IconButton
+          onClick={removeActivityHandler}
+          variant="outline"
+          aria-label="remove activity"
+          colorScheme="teal"
+          color="#FFFFFF"
+          width="10px"
+          size="sm"
+          icon={<SmallCloseIcon />}
+        />
+        </Flex>
+        {title}
+      </Box>
+
+      <ActivityText
+        activityOpen={activityOpen}
+        activities={activities}
+        toggleActivityText={toggleActivityText}
+        activityId={_id}
+      />
     </Box>
   );
 };
