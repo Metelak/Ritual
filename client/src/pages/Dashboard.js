@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Center,
-  Flex,
   Heading,
   Alert,
   AlertIcon,
@@ -12,7 +11,8 @@ import {
   ScaleFade,
   Button,
   ButtonGroup,
-  Divider
+  Divider,
+  Stack
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -107,8 +107,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Flex>
-        <Box w="50%" minHeight="100%" bg="#FFFFFF">
+      <Stack direction={['column', 'row']}>
+      <Box w="50%" minHeight="100%" bg="#FFFFFF">
           <Heading
             className="center-text"
             fontSize="3xl"
@@ -210,7 +210,7 @@ const Dashboard = () => {
             })
           )}
         </Box>
-      </Flex>
+      </Stack>
     </div>
   );
 };
