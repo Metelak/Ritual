@@ -75,7 +75,7 @@
     "image": "clear-habit-journal.png"
   },
   {
-    "title": "Prompts for Today",
+    "title": "Writing Prompts",
     "text": "Write one thing you are proud of. One thing you are challenged by. One think you would like to let go of.",
     "image": "writing-prompt.png"
   },
@@ -153,5 +153,11 @@
     "title": "Chores as Meditation",
     "text": "There is a saying in Zen Buddhism, 'Chop Wood, Carry Water.'  This simple phrases emphasizes the need for committing to and thriving during the process of any task. No matter how skilled you are at meditation in other forms, you can work to bring mindfulness to every chore at hand. These tasks can be done mindfully and with appreciation. See if you can bring a focused mind to any thing you do, and rather seeing it as a challenge, find delight in the practice. You might be surprised at the joy that can be found in washing dishes, vacuuming, raking leaves, or even folding laundry. Find the opportunity for joy by bringing mindfulness to all you do!",
     "image": "folding-laundry.png"
+  },
+  {
+    "title": "Listening Meditation",
+    "text": "Use the sense-door of hearing as the focal point of your awareness. With your eyes closed, begin to perceive the world around you. You might notice the sounds that surround you in your immediate space, the sound of your breath, the dishwasher, other people or animals, you might notice the sounds in an adjoining room. See if you can stretch your hearing to the world beyond your space, and if you are already outside, see how far your can hear. Birds, cars, airplanes; the sound of the wind, trees, water... Learning to listen can help us in other ways in our lives. We can return to the experience of hearing when we find ourselves stressed, we can listen more deeply to loved ones, and we can tune in more deeply to the world around us. If ever a noise feels distracting or like a nuisance, take a deep breath, and appreciate the gift of listening meditation.",
+    "image": "listening-meditation.png"
   }
+
 ]
