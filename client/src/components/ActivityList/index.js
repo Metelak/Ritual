@@ -15,8 +15,11 @@ import {
   Text,
   WrapItem,
   SimpleGrid,
-  useToast
+  useToast,
+  IconButton,
+  Center
 } from '@chakra-ui/react';
+import { SmallCloseIcon } from '@chakra-ui/icons';
 
 import { useMutation } from '@apollo/client';
 import { ADD_ACTIVITY, REMOVE_ACTIVITY } from '../../utils/mutations';
@@ -181,7 +184,8 @@ const ActivityDash = ({ activity }) => {
     <Box margin={5}>
       <SimpleGrid
         className="activities"
-        columns={2}
+        columns={3}
+        spacing='10'
         border="2px"
         borderColor="#FFFFFF"
         borderRadius="md"
@@ -194,9 +198,20 @@ const ActivityDash = ({ activity }) => {
             {title}
           </Text>
         </Square>
-        <Square color="#FFFFFF">{text}</Square>
+          <Square width='350px'  height='200px' color="#FFFFFF">{text}</Square>
+          <IconButton
+            onClick={removeActivityHandler}
+            variant="outline"
+            aria-label="remove activity"
+            colorScheme="teal"
+            ml='75%'
+            mt='2'
+            color="#FFFFFF"
+            width='10px'
+            size='sm'
+            icon={<SmallCloseIcon />}
+          />
       </SimpleGrid>
-      <Button onClick={removeActivityHandler}>Complete Activity</Button>
     </Box>
   );
 };
