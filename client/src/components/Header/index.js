@@ -54,26 +54,44 @@ const Header = () => {
               </Heading>
             </Box>
           </Link>
-          <Spacer />
+          <Spacer/>
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
                 {window.location.pathname === '/Dashboard' ? (
-                  <Button
-                    onClick={() => navigate('/')}
-                    color="#FFFFFF"
-                    variant="ghost"
-                    _hover={{ bg: 'teal.300' }}>
-                    Add Activities
-                  </Button>
+                  <>
+                    <Button
+                      onClick={() => navigate('/')}
+                      color="#FFFFFF"
+                      variant="ghost"
+                      _hover={{ bg: 'teal.300' }}>
+                      Homepage
+                    </Button>
+                    <Button
+                      onClick={Auth.logout}
+                      color="#FFFFFF"
+                      variant="ghost"
+                      _hover={{ bg: 'teal.300' }}>
+                      Logout{' '}
+                    </Button>
+                  </>
                 ) : (
-                  <Button
-                    onClick={() => navigate('/Dashboard')}
-                    color="#FFFFFF"
-                    variant="ghost"
-                    _hover={{ bg: 'teal.300' }}>
-                    My Dashboard
-                  </Button>
+                  <>
+                    <Button
+                      onClick={() => navigate('/Dashboard')}
+                      color="#FFFFFF"
+                      variant="ghost"
+                      _hover={{ bg: 'teal.300' }}>
+                      My Dashboard
+                    </Button>
+                    <Button
+                      onClick={Auth.logout}
+                      color="#FFFFFF"
+                      variant="ghost"
+                      _hover={{ bg: 'teal.300' }}>
+                      Logout{' '}
+                    </Button>
+                  </>
                 )}
               </ButtonGroup>
             </>
