@@ -12,7 +12,9 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Stack
+  Stack,
+  Wrap,
+  WrapItem
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -106,8 +108,9 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <Wrap>
       <Stack direction={['column', 'row']}>
+        <WrapItem>
       <Box w="50%" minHeight="100%" bg="#FFFFFF">
           <Heading
             className="center-text"
@@ -154,9 +157,11 @@ const Dashboard = () => {
             </Box>
           )}
         </Box>
+        </WrapItem>
         <Center>
         <Divider orientation='vertical' width='1px' minHeight='100%' variant='solid' bg='#234E52' />
         </Center>
+        <WrapItem>
         <Box w="50%" minHeight='100%'>
           <Heading
             className="center-text"
@@ -210,8 +215,8 @@ const Dashboard = () => {
             })
           )}
         </Box>
+        </WrapItem>
       </Stack>
-    </div>
   );
 };
 
