@@ -11,12 +11,13 @@ import {
   AlertDescription,
   ScaleFade,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Text
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import GoalForm from '../components/GoalForm';
-import { ActivityDash } from '../components/ActivityList';
+import ActivityDash from '../components/ActivityList/ActivityDash';
 import GoalList from '../components/GoalList';
 import { COMPLETE_GOAL } from '../utils/mutations';
 
@@ -47,7 +48,8 @@ const Dashboard = () => {
           return !goal.isComplete;
         })
       );
-    } else if (activities.length) {
+    }
+    if (activities) {
       setActivities(activities);
     }
   }, [goals, activities]);
@@ -66,13 +68,12 @@ const Dashboard = () => {
     }
   }, [userData, dispatch]);
 
-  // TODO need to clear store on Sign Out!!
-
   const handleViewCompletedGoals = () => {
     navigate('/completed-goals');
   };
 
   if (error) {
+    let errorMessage = error.graphQLErrors[0].message;
     return (
       <ScaleFade in>
         <Box pl="15px" pr="15px" pt="150px" pb="300px">
@@ -87,10 +88,12 @@ const Dashboard = () => {
             borderRadius="md">
             <AlertIcon boxSize="50px" />
             <AlertTitle mt="20px" mb="35px" fontSize="5xl">
-              User login Required
+              {errorMessage}!
             </AlertTitle>
             <AlertDescription fontSize="large">
-              You are not logged in. Please log in to view your dashboard!
+              {errorMessage === 'Not logged in'
+                ? `You are not logged in. Please log in to view your dashboard!`
+                : null}
             </AlertDescription>
           </Alert>
         </Box>
@@ -140,15 +143,18 @@ const Dashboard = () => {
               </Box>
             </ScaleFade>
           ) : (
-            <Box templateColumns="repeat(5, 1fr)" gap={6}>
-              {userActivities.map((activity) => {
-                return (
-                  <ActivityDash
-                    key={activity._id}
-                    activity={activity}></ActivityDash>
-                );
-              })}
-            </Box>
+            <>
+              <Text>To add more, go to the homepage</Text>
+              <Box templateColumns="repeat(5, 1fr)" gap={6}>
+                {userActivities.map((activity) => {
+                  return (
+                    <ActivityDash
+                      key={activity._id}
+                      activity={activity}></ActivityDash>
+                  );
+                })}
+              </Box>
+            </>
           )}
         </Box>
         <Box borderWidth="2px" w="50%" borderRadius="lg">

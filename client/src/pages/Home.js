@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityHome } from '../components/ActivityList';
+import ActivityHome from '../components/ActivityList/ActivityHome';
 import { useQuery } from '@apollo/client';
 import { QUERY_ACTIVITIES } from '../utils/queries';
 import { Wrap } from '@chakra-ui/react';
@@ -15,14 +15,11 @@ const Home = () => {
   return (
     // <Grid templateColumns='repeat(5, 1fr)' gap={6}>
     <Wrap>
-        {activityData.activities.map((activity) => {
-          return (
-            <ActivityHome
-              key={activity.title}
-              activity={activity}>
-              </ActivityHome>
-          );
-        })}
+      {activityData.activities.map((activity) => {
+        return (
+          <ActivityHome key={activity.title} activity={activity}></ActivityHome>
+        );
+      })}
     </Wrap>
     // </Grid>
   );
