@@ -7,8 +7,7 @@ import {
   Spacer,
   ButtonGroup,
   Image,
-  Button,
-  extendTheme
+  Button
 } from '@chakra-ui/react';
 
 // to redirect user to Dashboard if button is clicked while user is logged in.
@@ -29,14 +28,9 @@ const Header = () => {
     Auth.logout();
   };
 
-<<<<<<< HEAD
-=======
   // useNavigate to redirect user to Dashboard using onClick
   const routeToMyDashboard = useNavigate();
 
-  // TODO: Get logout button to generate automatically, without manually refreshing the page. New route?
-
->>>>>>> 23581d3631b3988734766bb5ac5c142424c2d49a
   return (
     <header>
       <div>
