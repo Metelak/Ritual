@@ -43,6 +43,7 @@ code {
   margin-top: 25px;
 }
 
+
 /* --- HEADER STYLING --- */
 button.chakra-button__group {
   margin-right: 50px;
@@ -56,11 +57,13 @@ header img {
   height: 125px;
 }
 
+
 /* --- BODY STYLING --- */
 
 .css-k008qs {
 margin-top: 20px;
 }
+
 
 /* --- FOOTER STYLING --- */
 .footer {
