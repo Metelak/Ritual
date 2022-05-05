@@ -9,7 +9,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('goals')
-          .populate('completedGoals')
           .populate('activities');
 
         return userData;
@@ -21,7 +20,6 @@ const resolvers = {
       return await User.findOne({ username })
         .select('-__v -password')
         .populate('goals')
-        .populate('completedGoals')
         .populate('activities');
     },
     goals: async () => {
@@ -47,8 +45,8 @@ const resolvers = {
 
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
@@ -71,8 +69,7 @@ const resolvers = {
           { new: true, runValidators: true }
         )
           .populate('activities')
-          .populate('goals')
-          .populate('completedGoals');
+          .populate('goals');
 
         return updatedUser;
       }
@@ -90,7 +87,7 @@ const resolvers = {
           {
             new: true
           }
-        );
+        ).populate('activities');
 
         return updateUser;
       }
@@ -103,42 +100,51 @@ const resolvers = {
           ...args
         });
 
-        await User.findByIdAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { goals: goal._id } },
           { new: true }
-        );
+        ).populate({
+          path: 'goals',
+          populate: [
+            {
+              path: 'challenges'
+            },
+            { path: 'reflection' }
+          ]
+        });
 
-        return goal;
+        return updatedUser;
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
     completeGoal: async (parent, { _id }, context) => {
       if (context.user) {
-        // remove goal from User's goal array
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          {
-            $pull: { goals: _id }
-          },
+        // find User's goal and update boolean on isComplete
+        const completedGoal = await Goal.findOneAndUpdate(
+          { _id: _id },
+          { isComplete: true },
           { new: true }
         );
 
-        // add goal to User's completedGoals array
-        const archiveGoal = await User.findOneAndUpdate(
-          {
-            _id: context.user._id
-          },
-          {
-            $push: { completedGoals: _id }
-          },
+        return completedGoal;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    reuseGoal: async (parent, { _id }, context) => {
+      if (context.user) {
+        // find User's goal and update boolean on isComplete
+        const completedGoal = await Goal.findOneAndUpdate(
+          { _id: _id },
+          { isComplete: false },
           { new: true }
         )
-          .populate('goals')
-          .populate('completedGoals');
+          .populate('challenges')
+          .populate('reflection');
 
-        return archiveGoal;
+        return completedGoal;
       }
 
       throw new AuthenticationError('You need to be logged in!');

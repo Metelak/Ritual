@@ -7,7 +7,6 @@ const typeDefs = gql`
     email: String
     activities: [Activity]
     goals: [Goal]
-    completedGoals: [completedGoals]
   }
 
   type Activity {
@@ -23,15 +22,6 @@ const typeDefs = gql`
     description: String
     createdAt: String
     isComplete: Boolean
-    challenges: [Challenge]
-    reflection: [Reflection]
-  }
-
-  type completedGoals {
-    _id: ID
-    name: String
-    description: String
-    createdAt: String
     challenges: [Challenge]
     reflection: [Reflection]
   }
@@ -63,12 +53,13 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveActivity(_id: ID!): User
     removeActivity(_id: ID!): User
-    addGoal(name: String!, description: String!): Goal
-    completeGoal(_id: ID!): User
+    addGoal(name: String!, description: String!): User
+    completeGoal(_id: ID!): Goal
+    reuseGoal(_id: ID!): Goal
     addChallenge(goalId: ID!, challengeText: String!): Goal
     addReflection(goalId: ID!, reflectionText: String!): Goal
   }

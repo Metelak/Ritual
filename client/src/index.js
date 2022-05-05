@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import '@fontsource/cabin-sketch';
+import '@fontsource/truculenta';
 // import Chakra-ui
 import { ChakraProvider } from '@chakra-ui/react';
 // import Fonts from './utils/fonts'

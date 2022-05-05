@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       token
       user {
         _id
@@ -25,62 +25,51 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GOAL = gql`
-  mutation addGoal($id: ID!) {
-    addGoal(GoalId: $id) {
+  mutation addGoal($name: String!, $description: String!) {
+    addGoal(name: $name, description: $description) {
       _id
-      name
-      description
-      createdAt
-      isComplete
-      challenges {
+      username
+      email
+      goals {
         _id
-        challengeText
+        name
+        description
         createdAt
-      }
-      reflection {
-        _id
-        reflectionText
-        createdAt
+        isComplete
+        challenges {
+          _id
+          challengeText
+          createdAt
+        }
+        reflection {
+          _id
+          reflectionText
+          createdAt
+        }
       }
     }
   }
 `;
 
 export const ADD_ACTIVITY = gql`
-  mutation addActivity($id: ID!) {
-    addActivity(addActivity: $id) {
+  mutation saveActivity($id: ID!) {
+    saveActivity(_id: $id) {
       _id
-      title
-      text
-      createdAt
-      image
+      username
+      email
+      activities {
+        _id
+        title
+        text
+        image
+      }
     }
   }
 `;
 
 export const ADD_CHALLENGE = gql`
-  mutation addChallenge($id: ID!) {
-    addChallenge(addChallenge: $id) {
-      _id
-      challengeText
-      createdAt
-    }
-  }
-`;
-
-export const ADD_REFLECTION = gql`
-  mutation addReflection($id: ID!) {
-    addReflection(addReflection: $id) {
-      _id
-      reflectionText
-      createdAt
-    }
-  }
-`;
-
-export const COMPLETE_GOAL = gql`
-  mutation completeGoal($id: ID!) {
-    completedGoals(removeGoal: $id) {
+  mutation AddChallenge($goalId: ID!, $challengeText: String!) {
+    addChallenge(goalId: $goalId, challengeText: $challengeText) {
       _id
       name
       description
@@ -100,14 +89,66 @@ export const COMPLETE_GOAL = gql`
   }
 `;
 
-export const REMOVE_ACTIVITY = gql`
-  mutation removeActivity($id: ID!) {
-    removeActivity(removeActivity: $id) {
+export const ADD_REFLECTION = gql`
+  mutation AddReflection($goalId: ID!, $reflectionText: String!) {
+    addReflection(goalId: $goalId, reflectionText: $reflectionText) {
       _id
       name
       description
-      image
-      link
+      createdAt
+      isComplete
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
+    }
+  }
+`;
+
+export const COMPLETE_GOAL = gql`
+  mutation CompleteGoal($id: ID!) {
+    completeGoal(_id: $id) {
+      _id
+      name
+      description
+      isComplete
+      createdAt
+      challenges {
+        _id
+        challengeText
+        createdAt
+      }
+      reflection {
+        _id
+        reflectionText
+        createdAt
+      }
+    }
+  }
+`;
+
+export const REUSE_GOAL = gql`
+  mutation reuseGoal($id: ID!) {
+    reuseGoal(_id: $id) {
+      _id
+      isComplete
+    }
+  }
+`;
+
+export const REMOVE_ACTIVITY = gql`
+  mutation removeActivity($id: ID!) {
+    removeActivity(_id: $id) {
+      _id
+      username
+      email
+      activities {
+        _id
+        title
+        text
+        image
+      }
     }
   }
 `;

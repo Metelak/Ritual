@@ -16,7 +16,6 @@
   * [License](#license)
   * [Questions](#questions)
 
-  ---
 
   ## **User-Story**
    AS A user I want an application that provides wellness activities and tracks my wellness goals
@@ -29,14 +28,18 @@ Display homepage. If you are not a “USER” you can see all the suggested acti
 
 Once users are signed up / logged in, users can view wellness dashboard with personalized wellness goals. They can set types of activities to support personal goals, whether it is movement-based, creativity / play, food / water intake, sleep…
   ## **Preview**
+  ## Homepage
+  ![readme](https://user-images.githubusercontent.com/94068596/166850383-35f702bc-68ae-4def-9836-e1a993e61a5e.png)
+  ## User Dashboard
+![readme1](https://user-images.githubusercontent.com/94068596/166850396-89746ca0-df2a-41b7-af8b-e69018c5fac8.png)
 
   ## **Installation**
   
 
   ## **Usage**
-  * To run the server locally after installation Run
+  * To run the server locally after installation in the root of the project Run
       ```
-      npm start
+      npm run develop
      ```
   * Or visit our webpage [Ritual]()
 ## **Packages**
@@ -47,14 +50,16 @@ Once users are signed up / logged in, users can view wellness dashboard with per
 * [MongoDB](https://www.mongodb.com/)
 * [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com/)
-* [Bootstrap](https://getbootstrap.com/)
+* [Chakra UI](https://chakra-ui.com/)
 
 ## **Other Tools**
 * [Canva](https://www.canva.com/) provides templates and icons for styling flyers and websites; we used for our Ritual logo.
 * [Pixlr](https://pixlr.com/x/) an Open Source software, which we used to edit and resize our logo.
 
 ## **Future Developments**
-
+* Create goals by frequency (days, weekly, etc)
+* Track how often the users are completing the same goals
+* add Stripe to allow users to make donations towards a cause (Mental Health)
  
 
 ## **Contributions**
