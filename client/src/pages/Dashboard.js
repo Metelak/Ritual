@@ -12,7 +12,8 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Stack
+  Stack,
+  Flex
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -106,118 +107,118 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <Stack direction={['column', 'row']}>
-        <Box w="50%" minHeight="100%" bg="#FFFFFF">
-          <Heading
-            className="center-text"
-            fontSize="4xl"
-            color="#285E61"
-            mt="20px">
-            My Activities
-          </Heading>
-          {userActivities.length === 0 ? (
-            <ScaleFade in>
-              <Box m="30px">
-                <Alert
-                  status="info"
-                  variant="subtle"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  textAlign="center"
-                  borderRadius="md"
-                  height="200px">
-                  <AlertIcon boxSize="40px" mr={0} />
-                  <AlertTitle mt={4} mb={1} fontSize="lg">
-                    No activities!
-                  </AlertTitle>
-                  <AlertDescription maxWidth="sm">
-                    Go to the{' '}
-                    <i>
-                      <Link to="/">homepage</Link>
-                    </i>{' '}
-                    to view and add activities.
-                  </AlertDescription>
-                </Alert>
-              </Box>
-            </ScaleFade>
-          ) : (
-            <Box templateColumns="repeat(5, 1fr)" gap={6}>
-              {userActivities.map((activity) => {
-                return (
-                  <ActivityDash
-                    key={activity._id}
-                    activity={activity}></ActivityDash>
-                );
-              })}
+    <Flex flexDir={['column', 'column', 'row']} alignItems="center">
+      <Box w={['80%', '80%', '50%']} minHeight="100%" bg="#FFFFFF">
+        <Heading
+          className="center-text"
+          fontSize="3xl"
+          color="#2C7A7B"
+          mt="20px">
+          My Activities
+        </Heading>
+        {userActivities.length === 0 ? (
+          <ScaleFade in>
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                borderRadius="md"
+                height="200px">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No activities!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Go to the{' '}
+                  <i>
+                    <Link to="/">homepage</Link>
+                  </i>{' '}
+                  to view and add activities.
+                </AlertDescription>
+              </Alert>
             </Box>
-          )}
-        </Box>
-        <Center>
-          <Divider
-            orientation="vertical"
-            width="1px"
-            minHeight="100%"
-            variant="solid"
-            bg="#234E52"
-          />
-        </Center>
-        <Box w="50%" minHeight="100%">
-          <Heading
-            className="center-text"
-            fontSize="4xl"
-            color="#285E61"
-            mt="20px">
-            My Goals
-          </Heading>
-          <Center>
-            <ButtonGroup isAttached mt="3">
-              <GoalForm />
-              <Button
-                onClick={handleViewCompletedGoals}
-                colorScheme="teal"
-                size="md">
-                Completed Goals
-              </Button>
-            </ButtonGroup>
-          </Center>
-          {userGoals.length === 0 ? (
-            <ScaleFade in>
-              <Box m="30px">
-                <Alert
-                  status="info"
-                  variant="subtle"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  textAlign="center"
-                  height="200px"
-                  borderRadius="md">
-                  <AlertIcon boxSize="40px" mr={0} />
-                  <AlertTitle mt={4} mb={1} fontSize="lg">
-                    No goals!
-                  </AlertTitle>
-                  <AlertDescription maxWidth="sm">
-                    Click Add Goal to create a goal.
-                  </AlertDescription>
-                </Alert>
-              </Box>
-            </ScaleFade>
-          ) : (
-            userGoals.map((goal) => {
+          </ScaleFade>
+        ) : (
+          <Box templateColumns="repeat(5, 1fr)" gap={6}>
+            {userActivities.map((activity) => {
               return (
-                <GoalList
-                  key={goal._id}
-                  goal={goal}
-                  completeGoal={completeGoal}
-                />
+                <ActivityDash
+                  key={activity._id}
+                  activity={activity}></ActivityDash>
               );
-            })
-          )}
-        </Box>
-      </Stack>
-    </div>
+            })}
+          </Box>
+        )}
+      </Box>
+
+      <Center>
+        <Divider
+          orientation="vertical"
+          width="1px"
+          minHeight="100%"
+          variant="solid"
+          bg="#234E52"
+        />
+      </Center>
+
+      <Box w={['80%', '80%', '50%']} minHeight="100%">
+        <Heading
+          className="center-text"
+          fontSize="4xl"
+          color="#285E61"
+          mt="20px">
+          My Goals
+        </Heading>
+        <Center>
+          <ButtonGroup isAttached mt="3">
+            <GoalForm />
+            <Button
+              onClick={handleViewCompletedGoals}
+              colorScheme="teal"
+              size="md">
+              Completed Goals
+            </Button>
+          </ButtonGroup>
+        </Center>
+        {userGoals.length === 0 ? (
+          <ScaleFade in>
+            <Box m="30px">
+              <Alert
+                status="info"
+                variant="subtle"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                textAlign="center"
+                height="200px"
+                borderRadius="md">
+                <AlertIcon boxSize="40px" mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize="lg">
+                  No goals!
+                </AlertTitle>
+                <AlertDescription maxWidth="sm">
+                  Click Add Goal to create a goal.
+                </AlertDescription>
+              </Alert>
+            </Box>
+          </ScaleFade>
+        ) : (
+          userGoals.map((goal) => {
+            return (
+              <GoalList
+                key={goal._id}
+                goal={goal}
+                completeGoal={completeGoal}
+              />
+            );
+          })
+        )}
+      </Box>
+    </Flex>
   );
 };
 
