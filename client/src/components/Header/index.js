@@ -7,7 +7,8 @@ import {
   Spacer,
   ButtonGroup,
   Image,
-  Button
+  Button,
+  useBreakpointValue
 } from '@chakra-ui/react';
 
 // to redirect user to Dashboard if button is clicked while user is logged in.
@@ -23,13 +24,11 @@ import SignupForm from './Signup';
 import Auth from '../../utils/auth';
 
 const Header = () => {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
-
   // useNavigate to redirect user to Dashboard using onClick
   const navigate = useNavigate();
+
+  const variant = useBreakpointValue({ base: 'sm', md: 'big' });
+  console.log(variant);
 
   return (
     <header>
@@ -47,13 +46,15 @@ const Header = () => {
               />
             </Box>
           </Link>
-          <Link to="/">
-            <Box>
-              <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
-                RITUAL
-              </Heading>
-            </Box>
-          </Link>
+          {variant === 'big' ? (
+            <Link to="/">
+              <Box>
+                <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
+                  RITUAL
+                </Heading>
+              </Box>
+            </Link>
+          ) : null}
           <Spacer />
           {Auth.loggedIn() ? (
             <>
