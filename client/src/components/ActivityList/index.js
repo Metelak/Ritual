@@ -104,7 +104,8 @@ const ActivityHome = ({ activity }) => {
         borderRadius="full"
         width="300px"
         height="300px"
-        bgImg={require(`../../assets/activity-images/${image}`)}>
+        bgImg={require(`../../assets/activity-images/${image}`)}
+        cursor="pointer">
         <Text className="activity-text" fontSize="2xl">
           {title}
         </Text>
@@ -195,10 +196,6 @@ const ActivityDash = ({ activity }) => {
 
   return (
     <Box margin={5}>
-      {/* <Square
-              width="200px"
-              height="200px"
-              bgImg={require(`../../assets/activity-images/${image}`)}></Square> */}
       <Box
         onClick={activityClickHandler}
         borderRadius="lg"
@@ -221,7 +218,7 @@ const ActivityDash = ({ activity }) => {
             icon={<SmallCloseIcon />}
           />
         </Flex>
-        <Heading color="#285E61" size="lg">
+        <Heading color="#285E61" size="lg" onClick={activityClickHandler}>
           {title}
         </Heading>
       </Box>
@@ -243,7 +240,7 @@ const ActivityDash = ({ activity }) => {
           <IconButton
             size="md"
             mt="-5"
-            ml='-3'
+            ml="-3"
             onClick={toggleActivityText}
             icon={<ArrowUpIcon />}
             variant="ghost"

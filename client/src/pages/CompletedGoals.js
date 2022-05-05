@@ -35,7 +35,7 @@ const CompletedGoals = () => {
   }
 
   return (
-    <Box>
+    <Box minHeight="83.3vh">
       <Heading className="center-text" fontSize="3xl" color="#2C7A7B" mt="20px">
         Completed Goals
       </Heading>

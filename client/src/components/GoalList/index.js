@@ -87,14 +87,16 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
   };
 
   return (
-    <Box margin="30px">
+    <Box margin={completed ? { base: '0', md: '30px' } : '30px'}>
       <Box
         border="2px"
         p="3"
         borderRadius="md"
         borderColor="gray.200"
         bgColor="teal.50">
-        <Flex justifyContent="end" mb="-6">
+        <Flex
+          justifyContent={{ base: 'normal', md: 'end' }}
+          mb={{ base: 'normal', md: '-6' }}>
           {completed ? (
             <Button
               onClick={reuseGoalHandler}
@@ -107,13 +109,12 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
               onChange={completeGoalHandler}
               size="lg"
               colorScheme="green"
-              color='#285E61'
-            >
+              color="#285E61">
               Goal Complete
             </Checkbox>
           )}
         </Flex>
-        <Heading fontSize="3xl" color='#285E61' ml="5" mt="5">
+        <Heading fontSize="3xl" color="#285E61" ml="5" mt="5">
           {name}
         </Heading>
         <Box
@@ -131,10 +132,16 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
             <Text m="2">{createdAt}</Text>
           </Flex>
         </Box>
-        <Flex mt="10" height="40px" flexDir="row" justifyContent="space-evenly">
+        <Flex
+          mt={{ base: '5', md: '10' }}
+          height={{ base: '100px', md: '40px' }}
+          flexDir={{ base: 'column', md: 'row' }}
+          justifyContent="space-evenly"
+          alignItems={{ base: 'center', md: 'normal' }}>
           <Box>
             {completed ? (
               <Button
+                mb={{ base: '5', md: '0' }}
                 onClick={toggleChallenges}
                 isDisabled={challenges.length === 0 ? true : false}
                 colorScheme="red"
@@ -143,7 +150,7 @@ const GoalList = ({ goal, completeGoal, completed = false, reuseGoal }) => {
                 {challenges.length === 0 ? '' : `(${challenges.length})`}
               </Button>
             ) : (
-              <ButtonGroup isAttached>
+              <ButtonGroup isAttached mb={{ base: '5', md: '0' }}>
                 <Button
                   onClick={toggleChallenges}
                   colorScheme="red"
