@@ -7,10 +7,10 @@ import {
   ListIcon,
   Flex,
   Heading,
-  CloseButton,
+  IconButton,
   Center
 } from '@chakra-ui/react';
-import { InfoIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { InfoIcon, ChevronRightIcon, ArrowUpIcon } from '@chakra-ui/icons';
 
 const GoalChallenges = ({
   challengeOpen,
@@ -31,7 +31,17 @@ const GoalChallenges = ({
         flexDir="column">
         <Flex flexDir="row" justifyContent="space-between" mb="10px">
           <Heading>{goalName} Challenges</Heading>
-          <CloseButton size="md" mt="-5" onClick={toggleChallenges} />
+          <IconButton
+            size="md"
+            mt="-5"
+            onClick={toggleChallenges}
+            icon={<ArrowUpIcon />}
+            variant="ghost"
+            colorScheme='red'
+            borderRadius="full"
+            fontSize="xl"
+            aria-label="Close Challenges"
+          />
         </Flex>
         {!challenges.length ? (
           <Center>

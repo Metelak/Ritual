@@ -6,11 +6,11 @@ import {
   ListItem,
   ListIcon,
   Center,
-  CloseButton,
   Flex,
-  Heading
+  Heading,
+  IconButton
 } from '@chakra-ui/react';
-import { ChevronRightIcon, InfoIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon, InfoIcon, ArrowUpIcon } from '@chakra-ui/icons';
 
 const GoalReflection = ({
   reflectionOpen,
@@ -31,7 +31,17 @@ const GoalReflection = ({
         flexDir="column">
         <Flex flexDir="row" justifyContent="space-between" mb="10px">
           <Heading>{goalName} Reflection</Heading>
-          <CloseButton size="md" mt="-5" onClick={toggleReflection} />
+          <IconButton
+            size="md"
+            mt="-5"
+            onClick={toggleReflection}
+            icon={<ArrowUpIcon />}
+            variant="ghost"
+            colorScheme="teal"
+            borderRadius="full"
+            fontSize="xl"
+            aria-label="Close Reflections"
+          />
         </Flex>
         {!reflections.length ? (
           <Center>

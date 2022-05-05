@@ -36,11 +36,11 @@ const Header = () => {
       <div>
         <Flex minWidth="max-content" alignItems="center" gap="2" bg="#2C7A7B">
           <Link to="/">
-            <Box size={{ sm: 'md', xl: 'lg' }}>
+            <Box>
               <Image
-                pl="3"
+                ml="2"
                 width="100px"
-                height="75px"
+                height="85px"
                 objectFit="cover"
                 src={require('../../assets/Ritual_logos/lotus-logo-white.png')}
                 alt="lotus logo"
@@ -48,17 +48,17 @@ const Header = () => {
             </Box>
           </Link>
           <Link to="/">
-            <Box p="3">
+            <Box>
               <Heading as="h1" size="4xl" isTruncated color="#FFFFFF">
                 RITUAL
               </Heading>
             </Box>
           </Link>
-          <Spacer/>
+          <Spacer />
           {Auth.loggedIn() ? (
             <>
               <ButtonGroup gap="2" pr="3">
-                {window.location.pathname === '/Dashboard' ? (
+                {window.location.pathname === '/dashboard' ? (
                   <>
                     <Button
                       onClick={() => navigate('/')}
@@ -78,7 +78,7 @@ const Header = () => {
                 ) : (
                   <>
                     <Button
-                      onClick={() => navigate('/Dashboard')}
+                      onClick={() => navigate('/dashboard')}
                       color="#FFFFFF"
                       variant="ghost"
                       _hover={{ bg: 'teal.300' }}>

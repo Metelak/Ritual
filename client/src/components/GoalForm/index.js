@@ -150,10 +150,7 @@ const GoalForm = () => {
   };
 
   const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px)"
-    />
+    <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px)" />
   );
 
   const [overlay] = React.useState(<OverlayOne />);
@@ -177,8 +174,7 @@ const GoalForm = () => {
           <ModalHeader>Create a Goal</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl
-              isInvalid={errorMessage.type === 'name' ? true : false}>
+            <FormControl isInvalid={errorMessage.type === 'name'}>
               <FormLabel>Name:</FormLabel>
               <Input
                 name="name"
@@ -191,12 +187,9 @@ const GoalForm = () => {
                 size="sm"
                 value={nameLength}
               />
-              {errorMessage.type === 'name' && (
-                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
-              )}
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
-            <FormControl
-              isInvalid={errorMessage.type === 'description' ? true : false}>
+            <FormControl isInvalid={errorMessage.type === 'description'}>
               <FormLabel>Description:</FormLabel>
               <Textarea
                 name="description"
@@ -212,9 +205,7 @@ const GoalForm = () => {
                 size="sm"
                 value={descriptionLength}
               />
-              {errorMessage.type === 'description' && (
-                <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
-              )}
+              <FormErrorMessage>{errorMessage.message}</FormErrorMessage>
             </FormControl>
           </ModalBody>
           <ModalFooter>
