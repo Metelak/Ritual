@@ -12,7 +12,6 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Stack,
   Flex
 } from '@chakra-ui/react';
 import { useMutation, useQuery } from '@apollo/client';
@@ -107,8 +106,10 @@ const Dashboard = () => {
   }
 
   return (
-    <Flex flexDir={['column', 'column', 'row']} alignItems="center">
-      <Box w={['80%', '80%', '50%']} minHeight="100%" bg="#FFFFFF">
+    <Flex
+      flexDir={{ base: 'column', md: 'row' }}
+      alignItems={{ base: 'center', md: 'normal' }}>
+      <Box w={{ base: '80%', md: '50%' }} minHeight="100%" bg="#FFFFFF">
         <Heading
           className="center-text"
           fontSize="3xl"
@@ -143,7 +144,7 @@ const Dashboard = () => {
             </Box>
           </ScaleFade>
         ) : (
-          <Box templateColumns="repeat(5, 1fr)" gap={6}>
+          <Box>
             {userActivities.map((activity) => {
               return (
                 <ActivityDash
@@ -165,7 +166,7 @@ const Dashboard = () => {
         />
       </Center>
 
-      <Box w={['80%', '80%', '50%']} minHeight="100%">
+      <Box w={{ base: '80%', md: '50%' }} minHeight="84.7vh">
         <Heading
           className="center-text"
           fontSize="4xl"
