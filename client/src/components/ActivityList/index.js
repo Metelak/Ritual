@@ -104,7 +104,8 @@ const ActivityHome = ({ activity }) => {
         borderRadius="full"
         width="300px"
         height="300px"
-        bgImg={require(`../../assets/activity-images/${image}`)}>
+        bgImg={require(`../../assets/activity-images/${image}`)}
+        cursor="pointer">
         <Text className="activity-text" fontSize="2xl">
           {title}
         </Text>
